@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "2f1aaec0-7dd9-47b2-8e5c-30d5908a8d84",
+		"name": "Profesores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26655082"
+	},
+	"item": [
+		{
+			"name": "Listado de profesores con clases",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"nombre\": \"Juan Francisco\",\n        \"apellido\": \"Perez\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/clases",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"clases"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
