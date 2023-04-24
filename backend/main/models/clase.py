@@ -3,7 +3,7 @@ from .. import db
 class Clase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    dia = db.Column(db.date, nullable=False)
+    dia = db.Column(db.Date, nullable=False)
     horario = db.Column(db.String(250), nullable=False)
     def __repr__(self):
         return '<Clase: %r %r %r>'% (self.nombre, self.dia, self.horario)
