@@ -1,5 +1,7 @@
 from flask_restful import Resource
 from flask import request
+from .. import db
+from main.models import PlanificacionModel
 
 PLANIFICACIONES ={
     1:{1:"Press de Banca",2:"Sentadillas",3:"Remos con barra",4:"Press militar",5:"Curl de biceps",6:"Extension de triceps"},

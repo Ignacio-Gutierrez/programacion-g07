@@ -6,7 +6,7 @@ class Alumno(db.Model):
     peso = db.Column(db.Integer, nullable=False)
     altura = db.Column(db.Integer, nullable=False)
     def __repr__(self):
-        return '<Usuario: %r %r %r>' (self.edad, self.peso, self.altura)
+        return '<Usuario: %r %r %r>'% (self.edad, self.peso, self.altura)
     
     def to_json(self):
         alumno_json = {

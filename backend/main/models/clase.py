@@ -6,7 +6,7 @@ class Clase(db.Model):
     dia = db.Column(db.date, nullable=False)
     horario = db.Column(db.String(250), nullable=False)
     def __repr__(self):
-        return '<Clase: %r %r %r>' (self.nombre, self.dia, self.horario)
+        return '<Clase: %r %r %r>'% (self.nombre, self.dia, self.horario)
     
     def to_json(self):
         clase_json = {

@@ -12,7 +12,7 @@ class Planificacion(db.Model):
     sabado = db.Column(db.String(250), nullable=False)
 
     def __repr__(self):
-        return '<Planificacion: %r %r %r %r %r %r %r %r>' (self.descripcion, self.fecha, self.lunes, self.martes, self.miercoles, self.jueves, self.viernes, self.sabado)
+        return '<Planificacion: %r %r %r %r %r %r %r %r>'% (self.descripcion, self.fecha, self.lunes, self.martes, self.miercoles, self.jueves, self.viernes, self.sabado)
     
     def to_json(self):
         planificacion_json = {

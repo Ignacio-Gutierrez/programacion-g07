@@ -5,7 +5,7 @@ class Profesor(db.Model):
     especialidad = db.Column(db.String(100), nullable=False)
 
     def __repr__(self):
-        return '<Profesor: %r >' (self.especialidad)
+        return '<Profesor: %r >'% (self.especialidad)
     
     def to_json(self):
         profesor_json = {
