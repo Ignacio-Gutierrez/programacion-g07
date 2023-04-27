@@ -1,4 +1,6 @@
 from .. import db
+from . import AlumnoModel
+from . import ProfesorModel
 
 class Planificacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,11 +12,17 @@ class Planificacion(db.Model):
     jueves = db.Column(db.String(250), nullable=False)
     viernes = db.Column(db.String(250), nullable=False)
     sabado = db.Column(db.String(250), nullable=False)
+    id_alumno = db.Column(db.Integer,db.ForeignKey("alumno.id"), nullable=False)
+    alumno = db.relationship("Alumno", back_populates="planificaciones", uselist=False, single_parent=True)
+    id_profesor = db.Column(db.Integer,db.ForeignKey("profesor.id"), nullable=False)
+    profesor = db.relationship("Profesor", back_populates="planificaciones", uselist=False, single_parent=True)
 
     def __repr__(self):
-        return '<Planificacion: %r %r %r %r %r %r %r %r>'% (self.descripcion, self.fecha, self.lunes, self.martes, self.miercoles, self.jueves, self.viernes, self.sabado)
+        return '<Planificacion: %r %r %r %r %r %r %r %r>'% (self.descripcion, self.fecha, self.lunes, self.martes, self.miercoles, self.jueves, self.viernes, self.sabado, self.id_alumno, self.id_profesor)
     
     def to_json(self):
+        self.alumno = db.session.query(AlumnoModel).get_or_404(self.id_alumno)
+        self.profesor = db.session.query(ProfesorModel).get_or_404(self.id_profesor)
         planificacion_json = {
             'id': self.id,
             'descripcion': str(self.descripcion),
@@ -25,6 +33,8 @@ class Planificacion(db.Model):
             'jueves': str(self.jueves),
             'viernes': str(self.viernes),
             'sabado': str(self.sabado),
+            'alumno': self.alumno.to_json(),
+            'profesor': self.profesor.to_json()
 
         }
         return planificacion_json
@@ -56,6 +66,8 @@ class Planificacion(db.Model):
         jueves = planificacion_json.get('jueves')
         viernes = planificacion_json.get('viernes')
         sabado = planificacion_json.get('sabado')
+        id_alumno = planificacion_json.get('id_alumno')
+        id_profesor = planificacion_json.get('id_profesor')
         return Planificacion(id=id,
                     descripcion=descripcion,
                     fecha=fecha,
@@ -65,5 +77,7 @@ class Planificacion(db.Model):
                     jueves=jueves,
                     viernes=viernes,
                     sabado=sabado,
+                    id_alumno=id_alumno,
+                    id_profesor=id_profesor
 
                     )

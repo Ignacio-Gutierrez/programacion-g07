@@ -1,4 +1,5 @@
 from .. import db
+import json
 
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -8,6 +9,11 @@ class Usuario(db.Model):
     email = db.Column(db.String(250), nullable=False)
     contrasena = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
+    id_profesor = db.Column(db.Integer,db.ForeignKey("profesor.id"), nullable=False)
+    profesor = db.relationship("Profesor",uselist=False,back_populates="usuario",cascade="all, delete-orphan",single_parent=True)
+    id_alumno = db.Column(db.Integer,db.ForeignKey("alumno.id"), nullable=False)
+    alumno = db.relationship("Alumno",uselist=False,back_populates="usuario",cascade="all, delete-orphan",single_parent=True)
+    
     def __repr__(self):
         return '<Usuario: %r %r %r %r>'% (self.nombre, self.apellido, self.email, self.telefono)
     
