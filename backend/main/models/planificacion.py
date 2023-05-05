@@ -1,6 +1,8 @@
 from .. import db
 from . import AlumnoModel
 from . import ProfesorModel
+from datetime import datetime
+
 
 class Planificacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,7 +28,7 @@ class Planificacion(db.Model):
         planificacion_json = {
             'id': self.id,
             'descripcion': str(self.descripcion),
-            'fecha': str(self.fecha),
+            'fecha': str(self.fecha.strftime("%d-%m-%Y")),
             'lunes': str(self.lunes),
             'martes': str(self.martes),
             'miercoles': str(self.miercoles),
@@ -43,7 +45,7 @@ class Planificacion(db.Model):
         planificacion_json = {
             'id': self.id,
             'descripcion': str(self.descripcion),
-            'fecha': str(self.fecha),
+            'fecha': str(self.fecha.strftime("%d-%m-%Y")),
             'lunes': str(self.lunes),
             'martes': str(self.martes),
             'miercoles': str(self.miercoles),
@@ -59,7 +61,7 @@ class Planificacion(db.Model):
     def from_json(planificacion_json):
         id = planificacion_json.get('id')
         descripcion = planificacion_json.get('descripcion')
-        fecha = planificacion_json.get('fecha')
+        fecha = datetime.strptime(planificacion_json.get('fecha'),'%d-%m-%Y')
         lunes = planificacion_json.get('lunes')
         martes = planificacion_json.get('martes')
         miercoles = planificacion_json.get('miercoles')

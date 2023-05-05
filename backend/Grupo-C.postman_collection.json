@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0ce3c2c5-38c1-4771-80a3-7b6dc65d1796",
+		"_postman_id": "6da2e6d5-c475-4868-b8a1-de7da249a5e0",
 		"name": "Grupo-C",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26757275"
+		"_exporter_id": "27272570"
 	},
 	"item": [
 		{
@@ -30,7 +30,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pago/1",
+					"raw": "http://127.0.0.1:6003/pago/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -38,7 +38,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"pago",
 						"1"
@@ -71,7 +71,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/planificacion_a/1",
+					"raw": "http://127.0.0.1:6003/planificacion_a/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -79,7 +79,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"planificacion_a",
 						"1"
@@ -112,7 +112,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/planificaciones_ps",
+					"raw": "http://127.0.0.1:6003/planificaciones_ps",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -120,7 +120,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"planificaciones_ps"
 					]
@@ -152,7 +152,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/planificacion_p/1",
+					"raw": "http://127.0.0.1:6003/planificacion_p/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -160,7 +160,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"planificacion_p",
 						"1"
@@ -193,7 +193,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/clases",
+					"raw": "http://127.0.0.1:6003/clases",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -201,7 +201,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"clases"
 					]
@@ -233,7 +233,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuarios",
+					"raw": "http://127.0.0.1:6003/usuarios",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -241,7 +241,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuarios"
 					]
@@ -273,7 +273,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuarios_a",
+					"raw": "http://127.0.0.1:6003/usuarios_a",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -281,7 +281,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuarios_a"
 					]
@@ -313,7 +313,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuario/1",
+					"raw": "http://127.0.0.1:6003/usuario/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -321,7 +321,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuario",
 						"1"
@@ -354,7 +354,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuario_p/1",
+					"raw": "http://127.0.0.1:6003/usuario_p/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -362,7 +362,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuario_p",
 						"1"
@@ -395,7 +395,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuario_a/1",
+					"raw": "http://127.0.0.1:6003/usuario_a/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -403,7 +403,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuario_a",
 						"1"
@@ -433,7 +433,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/login",
+					"raw": "http://127.0.0.1:6003/login",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -441,7 +441,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"login"
 					]
@@ -470,7 +470,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/planificaciones_ps",
+					"raw": "http://127.0.0.1:6003/planificaciones_ps",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -478,7 +478,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"planificaciones_ps"
 					]
@@ -507,7 +507,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuarios",
+					"raw": "http://127.0.0.1:6003/usuarios",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -515,7 +515,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuarios"
 					]
@@ -544,7 +544,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuarios_a",
+					"raw": "http://127.0.0.1:6003/usuarios_a",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -552,7 +552,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuarios_a"
 					]
@@ -581,7 +581,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/pago/1",
+					"raw": "http://127.0.0.1:6003/pago/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -589,7 +589,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"pago",
 						"1"
@@ -619,7 +619,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/planificacion_p/1",
+					"raw": "http://127.0.0.1:6003/planificacion_p/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -627,7 +627,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"planificacion_p",
 						"1"
@@ -657,7 +657,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuario/2",
+					"raw": "http://127.0.0.1:6003/usuario/2",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -665,7 +665,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuario",
 						"2"
@@ -695,7 +695,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuario_p/1",
+					"raw": "http://127.0.0.1:6003/usuario_p/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -703,7 +703,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuario_p",
 						"1"
@@ -733,7 +733,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuario_a/1",
+					"raw": "http://127.0.0.1:6003/usuario_a/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -741,7 +741,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuario_a",
 						"1"
@@ -771,7 +771,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/planificacion_p/1",
+					"raw": "http://127.0.0.1:6003/planificacion_p/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -779,7 +779,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"planificacion_p",
 						"1"
@@ -809,7 +809,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuario/2",
+					"raw": "http://127.0.0.1:6003/usuario/2",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -817,7 +817,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuario",
 						"2"
@@ -847,7 +847,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/usuario_a/1",
+					"raw": "http://127.0.0.1:6003/usuario_a/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -855,7 +855,7 @@
 						"0",
 						"1"
 					],
-					"port": "5000",
+					"port": "6003",
 					"path": [
 						"usuario_a",
 						"1"
