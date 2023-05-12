@@ -31,21 +31,33 @@ def create_app():
 
     api.add_resource(resources.UsuariosResource,"/usuarios")
 
-    api.add_resource(resources.UsuarioResource, "/usuario/<id>")
+    api.add_resource(resources.UsuarioResource, "/usuario/<dni>")
 
     api.add_resource(resources.UsuariosAlumnosResource, "/usuarios_a")
 
-    api.add_resource(resources.UsuarioAlumnoResource, "/usuario_a/<id>")
+    api.add_resource(resources.UsuarioAlumnoResource, "/usuario_a/<dni>")
 
-    api.add_resource(resources.UsuarioProfesorResource, "/usuario_p/<id>")
+    api.add_resource(resources.UsuariosProfesoresResource, "/usuarios_p")
 
-    api.add_resource(resources.PlanificacionAlumnoResource, "/planificacion_a/<id>")
+    api.add_resource(resources.UsuarioProfesorResource, "/usuario_p/<dni>")
 
-    api.add_resource(resources.PlanificacionProfesorResource,"/planificacion_p/<id>")
+    api.add_resource(resources.PlanificacionesResource, "/planificaciones")
+
+    api.add_resource(resources.PlanificacionResource, "/planificacion/<id>")
+
+    api.add_resource(resources.PlanificacionAlumnoResource, "/planificacion_a/<dni>")
+
+    api.add_resource(resources.PlanificacionProfesorResource,"/planificacion_p/<dni>")
 
     api.add_resource(resources.PlanificacionesProfesoresResource, "/planificaciones_ps")
 
-    api.add_resource(resources.ProfesorClasesResource,"/clases")
+    api.add_resource(resources.ClasesResource,"/clases")
+
+    api.add_resource(resources.ClaseResource,"/clase/<id>")
+
+    api.add_resource(resources.ProclasResource, "/proclas/")
+
+    api.add_resource(resources.ProclaResource, "/procla/<dni>")
 
     api.add_resource(resources.PagoResource, "/pago/<id>")
 

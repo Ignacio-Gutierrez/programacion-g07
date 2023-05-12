@@ -1,30 +1,30 @@
 from .. import db
-from . import AlumnoModel
-from . import ProfesorModel
+from . import AlumnoModel, ProfesorModel
 from datetime import datetime
 
 
 class Planificacion(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    descripcion = db.Column(db.String(1000), nullable=False)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    descripcion = db.Column(db.String(1000), nullable=True)
     fecha = db.Column(db.DateTime, nullable=False)
-    lunes = db.Column(db.String(250), nullable=False)
-    martes = db.Column(db.String(250), nullable=False)
-    miercoles = db.Column(db.String(250), nullable=False)
-    jueves = db.Column(db.String(250), nullable=False)
-    viernes = db.Column(db.String(250), nullable=False)
-    sabado = db.Column(db.String(250), nullable=False)
-    id_alumno = db.Column(db.Integer,db.ForeignKey("alumno.id"), nullable=False)
+    lunes = db.Column(db.String(1000), nullable=True)
+    martes = db.Column(db.String(1000), nullable=True)
+    miercoles = db.Column(db.String(1000), nullable=True)
+    jueves = db.Column(db.String(1000), nullable=True)
+    viernes = db.Column(db.String(1000), nullable=True)
+    sabado = db.Column(db.String(1000), nullable=True)
+    alumno_dni = db.Column(db.Integer, db.ForeignKey("alumno.dni"), nullable=False)
+    profesor_dni = db.Column(db.Integer, db.ForeignKey("profesor.dni"), nullable=False)
+    
     alumno = db.relationship("Alumno", back_populates="planificaciones", uselist=False, single_parent=True)
-    id_profesor = db.Column(db.Integer,db.ForeignKey("profesor.id"), nullable=False)
     profesor = db.relationship("Profesor", back_populates="planificaciones", uselist=False, single_parent=True)
 
     def __repr__(self):
-        return '<Planificacion: %r %r %r %r %r %r %r %r>'% (self.descripcion, self.fecha, self.lunes, self.martes, self.miercoles, self.jueves, self.viernes, self.sabado, self.id_alumno, self.id_profesor)
+        return '<Planificacion: %r %r %r %r %r %r %r %r %r %r>'% (self.descripcion, self.fecha, self.lunes, self.martes, self.miercoles, self.jueves, self.viernes, self.sabado, self.alumno_dni, self.profesor_dni)
     
     def to_json(self):
-        self.alumno = db.session.query(AlumnoModel).get_or_404(self.id_alumno)
-        self.profesor = db.session.query(ProfesorModel).get_or_404(self.id_profesor)
+        self.alumno = db.session.query(AlumnoModel).get_or_404(self.alumno_dni)
+        self.profesor = db.session.query(ProfesorModel).get_or_404(self.profesor_dni)
         planificacion_json = {
             'id': self.id,
             'descripcion': str(self.descripcion),
@@ -68,8 +68,8 @@ class Planificacion(db.Model):
         jueves = planificacion_json.get('jueves')
         viernes = planificacion_json.get('viernes')
         sabado = planificacion_json.get('sabado')
-        id_alumno = planificacion_json.get('id_alumno')
-        id_profesor = planificacion_json.get('id_profesor')
+        alumno_dni = planificacion_json.get('alumno_dni')
+        profesor_dni = planificacion_json.get('profesor_dni')
         return Planificacion(id=id,
                     descripcion=descripcion,
                     fecha=fecha,
@@ -79,7 +79,7 @@ class Planificacion(db.Model):
                     jueves=jueves,
                     viernes=viernes,
                     sabado=sabado,
-                    id_alumno=id_alumno,
-                    id_profesor=id_profesor
+                    alumno_dni=alumno_dni,
+                    profesor_dni=profesor_dni
 
                     )
