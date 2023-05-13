@@ -22,11 +22,11 @@ class Profesor(db.Model):
         return profesor_json
 
     def to_json_complete(self):
-        #planificaciones = [planificacion.to_json() for planificacion in self.planificaciones]
+        planificaciones = [planificacion.to_json() for planificacion in self.planificaciones]
         profesor_json = {
             'dni': self.dni,
             'especialidad': str(self.especialidad),
-            #'planificaciones':planificaciones
+            'planificaciones':planificaciones
         }
         return profesor_json    
 

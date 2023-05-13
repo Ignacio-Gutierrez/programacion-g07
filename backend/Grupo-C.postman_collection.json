@@ -23,7 +23,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"apellido\": \"O'Hearn\",\n        \"contrasena\": \"BabyDontHurtMe\",\n        \"dni\": \"33439347\",\n        \"email\": \"mike.ohearn@hotmail.com\",\n        \"nombre\": \"Michael\",\n        \"telefono\": \"542617494852\"\n}",
+							"raw": "{\n\t    \"apellido\": \"Calle\",\n        \"contrasena\": \"clave1234\",\n        \"dni\": \"32234634\",\n        \"email\": \"armandocalle@gmail.com\",\n        \"nombre\": \"Armando\",\n        \"telefono\": \"542612383462\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -104,7 +104,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n        \"apellido\": \"Gallo\",\n        \"contrasena\": \"clavegallo\",\n        \"dni\": \"33439345\",\n        \"email\": \"elba_gallo.h@gmail.com\",\n        \"nombre\": \"Elba\",\n        \"telefono\": \"542617429342\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -536,7 +536,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"dia\": \"Viernes\",\n\t\"horario\": \"11 AM\",\n\t\"id\": 1,\n\t\"nombre\": \"musculacion\"\n}",
+							"raw": "{\n\t\"dia\": \"Viernes\",\n\t\"horario\": \"11 AM\",\n\t\"nombre\": \"musculacion\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

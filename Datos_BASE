@@ -1,0 +1,63 @@
+Usuario:
+{
+	"apellido": "Calle",
+        "contrasena": "clave1234",
+        "dni": "32234634",
+        "email": "armandocalle@gmail.com",
+        "nombre": "Armando",
+        "telefono": "542612383462"
+},
+{
+        "apellido": "Horia",
+        "contrasena": "clave1234",
+        "dni": "33434634",
+        "email": "susanita.h@gmail.com",
+        "nombre": "Suzana",
+        "telefono": "542612389342"
+},
+{
+        "apellido": "Gallo",
+        "contrasena": "clavegallo",
+        "dni": "33439345",
+        "email": "elba_gallo.h@gmail.com",
+        "nombre": "Elba",
+        "telefono": "542617429342"
+},
+{
+        "apellido": "O'Hearn",
+        "contrasena": "BabyDontHurtMe",
+        "dni": "33439347",
+        "email": "mike.ohearn@hotmail.com",
+        "nombre": "Michael",
+        "telefono": "542617494852"
+}
+
+Alumno:
+{
+	"altura": "1,77",
+	"dni": "32234545",
+	"edad": "43",
+	"peso": "81",
+	"sexo": "Masculino"
+},
+{
+	"altura": "1,64",
+	"dni": "33439345",
+	"edad": "42",
+	"peso": "67",
+	"sexo": "Femenino"
+}
+
+Profesor:
+{
+	"dni": 33439347,
+	"especialidad": "fisicoculturismo"
+}
+
+Clase:
+{
+	"dia": "Viernes",
+	"horario": "11 AM",
+	"id": 1,
+	"nombre": "musculacion"
+}
