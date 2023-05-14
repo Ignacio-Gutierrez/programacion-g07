@@ -5,7 +5,6 @@ procla = db.Table("procla",
     db.Column("profesor_dni",db.Integer,db.ForeignKey("profesor.dni"),primary_key=True)
     )
 
-
 class Clase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)

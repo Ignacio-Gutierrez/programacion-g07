@@ -55,10 +55,6 @@ def create_app():
 
     api.add_resource(resources.ClaseResource,"/clase/<id>")
 
-    api.add_resource(resources.ProclasResource, "/proclas/")
-
-    api.add_resource(resources.ProclaResource, "/procla/<dni>")
-
     api.add_resource(resources.PagoResource, "/pago/<id>")
 
     api.add_resource(resources.LoginResource, "/login")

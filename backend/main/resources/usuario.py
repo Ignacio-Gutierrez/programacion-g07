@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
-from main.models import UsuarioModel, AlumnoModel, ProfesorModel, PlanificacionModel
+from main.models import UsuarioModel, AlumnoModel, ProfesorModel, PlanificacionModel, ClaseModel
 from sqlalchemy import func, desc
 
 
@@ -197,13 +197,15 @@ class UsuariosProfesores(Resource):
                 })
 
     def post(self):
+        clases_id = request.get_json().get('clases')
         usuarios_p = ProfesorModel.from_json(request.get_json())
-        print(usuarios_p)
-        try:
-            db.session.add(usuarios_p)
-            db.session.commit()
-        except:
-            return 'Formato no correcto', 400
+
+        if clases_id:
+            clases = ClaseModel.query.filter(ClaseModel.id.in_(clases_id)).all()
+            usuarios_p.clases.extend(clases)
+            
+        db.session.add(usuarios_p)
+        db.session.commit()
         return usuarios_p.to_json(), 201
     
 class UsuarioProfesor(Resource):

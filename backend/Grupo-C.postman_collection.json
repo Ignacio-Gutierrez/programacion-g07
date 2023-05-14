@@ -23,7 +23,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t    \"apellido\": \"Calle\",\n        \"contrasena\": \"clave1234\",\n        \"dni\": \"32234634\",\n        \"email\": \"armandocalle@gmail.com\",\n        \"nombre\": \"Armando\",\n        \"telefono\": \"542612383462\"\n}",
+							"raw": "{\n        \"apellido\": \"O'Hearn\",\n        \"contrasena\": \"BabyDontHurtMe\",\n        \"dni\": \"33439347\",\n        \"email\": \"mike.ohearn@hotmail.com\",\n        \"nombre\": \"Michael\",\n        \"telefono\": \"542617494852\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -421,7 +421,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"dni\": 33439347,\n\t\"especialidad\": \"fisicoculturismo\"\n}",
+							"raw": "{\n\t\"dni\": 33439347,\n\t\"especialidad\": \"fisicoculturismo\",\n    \"clases\": [1,33439347]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -661,10 +661,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "ProCla/s",
-			"item": []
 		},
 		{
 			"name": "Planificacion/es",
