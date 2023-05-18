@@ -3,18 +3,23 @@ from flask import request,jsonify
 from .. import db
 from main.models import PlanificacionModel
 from sqlalchemy import func, desc
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import role_required
 
 class Planificacion(Resource):
+    @jwt_required()
     def get(self,id):
         planificacion=db.session.query(PlanificacionModel).get_or_404(id)
         return planificacion.to_json()
     
+    @role_required(roles=["admin"])
     def delete(self,id):
         planificacion=db.session.query(PlanificacionModel).get_or_404(id)
         db.session.delete(planificacion)
         db.session.commit()
         return "", 204
-        
+    
+    @role_required(roles=["admin"])
     def put(self,id):
         planificacion=db.session.query(PlanificacionModel).get_or_404(id)
         data=request.get_json().items()
@@ -25,6 +30,8 @@ class Planificacion(Resource):
         return planificacion.to_json(), 201
 
 class Planificaciones(Resource):
+
+    @role_required(roles=["admin", "alumno"])
     def get(self):
         page = 1
         per_page = 10
@@ -70,6 +77,7 @@ class Planificaciones(Resource):
                   'page': page
                 })
 
+    @role_required(roles=["admin"])
     def post(self):
         planificaciones=PlanificacionModel.from_json(request.get_json())
         print(planificaciones)
@@ -81,15 +89,20 @@ class Planificaciones(Resource):
         return planificaciones.to_json(), 201
 
 class PlanificacionAlumno(Resource):
+
+    @jwt_required()
     def get(self,dni):
         planificacion_a=(db.session.query(PlanificacionModel).filter(PlanificacionModel.alumno_dni == dni)).all()
         return jsonify([planificacion.to_json()for planificacion in planificacion_a])
     
 class PlanificacionProfesor(Resource):
+
+    @jwt_required()
     def get(self,dni):
         planificacion_p=(db.session.query(PlanificacionModel).filter(PlanificacionModel.profesor_dni == dni)).all()
         return jsonify([planificacion.to_json()for planificacion in planificacion_p])
     
+    @role_required(roles=["admin"])
     def put(self,dni):
         planificacion_p=db.session.query(PlanificacionModel).get_or_404(dni)
         data=request.get_json().items()
@@ -99,6 +112,7 @@ class PlanificacionProfesor(Resource):
         db.session.commit()
         return planificacion_p.to_json(), 201
     
+    @role_required(roles=["admin"])
     def delete(self,dni):
         planificacion_p=db.session.query(PlanificacionModel).get_or_404(dni)
         db.session.delete(planificacion_p)
@@ -106,6 +120,7 @@ class PlanificacionProfesor(Resource):
         return "", 204
     
 class PlanificacionesProfesores(Resource):
+    @jwt_required()
     def get(self):
         dni_profesor = request.args.get("dni_profesor")
         planificaciones = db.session.query(PlanificacionModel)

@@ -3,18 +3,24 @@ from flask import request, jsonify
 from .. import db
 from main.models import ClaseModel
 from sqlalchemy import func, desc
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import role_required
 
 class Clase(Resource):
+
+    @jwt_required()
     def get(self,id):
         clase=db.session.query(ClaseModel).get_or_404(id)
         return clase.to_json()
 
+    @role_required(roles=["admin"])
     def delete(self,id):
         clase=db.session.query(ClaseModel).get_or_404(id)
         db.session.delete(clase)
         db.session.commit()
         return "", 204
-        
+    
+    @role_required(roles=["admin"])
     def put(self,id):
         clase=db.session.query(ClaseModel).get_or_404(id)
         data=request.get_json().items()
@@ -25,6 +31,7 @@ class Clase(Resource):
         return clase.to_json(), 201
     
 class Clases(Resource):
+    @jwt_required()
     def get(self):
         clases=db.session.query(ClaseModel).all()
         return jsonify([clase.to_json() for clase in clases])

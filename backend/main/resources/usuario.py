@@ -3,19 +3,29 @@ from flask import request, jsonify
 from .. import db
 from main.models import UsuarioModel, AlumnoModel, ProfesorModel, PlanificacionModel, ClaseModel
 from sqlalchemy import func, desc
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from main.auth.decorators import role_required
 
 
 class Usuario(Resource):
+
+    @jwt_required(optional=True)
     def get(self,dni):
         usuario=db.session.query(UsuarioModel).get_or_404(dni)
-        return usuario.to_json()
+        current_identity = get_jwt_identity()       
+        if current_identity:
+            return usuario.to_json_complete()
+        else:
+            return usuario.to_json()
 
+    @role_required(roles=["admin", "users"])
     def delete(self,dni):
         usuario=db.session.query(UsuarioModel).get_or_404(dni)
         db.session.delete(usuario)
         db.session.commit()
         return "", 204
-        
+    
+    @jwt_required()
     def put(self,dni):
         usuario=db.session.query(UsuarioModel).get_or_404(dni)
         data=request.get_json().items()
@@ -26,6 +36,8 @@ class Usuario(Resource):
         return usuario.to_json(), 201
     
 class Usuarios(Resource):
+
+    @jwt_required()
     def get(self):
         page = 1
         per_page = 10
@@ -77,10 +89,12 @@ class Usuarios(Resource):
     
 
 class UsuarioAlumno(Resource):
+    @jwt_required()
     def get(self,dni):
         usuario_a=db.session.query(AlumnoModel).get_or_404(dni)
         return usuario_a.to_json_complete()
 
+    @jwt_required()
     def put(self,dni):
         usuario_a=db.session.query(AlumnoModel).get_or_404(dni)
         data=request.get_json().items()
@@ -90,6 +104,7 @@ class UsuarioAlumno(Resource):
         db.session.commit()
         return usuario_a.to_json_complete(), 201
     
+    @role_required(roles=["admin", "users"])
     def delete(self,dni):
         usuario_a=db.session.query(AlumnoModel).get_or_404(dni)
         db.session.delete(usuario_a)
@@ -97,6 +112,7 @@ class UsuarioAlumno(Resource):
         return "", 204
     
 class UsuariosAlumnos(Resource):
+    @role_required(roles=["admin", "profesor"])
     def get(self):
         page = 1
         per_page = 10
@@ -152,6 +168,8 @@ class UsuariosAlumnos(Resource):
         return usuarios_a.to_json(), 201
 
 class UsuariosProfesores(Resource):
+
+    @jwt_required(optional=True)
     def get(self):
         page = 1
         per_page = 10
@@ -209,10 +227,13 @@ class UsuariosProfesores(Resource):
         return usuarios_p.to_json(), 201
     
 class UsuarioProfesor(Resource):
+
+    @jwt_required(optional=True)
     def get(self,dni):
         usuario_p=db.session.query(ProfesorModel).get_or_404(dni)
         return usuario_p.to_json()
     
+    @jwt_required()
     def put(self,dni):
         usuario_p=db.session.query(ProfesorModel).get_or_404(dni)
         data=request.get_json().items()

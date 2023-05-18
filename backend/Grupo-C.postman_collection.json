@@ -3,8 +3,8 @@
 		"_postman_id": "43860d14-749f-4bfe-ae8d-8333058caf18",
 		"name": "Grupo-C",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26757275",
-		"_collection_link": "https://orange-meadow-324063.postman.co/workspace/My-Workspace~82de1900-38a6-45f7-82a0-2bc3446697a9/collection/26757275-43860d14-749f-4bfe-ae8d-8333058caf18?action=share&creator=26757275&source=collection_link"
+		"_exporter_id": "26654907",
+		"_collection_link": "https://orange-meadow-324063.postman.co/workspace/My-Workspace~82de1900-38a6-45f7-82a0-2bc3446697a9/collection/26757275-43860d14-749f-4bfe-ae8d-8333058caf18?action=share&creator=26654907&source=collection_link"
 	},
 	"item": [
 		{
@@ -16,14 +16,14 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "application/json",
+								"key": "Authorization",
+								"value": "Beared eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ0OTk0NCwianRpIjoiYTRlNzBjNTQtYTI1NS00OGE4LWI0NDQtYThkYWZhYzFlYzhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NDQ0OTk0NCwiZXhwIjoxNjg0NDUzNTQ0LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLmVkdS5hciJ9.OlE_l2NvxmEKNWvnpCrMFG61ebChA3GSINRbCd7C2mE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"apellido\": \"O'Hearn\",\n        \"contrasena\": \"BabyDontHurtMe\",\n        \"dni\": \"33439347\",\n        \"email\": \"mike.ohearn@hotmail.com\",\n        \"nombre\": \"Michael\",\n        \"telefono\": \"542617494852\"\n}",
+							"raw": "{\n        \"apellido\": \"O'Hearn\",\n        \"password\": \"BabyDontHurtMe\",\n        \"dni\": \"33439347\",\n        \"email\": \"mike.ohearn@hotmail.com\",\n        \"nombre\": \"Michael\",\n        \"telefono\": \"542617494852\",\n        \"rol\": \"profesor\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -97,8 +97,8 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "application/json",
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ0NjI1NSwianRpIjoiY2RmYmVmN2YtMDE2ZC00N2NmLWJhYzUtMWU2OTk2OTAwZDYwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NDQ0NjI1NSwiZXhwIjoxNjg0NDQ5ODU1LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLmVkdS5hciJ9.Ud03ZJTiJ0lTt4q5dle-8DVu7HgLCvRV19qbT-QkoZM",
 								"type": "text"
 							}
 						],
@@ -172,8 +172,8 @@
 						"method": "DELETE",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "application/json",
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ0OTk0NCwianRpIjoiYTRlNzBjNTQtYTI1NS00OGE4LWI0NDQtYThkYWZhYzFlYzhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NDQ0OTk0NCwiZXhwIjoxNjg0NDUzNTQ0LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLmVkdS5hciJ9.OlE_l2NvxmEKNWvnpCrMFG61ebChA3GSINRbCd7C2mE",
 								"type": "text"
 							}
 						],
@@ -222,7 +222,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"altura\": \"1,64\",\n\t\"dni\": \"33439345\",\n\t\"edad\": \"42\",\n\t\"peso\": \"67\",\n\t\"sexo\": \"Femenino\"\n}",
+							"raw": "{\n\t\"altura\": \"1,77\",\n\t\"dni\": \"32234545\",\n\t\"edad\": \"43\",\n\t\"peso\": \"81\",\n\t\"sexo\": \"Masculino\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -492,14 +492,14 @@
 						"method": "PUT",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "application/json",
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ0OTk0NCwianRpIjoiYTRlNzBjNTQtYTI1NS00OGE4LWI0NDQtYThkYWZhYzFlYzhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NDQ0OTk0NCwiZXhwIjoxNjg0NDUzNTQ0LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLmVkdS5hciJ9.OlE_l2NvxmEKNWvnpCrMFG61ebChA3GSINRbCd7C2mE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"dni\": 33439347,\n\t\"especialidad\": \"fisicoculturismo\",\n    \"clases\": [1,33439347]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -671,14 +671,14 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "application/json",
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ0OTk0NCwianRpIjoiYTRlNzBjNTQtYTI1NS00OGE4LWI0NDQtYThkYWZhYzFlYzhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NDQ0OTk0NCwiZXhwIjoxNjg0NDUzNTQ0LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLmVkdS5hciJ9.OlE_l2NvxmEKNWvnpCrMFG61ebChA3GSINRbCd7C2mE",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descripcion\": \"Editar\",\n    \"fecha\": \"11-05-2023\",\n    \"lunes\": \"Jalones\",\n    \"martes\": \"Press\",\n    \"miercoles\": \"\",\n    \"jueves\": \" Press\",\n    \"viernes\": \"Press\",\n    \"sabado\": \"\",\n    \"alumno_dni\": \"32234545\",\n    \"profesor_dni\": \"33439347\"\n    }",
+							"raw": "{\n    \"descripcion\": \"Editar\",\n    \"fecha\": \"11-05-2023\",\n    \"lunes\": \"Jalones\",\n    \"martes\": \"Press\",\n    \"miercoles\": \"\",\n    \"jueves\": \" Press\",\n    \"viernes\": \"Press\",\n    \"sabado\": \"\",\n    \"alumno_dni\": \"32234545\",\n    \"profesor_dni\": \"33439347\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -726,7 +726,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/planificaciones_ps",
+							"raw": "http://127.0.0.1:6003/planificaciones",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -736,7 +736,7 @@
 							],
 							"port": "6003",
 							"path": [
-								"planificaciones_ps"
+								"planificaciones"
 							]
 						}
 					},
@@ -755,7 +755,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"descripcion\": \"Editarlo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -763,7 +763,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/planificacion_p/1",
+							"raw": "http://127.0.0.1:6003/planificacion/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -773,7 +773,7 @@
 							],
 							"port": "6003",
 							"path": [
-								"planificacion_p",
+								"planificacion",
 								"1"
 							]
 						}
@@ -801,7 +801,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/planificacion_p/1",
+							"raw": "http://127.0.0.1:6003/planificacion/1",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -811,7 +811,7 @@
 							],
 							"port": "6003",
 							"path": [
-								"planificacion_p",
+								"planificacion",
 								"1"
 							]
 						}
@@ -842,7 +842,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/planificacion_a/1",
+							"raw": "http://127.0.0.1:6003/planificacion_a/32234545",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -853,7 +853,7 @@
 							"port": "6003",
 							"path": [
 								"planificacion_a",
-								"1"
+								"32234545"
 							]
 						}
 					},
@@ -903,89 +903,16 @@
 			]
 		},
 		{
-			"name": "Otros",
+			"name": "Auth",
 			"item": [
 				{
-					"name": "Listado de pagos",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://127.0.0.1:6003/pago/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "6003",
-							"path": [
-								"pago",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Modificar pagos",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:6003/pago/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "6003",
-							"path": [
-								"pago",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear acceso a la app",
+					"name": "Login",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n        \"email\": \"c.portal@alumno.edu.ar\",\n        \"password\": \"hola123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -993,7 +920,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/login",
+							"raw": "http://127.0.0.1:6003/auth/login",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -1003,7 +930,40 @@
 							],
 							"port": "6003",
 							"path": [
+								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"apellido\": \"Gallo\",\n        \"password\": \"clavegallo\",\n        \"dni\": \"33439345\",\n        \"email\": \"elba_gallo.h@gmail.com\",\n        \"nombre\": \"Elba\",\n        \"telefono\": \"542617429342\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:6003/auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "6003",
+							"path": [
+								"auth",
+								"register"
 							]
 						}
 					},

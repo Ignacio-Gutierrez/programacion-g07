@@ -4,11 +4,13 @@ from dotenv import load_dotenv
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_jwt_extended import JWTManager
 
 
 api = Api()
 db=SQLAlchemy()
 migrate = Migrate()
+jwt = JWTManager()
 
 #metodo que inicializa la app y todos los modulos
 
@@ -55,11 +57,18 @@ def create_app():
 
     api.add_resource(resources.ClaseResource,"/clase/<id>")
 
-    api.add_resource(resources.PagoResource, "/pago/<id>")
+    #api.add_resource(resources.PagoResource, "/pago/<id>")
 
-    api.add_resource(resources.LoginResource, "/login")
+    #api.add_resource(resources.LoginResource, "/login")
 
     api.init_app(app)
+
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES'))
+    jwt.init_app(app)
+
+    from main.auth import routes
+    app.register_blueprint(routes.auth)
 
 
     #retornamos la app inicializada

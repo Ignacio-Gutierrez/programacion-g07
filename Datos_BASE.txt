@@ -1,7 +1,7 @@
 Usuario:
 {
 	"apellido": "Calle",
-        "contrasena": "clave1234",
+        "password": "clave1234",
         "dni": "32234634",
         "email": "armandocalle@gmail.com",
         "nombre": "Armando",
@@ -9,15 +9,15 @@ Usuario:
 },
 {
         "apellido": "Horia",
-        "contrasena": "clave1234",
+        "password": "clave1234",
         "dni": "33434634",
-        "email": "susanita.h@gmail.com",
+        "email": "suzanita.h@gmail.com",
         "nombre": "Suzana",
         "telefono": "542612389342"
 },
 {
         "apellido": "Gallo",
-        "contrasena": "clavegallo",
+        "password": "clavegallo",
         "dni": "33439345",
         "email": "elba_gallo.h@gmail.com",
         "nombre": "Elba",
@@ -25,7 +25,7 @@ Usuario:
 },
 {
         "apellido": "O'Hearn",
-        "contrasena": "BabyDontHurtMe",
+        "password": "BabyDontHurtMe",
         "dni": "33439347",
         "email": "mike.ohearn@hotmail.com",
         "nombre": "Michael",
