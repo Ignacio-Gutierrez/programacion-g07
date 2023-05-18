@@ -82,13 +82,13 @@ class Planificaciones(Resource):
 
 class PlanificacionAlumno(Resource):
     def get(self,dni):
-        planificacion_a=db.session.query(PlanificacionModel).get_or_404(dni)
-        return planificacion_a.to_json_complete()
+        planificacion_a=(db.session.query(PlanificacionModel).filter(PlanificacionModel.alumno_dni == dni)).all()
+        return jsonify([planificacion.to_json()for planificacion in planificacion_a])
     
 class PlanificacionProfesor(Resource):
     def get(self,dni):
-        planificacion_p=db.session.query(PlanificacionModel).get_or_404(dni)
-        return planificacion_p.to_json()
+        planificacion_p=(db.session.query(PlanificacionModel).filter(PlanificacionModel.profesor_dni == dni)).all()
+        return jsonify([planificacion.to_json()for planificacion in planificacion_p])
     
     def put(self,dni):
         planificacion_p=db.session.query(PlanificacionModel).get_or_404(dni)
