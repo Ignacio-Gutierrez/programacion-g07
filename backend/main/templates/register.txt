@@ -1,0 +1,7 @@
+Bienvenido {{usuario.nombre}} {{usuario.apellido}}!
+
+Gracias por registrarte en nuestro sistema.
+
+Con nuestro servicio podras:
+
+- Ver tus Planificaciones
