@@ -8,7 +8,7 @@ from main.auth.decorators import role_required
 
 class Clase(Resource):
 
-    @jwt_required()
+    @jwt_required(optional=True)
     def get(self,id):
         clase=db.session.query(ClaseModel).get_or_404(id)
         return clase.to_json()
@@ -31,11 +31,12 @@ class Clase(Resource):
         return clase.to_json(), 201
     
 class Clases(Resource):
-    @jwt_required()
+    @jwt_required(optional=True)
     def get(self):
         clases=db.session.query(ClaseModel).all()
         return jsonify([clase.to_json() for clase in clases])
-     
+    
+    @role_required(roles=["admin"])
     def post(self):
         clases=ClaseModel.from_json(request.get_json())
         print(clases)

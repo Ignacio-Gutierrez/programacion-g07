@@ -1,7 +1,9 @@
-Bienvenido {{usuario.nombre}} {{usuario.apellido}}!
+¡Bienvenido {{usuario.nombre}} {{usuario.apellido}}!
 
-Gracias por registrarte en nuestro sistema.
+Gracias por registrarte en el gimnasio "El Chicho".
 
-Con nuestro servicio podras:
+Con nuestro servicio podrás:
 
-- Ver tus Planificaciones
+- Elegir tu entrenador.
+- Ver tus Planificaciones.
+- Participar de clases exclusivas.

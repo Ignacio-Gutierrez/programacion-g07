@@ -18,14 +18,14 @@ class Usuario(Resource):
         else:
             return usuario.to_json()
 
-    @role_required(roles=["admin", "users"])
+    @role_required(roles=["admin"])
     def delete(self,dni):
         usuario=db.session.query(UsuarioModel).get_or_404(dni)
         db.session.delete(usuario)
         db.session.commit()
         return "", 204
     
-    @jwt_required()
+    @role_required(roles=["admin"])
     def put(self,dni):
         usuario=db.session.query(UsuarioModel).get_or_404(dni)
         data=request.get_json().items()
@@ -94,7 +94,7 @@ class UsuarioAlumno(Resource):
         usuario_a=db.session.query(AlumnoModel).get_or_404(dni)
         return usuario_a.to_json_complete()
 
-    @jwt_required()
+    @role_required(roles=["admin"])
     def put(self,dni):
         usuario_a=db.session.query(AlumnoModel).get_or_404(dni)
         data=request.get_json().items()
@@ -104,7 +104,7 @@ class UsuarioAlumno(Resource):
         db.session.commit()
         return usuario_a.to_json_complete(), 201
     
-    @role_required(roles=["admin", "users"])
+    @role_required(roles=["admin"])
     def delete(self,dni):
         usuario_a=db.session.query(AlumnoModel).get_or_404(dni)
         db.session.delete(usuario_a)
@@ -157,6 +157,7 @@ class UsuariosAlumnos(Resource):
                   'page': page
                 })
 
+    @role_required(roles=["admin"])
     def post(self):
         usuarios_a = AlumnoModel.from_json(request.get_json())
         print(usuarios_a)
@@ -214,6 +215,7 @@ class UsuariosProfesores(Resource):
                   'page': page
                 })
 
+    @role_required(roles=["admin"])
     def post(self):
         clases_id = request.get_json().get('clases')
         usuarios_p = ProfesorModel.from_json(request.get_json())
@@ -233,7 +235,7 @@ class UsuarioProfesor(Resource):
         usuario_p=db.session.query(ProfesorModel).get_or_404(dni)
         return usuario_p.to_json()
     
-    @jwt_required()
+    @role_required(roles=["admin"])
     def put(self,dni):
         usuario_p=db.session.query(ProfesorModel).get_or_404(dni)
         data=request.get_json().items()

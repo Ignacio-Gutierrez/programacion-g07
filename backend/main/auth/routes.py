@@ -30,6 +30,7 @@ def register():
         return 'Duplicated mail', 409
     else:
         try:
+            usuario.rol = None
             db.session.add(usuario)
             db.session.commit()
             sent = sendMail([usuario.email],"Welcome!",'register',usuario = usuario)

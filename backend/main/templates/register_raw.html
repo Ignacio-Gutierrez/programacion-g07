@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-      <meta charset="UTF-8">
-  </head>
+<head>
+  <meta charset="UTF-8">
   <style>
-      .main{
-        border:1px solid black;
-        padding:30px;
-        background-color:white;
-        margin:10px;
-
-      }
-      body{
-        background-color: lightgray;
-      }
-      .services{
-        background-color:#94beff;
-        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-        padding:10px;
-        border:1px solid black;
-        width:250px;
-      }
-      h1{
-        font-weight: bold;
-        font-size:25px;
-        color:#001d62;
-      }
-
-      .button {
-        background-color:#3680f2;
-      	border-radius:2px;
-      	border:1px solid black;
-      	display:inline-block;
-      	color:#ffffff;
-      	font-size:13px;
-      	padding:6px 24px;
-      	text-decoration:none;
-        margin-right:3px;
-
-      }
-
+    .main {
+      border: 1px solid black;
+      padding: 30px;
+      background-color: #fbdc74;
+      margin: 0px;
+    }
+    .services {
+      background-color: #bbfbf3;
+      box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+      padding: 10px;
+      margin-right: 50px;
+      border: 1px solid black;
+      width: 250px;
+    }
+    h1 {
+      font-weight: bold;
+      font-size: 25px;
+      color: #063940;
+    }
+    .button {
+      background-color: #3680f2;
+      border-radius: 2px;
+      border: 1px solid black;
+      display: inline-block;
+      color: #ffffff;
+      font-size: 13px;
+      padding: 6px 24px;
+      text-decoration: none;
+      margin-right: 3px;
+    }
+    .container {
+        display: flex;
+        align-items:center;
+    }
   </style>
-  <body>
+</head>
+<body style="background-color: #ffffff;">
   <br/>
   <div class="main">
-    <h1>Bienvenido {{usuario.nombre}} {{usuario.apellido}}! </h1>
-    <p>Gracias por registrarte en nuestro sistema.</p>
-    <div class="services">
-      <p>Con nuestro servicio podras:</p>
-        <ul>
-             <li><a>Ver tus Planificaciones</a></li>
-        </ul>
+    <h1>¡Bienvenido {{usuario.nombre}} {{usuario.apellido}}!</h1>
+    <p>Gracias por registrarte en el gimnasio "El Chicho".</p>
+    <div class= "container">
+        <div class="services">
+          <p>Con nuestro servicio podrás:</p>
+          <ul>
+            <li><a>Elegir tu entrenador.</a></li>
+            <li><a>Ver tus Planificaciones.</a></li>
+            <li><a>Participar de clases exclusivas.</a></li>
+          </ul>
+        </div>
+        <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDE1OTBmZmRlZGQ2OWVmOTA3ZTNiYWU0ZjU3NDRmNTQxMWFkMzlhYiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/dxiby8E15lZKjJyQgC/giphy.gif" width="240">
     </div>
-    
-  <br/>
-</div>
-
+    <br>
+  </div>
 </body>
 </html>

@@ -31,7 +31,7 @@ class Planificacion(Resource):
 
 class Planificaciones(Resource):
 
-    @role_required(roles=["admin", "alumno"])
+    @jwt_required()
     def get(self):
         page = 1
         per_page = 10

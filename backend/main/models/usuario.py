@@ -9,7 +9,7 @@ class Usuario(db.Model):
     email = db.Column(db.String(250), unique=True, index=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
-    rol = db.Column(db.String(10), nullable=False, server_default="users")
+    rol = db.Column(db.String(10), nullable=True)
 
     profesor = db.relationship("Profesor",uselist=False,back_populates="usuario",cascade="all, delete-orphan",single_parent=True)
     alumno = db.relationship("Alumno",uselist=False,back_populates="usuario",cascade="all, delete-orphan",single_parent=True)
@@ -34,7 +34,6 @@ class Usuario(db.Model):
             'apellido': str(self.apellido),
             'email': str(self.email),
             'telefono': str(self.telefono),
-
         }
         return usuario_json
     
