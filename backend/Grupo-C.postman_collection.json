@@ -17,13 +17,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Beared eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ0OTk0NCwianRpIjoiYTRlNzBjNTQtYTI1NS00OGE4LWI0NDQtYThkYWZhYzFlYzhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NDQ0OTk0NCwiZXhwIjoxNjg0NDUzNTQ0LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLmVkdS5hciJ9.OlE_l2NvxmEKNWvnpCrMFG61ebChA3GSINRbCd7C2mE",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NzM2MDgwMSwianRpIjoiMzAwZWQ1MDItZmZiOS00Zjg3LWE0NjUtODY4NDY3YmEzMmQyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Mzk0MzkzNDcsIm5iZiI6MTY4NzM2MDgwMSwiZXhwIjoxNjg3MzY4MDAxLCJyb2wiOiJ1c2VyIiwiZG5pIjozOTQzOTM0NywiZW1haWwiOiJzYXJhLmNhdHVuZ2FAaG90bWFpbC5jb20ifQ.VW10dHYekqbgYtVWaxF96GWMmJPg98YNA9a-uR4hoy0",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"apellido\": \"O'Hearn\",\n        \"password\": \"BabyDontHurtMe\",\n        \"dni\": \"33439347\",\n        \"email\": \"mike.ohearn@hotmail.com\",\n        \"nombre\": \"Michael\",\n        \"telefono\": \"542617494852\",\n        \"rol\": \"profesor\"\n}",
+							"raw": "{\n        \"apellido\": \"Estrella\",\n        \"password\": \"1234\",\n        \"dni\": \"42439347\",\n        \"email\": \"patricio.estrella@hotmail.com\",\n        \"nombre\": \"Patricio\",\n        \"telefono\": \"542617494678\",\n        \"rol\": \"user\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -137,11 +137,16 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NzMwMTAyMiwianRpIjoiNjczMDhhYmEtNzkzYy00N2U5LWJiNGItODRjNTRkMDBiYmI5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDMyNzAzMTcsIm5iZiI6MTY4NzMwMTAyMiwiZXhwIjoxNjg3MzA0NjIyLCJyb2wiOiJhZG1pbiIsImRuaSI6NDMyNzAzMTcsImVtYWlsIjoiaS5kZWx1Y2FAYWx1bW5vLnVtLmVkdS5hciJ9.Tg8utjo9win-GxHppZSCaZIEH8bnq0YWCBGPHpbupuc",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "  {\n    \"apellido\": \"O'Hearn\",\n    \"contrasena\": \"BabyDontHurtMe\",\n    \"dni\": \"33439347\",\n    \"email\": \"mike.ohearn@hotmail.com\",\n    \"nombre\": \"Michael\",\n    \"telefono\": \"542617494852\"\n  }\n",
+							"raw": "  {\n    \"rol_id\": \"3\"\n  }\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,7 +154,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/usuario/33439347",
+							"raw": "http://127.0.0.1:6003/usuario/33658952",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -160,7 +165,7 @@
 							"port": "6003",
 							"path": [
 								"usuario",
-								"33439347"
+								"33658952"
 							]
 						}
 					},
@@ -173,7 +178,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ0OTk0NCwianRpIjoiYTRlNzBjNTQtYTI1NS00OGE4LWI0NDQtYThkYWZhYzFlYzhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NDQ0OTk0NCwiZXhwIjoxNjg0NDUzNTQ0LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLmVkdS5hciJ9.OlE_l2NvxmEKNWvnpCrMFG61ebChA3GSINRbCd7C2mE",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NTU4MzA1NiwianRpIjoiOWVjZDI0MWEtYTAwYi00YjYyLTgxMTgtODcwMDk3NzMyZWQxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NTU4MzA1NiwiZXhwIjoxNjg1NTg2NjU2LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLnVtLmVkdS5hciJ9.obpUkrSgxcINnyBy00LHhLdy_f47Ypwxq-MTbVj9ZbE",
 								"type": "text"
 							}
 						],
@@ -187,7 +192,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/usuario/33439347",
+							"raw": "http://127.0.0.1:6003/usuario/33434345",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -198,7 +203,7 @@
 							"port": "6003",
 							"path": [
 								"usuario",
-								"33439347"
+								"33434345"
 							]
 						}
 					},
@@ -218,11 +223,16 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NzMwMTAyMiwianRpIjoiNjczMDhhYmEtNzkzYy00N2U5LWJiNGItODRjNTRkMDBiYmI5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDMyNzAzMTcsIm5iZiI6MTY4NzMwMTAyMiwiZXhwIjoxNjg3MzA0NjIyLCJyb2wiOiJhZG1pbiIsImRuaSI6NDMyNzAzMTcsImVtYWlsIjoiaS5kZWx1Y2FAYWx1bW5vLnVtLmVkdS5hciJ9.Tg8utjo9win-GxHppZSCaZIEH8bnq0YWCBGPHpbupuc",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"altura\": \"1,77\",\n\t\"dni\": \"32234545\",\n\t\"edad\": \"43\",\n\t\"peso\": \"81\",\n\t\"sexo\": \"Masculino\"\n}",
+							"raw": "{\n\t\"altura\": \"1,50\",\n\t\"dni\": \"33434634\",\n\t\"edad\": \"42\",\n\t\"peso\": \"61\",\n\t\"sexo\": \"Femenino\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -374,11 +384,16 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NzM2MDgwMSwianRpIjoiMzAwZWQ1MDItZmZiOS00Zjg3LWE0NjUtODY4NDY3YmEzMmQyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Mzk0MzkzNDcsIm5iZiI6MTY4NzM2MDgwMSwiZXhwIjoxNjg3MzY4MDAxLCJyb2wiOiJ1c2VyIiwiZG5pIjozOTQzOTM0NywiZW1haWwiOiJzYXJhLmNhdHVuZ2FAaG90bWFpbC5jb20ifQ.VW10dHYekqbgYtVWaxF96GWMmJPg98YNA9a-uR4hoy0",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{         \n    \"altura\": \"1,77\",\n    \"dni\": \"32234545\",\n    \"edad\": \"43\",\n    \"peso\": \"81\",\n    \"sexo\": \"Masculino\"\n}",
+							"raw": "{         \n    \"dni\": \"33434345\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -386,7 +401,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/usuario_a/32234545",
+							"raw": "http://127.0.0.1:6003/usuario_a/33434345",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -397,7 +412,7 @@
 							"port": "6003",
 							"path": [
 								"usuario_a",
-								"32234545"
+								"33434345"
 							]
 						}
 					},
@@ -421,7 +436,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"dni\": 33439347,\n\t\"especialidad\": \"fisicoculturismo\",\n    \"clases\": [1,33439347]\n}",
+							"raw": "{\n\t\"dni\":33658952,\n    \"especialidad\":\"artes marciales mixtas\",\n    \"clases\": [1,33658952]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -493,13 +508,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ0OTk0NCwianRpIjoiYTRlNzBjNTQtYTI1NS00OGE4LWI0NDQtYThkYWZhYzFlYzhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NDQ0OTk0NCwiZXhwIjoxNjg0NDUzNTQ0LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLmVkdS5hciJ9.OlE_l2NvxmEKNWvnpCrMFG61ebChA3GSINRbCd7C2mE",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NzM2MzM5MywianRpIjoiYzI5NjBmYzEtMDk5Mi00ZjE0LThiMTMtODJlNGQ0OGFiYTRjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NzM2MzM5MywiZXhwIjoxNjg3MzcwNTkzLCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLnVtLmVkdS5hciJ9.FZY4IansR7D_n5y1nafbr9y357U3lxkLdkZ5AFMtmkk",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"dni\": 33439347,\n\t\"especialidad\": \"fisicoculturismo\",\n    \"clases\": [1,33439347]\n}",
+							"raw": "{\n    \"dni\": 33439347,\n\t\"especialidad\": \"musculacion\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -507,7 +522,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:6003/usuario_p/1",
+							"raw": "http://127.0.0.1:6003/usuario_p/33439347",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -518,7 +533,7 @@
 							"port": "6003",
 							"path": [
 								"usuario_p",
-								"1"
+								"33439347"
 							]
 						}
 					},
@@ -536,7 +551,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"dia\": \"Viernes\",\n\t\"horario\": \"11 AM\",\n\t\"nombre\": \"musculacion\"\n}",
+							"raw": "{\n\t\"dia\": \"Viernes\",\n\t\"horario\": \"11 AM\",\n\t\"id\": 1,\n\t\"nombre\": \"musculacion\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -909,10 +924,16 @@
 					"name": "Login",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NzM2MTk3OCwianRpIjoiZTA5ZDYzMWItNjMwZC00NzcxLWE3NDctZDQ3Yzg5Y2FhZTg0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDQ5MDg1NDIsIm5iZiI6MTY4NzM2MTk3OCwiZXhwIjoxNjg3MzY5MTc4LCJyb2wiOiJhZG1pbiIsImRuaSI6NDQ5MDg1NDIsImVtYWlsIjoiYy5wb3J0YWxAYWx1bW5vLnVtLmVkdS5hciJ9.wL0mqQrPNPJROQdaHoUjr-AqSMnwaFGMS3jIgmuFAJM",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"email\": \"c.portal@alumno.edu.ar\",\n        \"password\": \"hola123\"\n}",
+							"raw": "{\n        \"email\": \"c.portal@alumno.um.edu.ar\",\n        \"password\": \"hola123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -944,7 +965,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"apellido\": \"Gallo\",\n        \"password\": \"clavegallo\",\n        \"dni\": \"33439345\",\n        \"email\": \"elba_gallo.h@gmail.com\",\n        \"nombre\": \"Elba\",\n        \"telefono\": \"542617429342\"\n}",
+							"raw": "{\n    \n    \"dni\":44308831,\n    \"nombre\":\"Juan Alejo\",\n    \"apellido\":\"Patiño\",\n    \"email\":\"j.patino@alumno.um.edu.ar\",\n    \"password\":\"clavepatino\",\n    \"telefono\":542616458146,\n    \"rol_id\":\"\"\n        \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -964,6 +985,86 @@
 							"path": [
 								"auth",
 								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "Crear roles",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NzM1NjQzOSwianRpIjoiNmQ2Y2NlMzQtZjAxNS00NDM2LWJlNTYtOWU0NTMxYmIyOTg5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDMyNzAzMTcsIm5iZiI6MTY4NzM1NjQzOSwiZXhwIjoxNjg3MzYzNjM5LCJyb2wiOiJhZG1pbiIsImRuaSI6NDMyNzAzMTcsImVtYWlsIjoiaS5kZWx1Y2FAYWx1bW5vLnVtLmVkdS5hciJ9.8D16g7QJwaOs1QgOGOke4IL4dh_wmqNxkUeKXVwJZtU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rol\": \"admin\",\n    \"recurso\": \"usuarioprofesor\",\n    \"metodo\": \"PUT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:6003/permisos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "6003",
+							"path": [
+								"permisos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar roles",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NzM1NjQzOSwianRpIjoiNmQ2Y2NlMzQtZjAxNS00NDM2LWJlNTYtOWU0NTMxYmIyOTg5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6NDMyNzAzMTcsIm5iZiI6MTY4NzM1NjQzOSwiZXhwIjoxNjg3MzYzNjM5LCJyb2wiOiJhZG1pbiIsImRuaSI6NDMyNzAzMTcsImVtYWlsIjoiaS5kZWx1Y2FAYWx1bW5vLnVtLmVkdS5hciJ9.8D16g7QJwaOs1QgOGOke4IL4dh_wmqNxkUeKXVwJZtU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"1\",\n    \"rol\": \"user\",\n    \"recurso\": \"clase\",\n    \"metodo\": \"GET\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:6003/permiso/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "6003",
+							"path": [
+								"permiso",
+								"1"
 							]
 						}
 					},

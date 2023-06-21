@@ -76,7 +76,8 @@ class Usuarios(Resource):
                   'pages': usuarios.pages,
                   'page': page
                 })
-            
+
+    @role_required(roles=["admin"])       
     def post(self):
         usuarios = UsuarioModel.from_json(request.get_json())
         print(usuarios)
