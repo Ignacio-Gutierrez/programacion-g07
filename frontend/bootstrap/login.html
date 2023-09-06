@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gym El Chicho</title>
+  <link rel="shortcut icon" href="css/logo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- font-awesome (iconos)-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <!-- Style propios -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- Barra de Navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a href="/index.html"><img src="css/logo.png" class="logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <section class="offcanvas offcanvas-end" id="menuLateral" tabindex="-1">
+        <div class="offcanvas-header" data-bs-theme="dark">
+          <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas">
+          </button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between px-0">
+          <ul class="navbar-nav fs-5 justify-content-evenly">
+            <li class="nav-item p-3 py-md-1">
+              <a href="login.html" class="nav-link">INGRESAR</a>
+            </li>
+            <li class="nav-item p-3 py-md-1">
+              <a href="index.html#Promosid" class="nav-link">PRECIOS</a>
+            </li>
+            <li class="nav-item p-3 py-md-1">
+              <a href="index.html#Profesid" class="nav-link">PROFES</a>
+            </li>
+            <li class="nav-item p-3 py-md-1">
+              <a href="index.html#Contactosid" class="nav-link">CONTACTO</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+  <!-- Iniciar sesión -->
+  <div class="mt-5 container">
+    <div class="row justify-content-center row1 login-centrado">
+      <div class="col-md-6">
+        <div class="d-flex flex-column align-items-center">
+          <h1>Iniciar sesion</h1>
+          <form>
+            <div>
+              <label for="email" class="form-label" style="font-weight: bold">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico">
+            </div>
+            <div>
+              <label for="password" class="form-label" style="font-weight: bold">Contraseña</label>
+              <input type="password" class="form-control" id="password" placeholder="Tu contraseña">
+            </div>
+            <div class="text-center">
+              <a type="button" href="/vistaAlumno.html" class="btn btn-dark col-10">Ingresar Alumno</a>
+              <a type="button" href="/vistaProfesor.html" class="btn btn-dark col-10">Ingresar Profesor</a>
+              <a type="button" href="/vistaAdmin.html" class="btn btn-dark col-10">Ingresar Admin</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

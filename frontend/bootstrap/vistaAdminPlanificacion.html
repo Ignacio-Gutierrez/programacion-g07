@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym El Chicho</title>
+    <link rel="shortcut icon" href="css/logo.png">
+    <!-- Bootstrap --->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- font-awesome (iconos)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Style propios -->
+    <link rel="stylesheet" href="css/styles_user.css">
+</head>
+
+<body>
+
+    <nav class="navbar sesion">
+        <div class="container justify-content-end">
+            <a type="button" href="index.html" class="btn btn-outline-warning">Cerrar Sesión
+                <i class="fa-solid fa-right-from-bracket" style="margin-left: 7px"></i>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-5" style="margin-bottom: 50px;">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <div class="rounded-box" style="margin-bottom: 25px;">
+                    
+                    <div class="d-flex align-items-center justify-content-center titulo-edit-alumno">
+                        <h1 style="margin-top: 15px; padding-right: 50px;">Planificacion</h1>
+                        <button data-bs-toggle="modal" data-bs-target="#editarPlanificacion" class="btn btn-primary btn-lm me-2"><i class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Descripción</h5>
+                        <h2>Hipertrofia</h2>
+                        <hr>
+                        <h5>Fecha</h5>
+                        <h2>07-09-2023</h2>
+                        <hr>
+                        
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: end;">
+                        <a href="vistaAdminPerfilAlumno.html"><button class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
+                    </div>
+                </div>
+
+                <!-- Tabla de planificación -->
+                <div id="Clasesid" class="altura-min-1">
+                    <div class="container" style="margin-bottom: 50px;">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 card-space">
+                                <div class="card-clase">
+                                    <div class="card-c-header">
+                                        <h4 class="card-c-title">Lunes</h4>
+                                    </div>
+                                    <div class="card-c-body">
+                                        <p class="card-c-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 card-space">
+                                <div class="card-clase">
+                                    <div class="card-c-header">
+                                        <h4 class="card-c-title">Martes</h4>
+                                    </div>
+                                    <div class="card-c-body">
+                                        <p class="card-c-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 card-space">
+                                <div class="card-clase">
+                                    <div class="card-c-header">
+                                        <h4 class="card-c-title">Miércoles</h4>
+                                    </div>
+                                    <div class="card-c-body">
+                                        <p class="card-c-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 card-space">
+                                <div class="card-clase">
+                                    <div class="card-c-header">
+                                        <h4 class="card-c-title">Jueves</h4>
+                                    </div>
+                                    <div class="card-c-body">
+                                        <p class="card-c-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 card-space">
+                                <div class="card-clase">
+                                    <div class="card-c-header">
+                                        <h5 class="card-c-title">Viernes</h5>
+                                    </div>
+                                    <div class="card-c-body">
+                                        <p class="card-c-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 card-space">
+                                <div class="card-clase">
+                                    <div class="card-c-header">
+                                        <h5 class="card-c-title">Sábado</h5>
+                                    </div>
+                                    <div class="card-c-body">
+                                        <p class="card-c-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar nuevo usuario -->
+    <div class="modal fade" id="editarPlanificacion" tabindex="-1" aria-labelledby="editarPlanificacionModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarPlanificacionModalLabel">Editar Planificación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para cargar un nuevo usuario -->
+                    <form>
+                        <div class="mb-3">
+                            <label for="lunes" class="form-label">Lunes</label>
+                            <input type="text" class="form-control" id="lunes">
+                        </div>
+                        <div class="mb-3">
+                            <label for="martes" class="form-label">Martes</label>
+                            <input type="text" class="form-control" id="martes">
+                        </div>
+                        <div class="mb-3">
+                            <label for="miercoles" class="form-label">Miércoles</label>
+                            <input type="text" class="form-control" id="miercoles">
+                        </div>
+                        <div class="mb-3">
+                            <label for="jueves" class="form-label">Jueves</label>
+                            <input type="text" class="form-control" id="jueves">
+                        </div>
+                        <div class="mb-3">
+                            <label for="viernes" class="form-label">Viernes</label>
+                            <input type="text" class="form-control" id="viernes">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sabado" class="form-label">Sábado</label>
+                            <input type="text" class="form-control" id="sabado">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-success" >Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

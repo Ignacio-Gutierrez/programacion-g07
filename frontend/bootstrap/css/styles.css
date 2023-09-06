@@ -1,0 +1,271 @@
+/* Fondo */
+body {
+    background-color: rgb(95, 95, 95);
+}
+
+
+/* Horarios */
+.card-hora-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 150px
+}
+.card-horario {
+    background-color: #1e293b;
+    border-radius: 15px;
+    padding: 20px;
+}
+.tittle-horarios {
+    font-size:30px;
+    font-family:'tittlefont';
+    color:#f1be16;
+    letter-spacing: 1px;
+  }
+.text-horarios{
+    font-size:15px;
+    font-weight: bold;
+    color:white;
+}
+.parpadea {
+        animation-name: parpadeo;
+        animation-delay: 0s;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+}
+@keyframes parpadeo {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+/* Barra de Navegación */
+nav,
+    .offcanvas {
+      background-color: #1e293b;
+    }
+    #menuLateral{
+        width: 100%;
+        height: 370px;
+    }
+    .navbar-toggler {
+      border: none;
+    }
+    .navbar-toggler:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-nav > li:hover {
+        background-color: #0dcaf0;
+      }
+    }
+.logo{
+    width: 50px;
+    height: 50px;
+}
+
+
+/* Otros Ajustes*/
+.portada {
+    max-width: 85%;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 66px;
+    margin-bottom: 90px
+}
+.altura-min-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+}
+.altura-min-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+.altura-min-3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+}
+@font-face {
+    font-family: 'tittlefont';
+    src: url('commando-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+h1 {
+    font-family: 'tittlefont';
+    font-size: 45px;
+    color: #f1be16;
+    padding: 15px;
+    letter-spacing: 2px;
+    text-shadow: -2px -2px 0 #1e293b, 2px -2px 0 #1e293b, -2px 2px 0 #1e293b, 2px 2px 0 #1e293b;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
+
+
+/* Estililos para las clases */
+#Clasesid{
+    background-image: url(background_clases.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.card-space{
+    padding-bottom: 20px;
+}
+.card-clase {
+    background-position: center;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, .70);
+    box-shadow: 25px 25px 50px #4e4e4e4a, -25px -25px 50px #70707070;
+    border: 2px solid black;
+}
+.card-c-header {
+    text-align: center;
+    background-color: #dc9900;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+} 
+.card-c-body {
+    border-top: 2px solid black;
+    background-color: none;
+} 
+.event-card {
+    margin-bottom: 20px;
+} 
+.card-c-title {
+    font-weight: bold;
+    font-size: 30px; 
+} 
+.card-c-text {
+    font-size: 20px;
+    color: #333;
+    padding: 0 15px;
+}
+
+
+/* Ajustar estilos de las Promos */
+#Promosid{
+    background-image: url('logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-size: 70%;
+}
+.promo {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    min-width: 170px;   
+    margin-right: 10px;
+}
+.promo-header{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #59c9af;
+}
+.promo-title {
+    color: #333;
+    display: flex;
+    justify-content: center;
+}
+.promo-text {
+    color: #777;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    min-height: 50px;
+    padding: 0 10px;
+}
+
+
+/* Ajustar estilos de los Profes */
+#Profesid{
+    background-image:url('trining-rocky.gif');
+    background-size: cover;
+    background-position: center;
+
+}
+.card {
+    border-radius: 15px;
+    border: 2px solid rgb(241, 190, 22);
+    width: 17rem;
+}
+.card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    object-fit: cover;
+}
+.card-title {
+    color: #333;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+    min-height: 72px;
+    font-size: 30px; 
+}
+.card-text {
+    color: #777;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    min-height: 60px;
+    font-size: 20px; 
+}
+#carouselExample{
+    margin-bottom: 50px
+}
+.button-container {
+    width:4pc;
+    height: 4pc;
+    background-color: rgba(241, 190, 22, 0.7);
+    border-radius: 50%;
+}
+
+/* Estilos para Contactos */
+#Contactosid{
+    background-image: url(poly01.jpg);
+    background-size: cover;
+}
+
+
+/* Estilos para el footer */
+.footer {
+    text-align: center;
+    background-color: #1e293b;
+}
+.footer_text{
+    color:#929ea7
+}
+
+
+/*Estilos para login */
+.login-centrado{
+    align-items: center;
+    height: 80vh;
+}
+.btn{
+    margin: 1%;
+    background-color: #fad201;
+    color: black;
+}
+#email{
+  margin-bottom: 15px;
+}
+#password{
+  margin-bottom: 15px;
+}
