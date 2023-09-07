@@ -1,0 +1,208 @@
+<app-navclose></app-navclose>
+
+<div class="container mt-5">
+    <div class="row center">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center mb-4">Bienvenido Admin</h1>
+            <div class="d-flex mb-3">
+                <input type="text" class="form-control me-2 flex-grow-1" placeholder="Buscar usuario...">
+                <button class="btn btn-outline-secondary" type="button"><i
+                        class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+            
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><span class="fa-solid fa-filter"></span>
+                    Filtrar Por
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Alumno</a></li>
+                    <li><a class="dropdown-item" href="#">Profesor</a></li>
+                </ul>
+            </div>
+            
+            <!-- Paginación -->
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Usuario 1
+                    <div>
+                        <a type="button" routerLink="/vAdminAlumno" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Usuario 2
+                    <div>
+                        <a type="button" routerLink="/vAdminAlumno" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Usuario 3
+                    <div>
+                        <a type="button" routerLink="/vAdminAlumno" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Usuario 4
+                    <div>
+                        <a type="button" routerLink="/vAdminAlumno" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Usuario 5
+                    <div>
+                        <a type="button" routerLink="/vAdminAlumno" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Usuario 6
+                    <div>
+                        <a type="button" routerLink="/vAdminAlumno" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Usuario 7
+                    <div>
+                        <a type="button" routerLink="/vAdminAlumno" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Usuario 8
+                    <div>
+                        <a type="button" routerLink="/vAdminAlumno" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Usuario 9
+                    <div>
+                        <a type="button" routerLink="/vAdminAlumno" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Profesor 1
+                    <div>
+                        <a type="button" routerLink="/vAdminPProfe" class="btn btn-primary btn-sm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white"></i></a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para agregar nuevo usuario -->
+<div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" aria-labelledby="nuevoUsuarioModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="nuevoUsuarioModalLabel">Agregar Nuevo Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para cargar un nuevo usuario -->
+                <form>
+                    <div>
+                        <label for="nombre" class="form-label">Rol</label>
+                    </div>
+                    <div class="btn-group d-flex justify-content-center" style="margin-bottom: 15px;" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="btnradio1">Admin</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio2">Profesor</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio3">Alumno</label>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="apellido">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dni" class="form-label">DNI</label>
+                        <input type="number" class="form-control" id="dni">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="passwordl">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="number" class="form-control" id="telefono">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" >Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botones de Navegación -->
+<nav aria-label="Page navigation example" class="nav-bar-num">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Eliminar? -->
+<div class="modal" id="eliminarModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar a este Usuario?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

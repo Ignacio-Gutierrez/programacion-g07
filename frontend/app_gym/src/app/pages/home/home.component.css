@@ -1,0 +1,62 @@
+
+h1 {
+    font-family: 'tittlefont';
+    font-size: 45px;
+    color: #f1be16;
+    padding: 15px;
+    letter-spacing: 2px;
+    text-shadow: -2px -2px 0 #1e293b, 2px -2px 0 #1e293b, -2px 2px 0 #1e293b, 2px 2px 0 #1e293b;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
+
+/* Ajustar estilos de los Profes */
+#Profesid{
+    background-image:url(/assets/trining-rocky.gif);
+    background-size: cover;
+    background-position: center;
+
+}
+.card {
+    border-radius: 15px;
+    border: 2px solid rgb(241, 190, 22);
+    width: 17rem;
+}
+.card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    object-fit: cover;
+}
+.card-title {
+    color: #333;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+    min-height: 72px;
+    font-size: 30px; 
+}
+.card-text {
+    color: #777;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    min-height: 60px;
+    font-size: 20px; 
+}
+#carouselExample{
+    margin-bottom: 50px
+}
+.button-container {
+    width:4pc;
+    height: 4pc;
+    background-color: rgba(241, 190, 22, 0.7);
+    border-radius: 50%;
+}
+
+.btn{
+    margin: 1%;
+    background-color: #fad201;
+    color: black;
+}

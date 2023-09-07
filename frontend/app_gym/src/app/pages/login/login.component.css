@@ -1,0 +1,29 @@
+
+/*Estilos para login */
+.login-centrado{
+    align-items: center;
+    height: 80vh;
+}
+.btn{
+    margin: 1%;
+    background-color: #fad201;
+    color: black;
+}
+#email{
+  margin-bottom: 15px;
+}
+#password{
+  margin-bottom: 15px;
+}
+
+h1 {
+    font-family: 'tittlefont';
+    font-size: 45px;
+    color: #f1be16;
+    padding: 15px;
+    letter-spacing: 2px;
+    text-shadow: -2px -2px 0 #1e293b, 2px -2px 0 #1e293b, -2px 2px 0 #1e293b, 2px 2px 0 #1e293b;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
