@@ -10,12 +10,12 @@
                     <h1 style="margin-top: 10px;">Planificacion</h1>
                 </div>
 
-                <div class="col-md-6">
+                <div *ngFor="let des of arrayDesPlan" class="col-md-6">
                     <h5>Descripción</h5>
-                    <h2>Hipertrofia</h2>
+                    <h2>{{des.des}}</h2>
                     <hr>
                     <h5>Fecha</h5>
-                    <h2>07-09-2023</h2>
+                    <h2>{{des.fecha}}</h2>
                     <hr>
                     
                 </div>
@@ -25,72 +25,7 @@
             </div>
 
             <!-- Tabla de planificación -->
-            <div>
-                <div class="container" style="margin-bottom: 50px;">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 card-space">
-                            <div class="card-clase">
-                                <div class="card-c-header">
-                                    <h4 class="card-c-title">Lunes</h4>
-                                </div>
-                                <div class="card-c-body">
-                                    <p class="card-c-text"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 card-space">
-                            <div class="card-clase">
-                                <div class="card-c-header">
-                                    <h4 class="card-c-title">Martes</h4>
-                                </div>
-                                <div class="card-c-body">
-                                    <p class="card-c-text"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 card-space">
-                            <div class="card-clase">
-                                <div class="card-c-header">
-                                    <h4 class="card-c-title">Miércoles</h4>
-                                </div>
-                                <div class="card-c-body">
-                                    <p class="card-c-text"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 card-space">
-                            <div class="card-clase">
-                                <div class="card-c-header">
-                                    <h4 class="card-c-title">Jueves</h4>
-                                </div>
-                                <div class="card-c-body">
-                                    <p class="card-c-text"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 card-space">
-                            <div class="card-clase">
-                                <div class="card-c-header">
-                                    <h5 class="card-c-title">Viernes</h5>
-                                </div>
-                                <div class="card-c-body">
-                                    <p class="card-c-text"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 card-space">
-                            <div class="card-clase">
-                                <div class="card-c-header">
-                                    <h5 class="card-c-title">Sábado</h5>
-                                </div>
-                                <div class="card-c-body">
-                                    <p class="card-c-text"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-planificacion></app-planificacion>
         </div>
     </div>
 </div>

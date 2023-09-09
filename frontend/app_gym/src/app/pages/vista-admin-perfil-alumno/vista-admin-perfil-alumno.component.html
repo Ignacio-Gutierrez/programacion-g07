@@ -13,24 +13,24 @@
                     <a type="button" routerLink="/vAdminPlanif"
                         class="btn btn-primary btn-sm me-2 custom-button">Planificaciones</a>
                 </div>
-                <div class="col-md-6">
+                <div *ngFor="let alum of arrayAlumData" class="col-md-6">
                     <h3>Mail</h3>
-                    <h4>mrsaractunga@gmail.com</h4>
+                    <h4>{{alum.mail}}</h4>
                     <hr>
                     <h3>Teléfono</h3>
-                    <h4>261455471</h4>
+                    <h4>{{alum.tel}}</h4>
                     <hr>
                     <h3>Edad</h3>
-                    <h4>25</h4>
+                    <h4>{{alum.edad}}</h4>
                     <hr>
                     <h3>Peso</h3>
-                    <h4>65</h4>
+                    <h4>{{alum.peso}} kg</h4>
                     <hr>
                     <h3>Altura</h3>
-                    <h4>1.77</h4>
+                    <h4>{{alum.altura}} m</h4>
                     <hr>
                     <h3>Sexo</h3>
-                    <h4>Mujer</h4>
+                    <h4>{{alum.sexo}}</h4>
                     <hr>
                 </div>
                 <div style="display: flex; justify-content: space-between;">

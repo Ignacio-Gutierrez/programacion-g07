@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-vista-profesor-planificacion',
-  templateUrl: './vista-profesor-planificacion.component.html',
-  styleUrls: ['./vista-profesor-planificacion.component.css']
+  selector: 'app-planificacion',
+  templateUrl: './planificacion.component.html',
+  styleUrls: ['./planificacion.component.css']
 })
-export class VistaProfesorPlanificacionComponent {
+export class PlanificacionComponent {
   arrayDesPlan = [
     {
       des:'Hipertrofia',

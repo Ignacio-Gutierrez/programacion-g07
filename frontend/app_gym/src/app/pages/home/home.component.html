@@ -104,53 +104,19 @@
 <div id="Promosid" class="container altura-min-3">
     <h1 class="text-center">Promos</h1>
     <div class="row mt-4 justify-content-center" style="margin-bottom: 50px">
-        <div class="col-md-3">
+        <div *ngFor="let promo of arrayPromos" class="col-md-3">
             <div class="promo">
                 <div class="promo-header">
-                    <h3 class="text-center">1 Mes</h3>
+                    <h3 class="text-center">{{promo.mes}}</h3>
                 </div>
                 <div class="card-body text-center">
-                    <h4 class="promo-title">$9.999</h4>
-                    <p class="promo-text">1 mes de suscripción estándar.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="promo">
-                <div class="promo-header">
-                    <h3 class="text-center">3 Meses</h3>
-                </div>
-                <div class="card-body text-center">
-                    <h4 class="promo-title">$24.999</h4>
-                    <p class="promo-text">Oferta por 3 meses de suscripción.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="promo">
-                <div class="promo-header">
-                    <h3 class="text-center">6 Meses</h3>
-                </div>
-                <div class="card-body text-center">
-                    <h4 class="promo-title">$44.999</h4>
-                    <p class="promo-text">Oferta por 6 meses de suscripción.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="promo">
-                <div class="promo-header">
-                    <h3 class="text-center">1 Año</h3>
-                </div>
-                <div class="card-body text-center">
-                    <h4 class="promo-title">$84.999</h4>
-                    <p class="promo-text">Oferta por 1 año de suscripción.</p>
+                    <h4 class="promo-title">{{promo.precio}}</h4>
+                    <p class="promo-text">{{promo.info}}</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Profesores -->
 <div id="Profesid" class="altura-min-3">
@@ -168,68 +134,13 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
+            <div *ngFor="let profe of arrayProfes" class="carousel-item">
                 <div class="d-inline-block mx-auto">
                     <div class="card">
-                        <img src="assets/profe2.jpg" class="card-img-top" alt="AlejandraOliveras">
+                        <img src={{profe.foto}} class="card-img-top" alt="AlejandraOliveras">
                         <div class="card-body">
-                            <h5 class="card-title">Alejandra Oliveras</h5>
-                            <p class="card-text">Entrenadora personal y campeona de Boxeo.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-inline-block mx-auto">
-                    <div class="card">
-                        <img src="assets/profe3.jpg" class="card-img-top" alt="ArnoldSchwarzenegger">
-                        <div class="card-body">
-                            <h5 class="card-title">Arnold Schwarzenegger</h5>
-                            <p class="card-text">Entrenador personal y culturista profesional.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-inline-block mx-auto">
-                    <div class="card">
-                        <img src="assets/profe4.jpg" class="card-img-top" alt="JohnnyLawrence">
-                        <div class="card-body">
-                            <h5 class="card-title">Johnny Lawrence</h5>
-                            <p class="card-text">Sensei de Karate.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-inline-block mx-auto">
-                    <div class="card">
-                        <img src="assets/profe5.jpg" class="card-img-top" alt="LoganChitwood">
-                        <div class="card-body">
-                            <h5 class="card-title">Logan Chitwood</h5>
-                            <p class="card-text">Entrenador personal.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-inline-block mx-auto">
-                    <div class="card">
-                        <img src="assets/profe6.jpg" class="card-img-top" alt="ChuckNorris">
-                        <div class="card-body">
-                            <h5 class="card-title">Chuck Norris</h5>
-                            <p class="card-text">Artista marcial y sensei Karate.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-inline-block mx-auto">
-                    <div class="card">
-                        <img src="assets/profe7.jpg" class="card-img-top" alt="CassiusClay">
-                        <div class="card-body">
-                            <h5 class="card-title">Cassius Clay</h5>
-                            <p class="card-text">Entrenador personal y boxeador amateur.</p>
+                            <h5 class="card-title">{{profe.nombre}}</h5>
+                            <p class="card-text">{{profe.info}}</p>
                         </div>
                     </div>
                 </div>

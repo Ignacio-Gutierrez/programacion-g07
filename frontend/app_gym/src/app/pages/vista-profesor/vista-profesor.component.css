@@ -17,9 +17,9 @@ h1 {
     border-color: #0b5ed7;
     margin-bottom: 15px;
   }
-.btn-secondary:hover {
-    background-color: #0b5ed7;
-}
+    .btn-secondary:hover {
+        background-color: #0b5ed7;
+    }
 .dropdown-item {
     color: white;
 }

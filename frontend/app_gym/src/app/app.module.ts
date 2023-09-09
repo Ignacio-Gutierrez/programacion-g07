@@ -16,6 +16,7 @@ import { VistaAdminPerfilAlumnoComponent } from './pages/vista-admin-perfil-alum
 import { VistaAdminPlanificacionComponent } from './pages/vista-admin-planificacion/vista-admin-planificacion.component';
 import { VistaProfesorPlanificacionComponent } from './pages/vista-profesor-planificacion/vista-profesor-planificacion.component';
 import { VistaProfesorPerfilAlumnoComponent } from './pages/vista-profesor-perfil-alumno/vista-profesor-perfil-alumno.component';
+import { PlanificacionComponent } from './pages/planificacion/planificacion.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { VistaProfesorPerfilAlumnoComponent } from './pages/vista-profesor-perfi
     VistaAdminPerfilAlumnoComponent,
     VistaAdminPlanificacionComponent,
     VistaProfesorPlanificacionComponent,
-    VistaProfesorPerfilAlumnoComponent
+    VistaProfesorPerfilAlumnoComponent,
+    PlanificacionComponent
   ],
   imports: [
     BrowserModule,

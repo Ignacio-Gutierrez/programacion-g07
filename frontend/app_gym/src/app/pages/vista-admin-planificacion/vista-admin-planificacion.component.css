@@ -1,13 +1,3 @@
-/* Fondo */
-body {
-    background-color: rgb(95, 95, 95);
-}
-@font-face {
-    font-family: 'tittlefont';
-    src: url('/assets/commando-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 h1 {
     font-family: 'tittlefont';
     font-size: 30px;
@@ -25,9 +15,9 @@ h1 {
     border-color: #0b5ed7;
     margin-bottom: 15px;
   }
-.btn-secondary:hover {
-    background-color: #0b5ed7;
-}
+    .btn-secondary:hover {
+        background-color: #0b5ed7;
+    }
 .dropdown-item {
     color: white;
 }
@@ -86,39 +76,4 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .flecha{
     background-position-x: right;
-}
-
-
-/* Estililos para las clases */
-.card-space{
-    padding-bottom: 20px;
-}
-.card-clase {
-    background-position: center;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, .70);
-    box-shadow: 25px 25px 50px #4e4e4e4a, -25px -25px 50px #70707070;
-    border: 2px solid black;
-}
-.card-c-header {
-    text-align: center;
-    background-color: #dc9900;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-} 
-.card-c-body {
-    border-top: 2px solid black;
-    background-color: none;
-} 
-.event-card {
-    margin-bottom: 20px;
-} 
-.card-c-title {
-    font-weight: bold;
-    font-size: 30px; 
-} 
-.card-c-text {
-    font-size: 20px;
-    color: #333;
-    padding: 0 15px;
 }

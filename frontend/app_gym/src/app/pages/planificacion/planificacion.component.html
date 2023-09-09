@@ -1,0 +1,17 @@
+<!-- Tabla de planificación -->
+<div>
+    <div class="container" style="margin-bottom: 50px;">
+        <div class="row">
+            <div *ngFor="let plan of arrayPlan" class="col-lg-4 col-md-6 card-space">
+                <div class="card-clase">
+                    <div class="card-c-header">
+                        <h4 class="card-c-title">{{plan.dia}}</h4>
+                    </div>
+                    <div class="card-c-body">
+                        <p class="card-c-text">{{plan.des}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
