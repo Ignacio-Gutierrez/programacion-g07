@@ -11,17 +11,17 @@
       </div>
       <div class="offcanvas-body d-flex flex-column justify-content-between px-0">
         <ul class="navbar-nav fs-5 justify-content-evenly">
-          <li class="nav-item p-3 py-md-1">
+          <li *ngIf="rutavisible" class="nav-item p-3 py-md-1">
             <a routerLink="/login" class="nav-link">INGRESAR</a>
           </li>
           <li class="nav-item p-3 py-md-1">
-            <a href="Promosid" class="nav-link">PRECIOS</a>
+            <a (click)="scrollToPrecio()" class="nav-link">PRECIOS</a>
           </li>
           <li class="nav-item p-3 py-md-1">
-            <a href="Profesid" class="nav-link">PROFES</a>
+            <a (click)="scrollToProfes()" class="nav-link">PROFES</a>
           </li>
           <li class="nav-item p-3 py-md-1">
-            <a href="Contactosid" class="nav-link">CONTACTO</a>
+            <a (click)="scrollToContacto()" class="nav-link">CONTACTO</a>
           </li>
         </ul>
       </div>

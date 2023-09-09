@@ -15,27 +15,27 @@ export class VistaAdminPlanificacionComponent {
   arrayPlan = [
     {
       dia:'Lunes',
-      des:'  revibir input',
+      des:'  revicir input',
     },
     {
       dia:'Martes',
-      des:'  revibir input',
+      des:'  revicir input',
     },
     {
       dia:'Miércoles',
-      des:'  revibir input',
+      des:'  revicir input',
     },
     {
       dia:'Jueves',
-      des:'  revibir input',
+      des:'  revicir input',
     },
     {
       dia:'Viernes',
-      des:'  revibir input',
+      des:'  revicir input',
     },
     {
       dia:'Sábado',
-      des:'  revibir input',
+      des:'  revicir input',
     },
   ]
   constructor() {}

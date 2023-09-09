@@ -15,27 +15,27 @@ export class PlanificacionComponent {
   arrayPlan = [
     {
       dia:'Lunes',
-      des:'  revibir input',
+      des:'  recibir input',
     },
     {
       dia:'Martes',
-      des:'  revibir input',
+      des:'  recibir input',
     },
     {
       dia:'Miércoles',
-      des:'  revibir input',
+      des:'  recibir input',
     },
     {
       dia:'Jueves',
-      des:'  revibir input',
+      des:'  recibir input',
     },
     {
       dia:'Viernes',
-      des:'  revibir input',
+      des:'  recibir input',
     },
     {
       dia:'Sábado',
-      des:'  revibir input',
+      des:'  recibir input',
     },
   ]
   constructor() {}
