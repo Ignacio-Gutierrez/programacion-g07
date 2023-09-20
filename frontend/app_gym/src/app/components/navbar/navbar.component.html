@@ -1,30 +1,29 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark custom-bg-color fixed-top">
-  <div class="container">
+  <div class="container-fluid">
     <a routerLink="/home"><img src="assets/logo.png" class="logo"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul *ngIf="rutavisible" class="navbar-nav">
-                <a routerLink="/login" class="nav-link">INGRESAR</a>
-                  
-              </ul>
-          </div>
-              <li class="nav-item">
-                <a (click)="scrollToPrecio()" class="nav-link">PRECIOS</a>
-              </li>
-              <li class="nav-item">
-                <a (click)="scrollToProfes()" class="nav-link">PROFES</a>
-              </li>
-              <li class="nav-item">
-                <a (click)="scrollToContacto()" class="nav-link">CONTACTO</a>
-              </li>
-          </ul>
-      </div>
-      
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse flex-column justify-content-between px-0" id="navbarNav">
+      <ul class="navbar-nav fs-5 justify-content-center">
+
+        <li *ngIf="rutavisible" class="nav-item">
+          <a routerLink="/login" class="nav-link">INGRESAR</a>
+
+        </li>
+
+        <li class="nav-item">
+          <a (click)="scrollToPrecio()" class="nav-link">PRECIOS</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="scrollToProfes()" class="nav-link">PROFES</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="scrollToContacto()" class="nav-link">CONTACTO</a>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </nav>
-

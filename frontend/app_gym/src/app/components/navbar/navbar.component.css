@@ -1,7 +1,4 @@
 /* Barra de Navegación */
-a{
-  margin: 8px;
-}
 
 .custom-bg-color{
   background-color: #1e293b;
@@ -16,5 +13,6 @@ a{
   cursor: pointer;
 }
 
-
-  
+.nav-item a.nav-link {
+  margin: 0 5vw 0 5vw; /* Ajusta el valor de margen según tu preferencia */
+}
