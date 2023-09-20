@@ -1,4 +1,11 @@
-
+.portada {
+    max-width: 95%;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 90px
+}
 /* Horarios */
 .card-hora-container {
     display: flex;

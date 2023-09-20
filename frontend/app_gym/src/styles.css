@@ -21,14 +21,7 @@ h1 {
 
 
 /* Otros Ajustes*/
-.portada {
-    max-width: 85%;
-    height: auto;
-    display: block;
-    margin: auto;
-    margin-top: 66px;
-    margin-bottom: 90px
-}
+
 .altura-min-1{
     display: flex;
     flex-direction: column;
