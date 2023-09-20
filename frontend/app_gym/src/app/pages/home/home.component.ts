@@ -19,7 +19,7 @@ export class HomeComponent {
     },
     {
       mes:'6 Meses',
-      precio:'$9.999',
+      precio:'$44.999',
       info:'Oferta por 6 meses de suscripción.',
     },
     {

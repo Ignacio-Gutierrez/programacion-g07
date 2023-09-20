@@ -1,16 +1,4 @@
 
-h1 {
-    font-family: 'tittlefont';
-    font-size: 45px;
-    color: #f1be16;
-    padding: 15px;
-    letter-spacing: 2px;
-    text-shadow: -2px -2px 0 #1e293b, 2px -2px 0 #1e293b, -2px 2px 0 #1e293b, 2px 2px 0 #1e293b;
-    text-align: center;
-    margin-bottom: 40px;
-    margin-top: 50px;
-}
-
 /* Horarios */
 .card-hora-container {
     display: flex;
@@ -54,38 +42,7 @@ h1 {
     background-size: cover;
     background-position: center;
 }
-.card-space{
-    padding-bottom: 20px;
-}
-.card-clase {
-    background-position: center;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, .70);
-    box-shadow: 25px 25px 50px #4e4e4e4a, -25px -25px 50px #70707070;
-    border: 2px solid black;
-}
-.card-c-header {
-    text-align: center;
-    background-color: #dc9900;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-} 
-.card-c-body {
-    border-top: 2px solid black;
-    background-color: none;
-} 
-.event-card {
-    margin-bottom: 20px;
-} 
-.card-c-title {
-    font-weight: bold;
-    font-size: 30px; 
-} 
-.card-c-text {
-    font-size: 20px;
-    color: #333;
-    padding: 0 15px;
-}
+
 
 /* Ajustar estilos de los Profes */
 #Profesid{

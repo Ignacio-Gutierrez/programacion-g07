@@ -10,13 +10,13 @@ import { VistaAdminPerfilProfesorComponent } from './pages/vista-admin-perfil-pr
 import { VistaAlumnoPlanificacionComponent } from './pages/vista-alumno-planificacion/vista-alumno-planificacion.component';
 import { VistaAlumnoComponent } from './pages/vista-alumno/vista-alumno.component';
 import { VistaProfesorComponent } from './pages/vista-profesor/vista-profesor.component';
-import { NavbarComponent } from './pages/navbar/navbar.component';
-import { NavcloseComponent } from './pages/navclose/navclose.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavcloseComponent } from './components/navclose/navclose.component';
 import { VistaAdminPerfilAlumnoComponent } from './pages/vista-admin-perfil-alumno/vista-admin-perfil-alumno.component';
 import { VistaAdminPlanificacionComponent } from './pages/vista-admin-planificacion/vista-admin-planificacion.component';
 import { VistaProfesorPlanificacionComponent } from './pages/vista-profesor-planificacion/vista-profesor-planificacion.component';
 import { VistaProfesorPerfilAlumnoComponent } from './pages/vista-profesor-perfil-alumno/vista-profesor-perfil-alumno.component';
-import { PlanificacionComponent } from './pages/planificacion/planificacion.component';
+import { PlanificacionComponent } from './components/planificacion/planificacion.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import { PlanificacionComponent } from './pages/planificacion/planificacion.comp
     VistaAdminPlanificacionComponent,
     VistaProfesorPlanificacionComponent,
     VistaProfesorPerfilAlumnoComponent,
-    PlanificacionComponent
+    PlanificacionComponent,
+
   ],
   imports: [
     BrowserModule,
