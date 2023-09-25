@@ -8,7 +8,7 @@
                 
                 <div class="d-flex align-items-center justify-content-center titulo-edit-alumno">
                     <h1 style="margin-top: 15px; padding-right: 50px;">Planificación</h1>
-                    <button data-bs-toggle="modal" data-bs-target="#editarPlanificacion" class="btn btn-primary btn-lm me-2"><i class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
+                    <button *ngIf="selectedRole === 'admin' || selectedRole === 'profesor'" data-bs-toggle="modal" data-bs-target="#editarPlanificacion" class="btn btn-primary btn-lm me-2"><i class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
                 </div>
 
                 <div *ngFor="let des of arrayDesPlan" class="col-md-6">
@@ -45,7 +45,7 @@
 </div>
 
 
-<!-- Modal para agregar nuevo usuario -->
+<!-- Modal para agregar nueva planificación -->
 <div class="modal fade" id="editarPlanificacion" tabindex="-1" aria-labelledby="editarPlanificacionModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -55,8 +55,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Formulario para cargar un nuevo usuario -->
+                <!-- Formulario para cargar un nueva  planificación -->
                 <form>
+                    <div class="mb-3">
+                        <label for="descripción" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="descripción">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fecha">
+                    </div>
                     <div class="mb-3">
                         <label for="lunes" class="form-label">Lunes</label>
                         <input type="text" class="form-control" id="lunes">

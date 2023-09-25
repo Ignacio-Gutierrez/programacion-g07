@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './lista-usuarios.component.html',
   styleUrls: ['./lista-usuarios.component.css']
 })
+
 export class ListaUsuariosComponent {
+  selectedRole = localStorage.getItem('selectedRole');
 
 }
