@@ -1,26 +1,37 @@
-<app-navclose></app-navclose>
-
 <div class="container mt-5" style="margin-bottom: 50px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="rounded-box">
                 <div class="d-flex align-items-center justify-content-center titulo-edit-alumno">
-                    <h1 style="margin-top: 15px; padding-right: 60px;">Profesor 1</h1>
+                    <h1 style="margin-top: 15px; padding-right: 60px;">Elba Gallo</h1>
                     <button data-bs-toggle="modal" data-bs-target="#editUsuarioModal" class="btn btn-primary btn-lm me-2"><i class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
                 </div>
                 
-                <div *ngFor="let prof of arrayProfData" class="col-md-6">
+                <div class="d-flex mb-3">
+                    <a type="button" routerLink="/vPlanif"
+                        class="btn btn-primary btn-sm me-2 custom-button">Planificaciones</a>
+                </div>
+                <div *ngFor="let user of arrayUserData" class="col-md-6">
                     <h3>Mail</h3>
-                    <h4>{{prof.mail}}</h4>
+                    <h4>{{user.mail}}</h4>
                     <hr>
                     <h3>Teléfono</h3>
-                    <h4>{{prof.tel}}</h4>
+                    <h4>{{user.tel}}</h4>
                     <hr>
-                    <h3>DNI</h3>
-                    <h4>{{prof.dni}}</h4>
+                    <h3>Edad</h3>
+                    <h4>{{user.edad}}</h4>
+                    <hr>
+                    <h3>Peso</h3>
+                    <h4>{{user.peso}} kg</h4>
+                    <hr>
+                    <h3>Altura</h3>
+                    <h4>{{user.altura}} m</h4>
+                    <hr>
+                    <h3>Sexo</h3>
+                    <h4>{{user.sexo}}</h4>
                     <hr>
                     <h3>Especialidad</h3>
-                    <h4>{{prof.especialidad}}</h4>
+                    <h4>{{user.especialidad}}</h4>
                     <hr>
                 </div>
                 <div style="display: flex; justify-content: space-between;">
@@ -28,7 +39,7 @@
                         <button class="btn btn-danger btn-lm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
                     </div>
                     <div>
-                        <a routerLink="/vAdmin"><button class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
+                        <a routerLink="/vInicio"><button class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
                     </div>
                 </div>
             </div>
@@ -37,7 +48,8 @@
 </div>
 
 
-<!-- Editar Alumno s -->
+
+<!-- Editar Usuario -->
 <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -68,6 +80,22 @@
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono</label>
                         <input type="number" class="form-control" id="telefono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="edad">
+                    </div>
+                    <div class="mb-3">
+                        <label for="peso" class="form-label">Peso</label>
+                        <input type="number" class="form-control" id="peso">
+                    </div>
+                    <div class="mb-3">
+                        <label for="altura" class="form-label">Altura</label>
+                        <input type="number" class="form-control" id="altura">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <input type="number" class="form-control" id="sexo">
                     </div>
                     <div class="mb-3">
                         <label for="especialidad" class="form-label">Especialidad</label>

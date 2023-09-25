@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-vista-admin-planificacion',
-  templateUrl: './vista-admin-planificacion.component.html',
-  styleUrls: ['./vista-admin-planificacion.component.css']
+  selector: 'app-vista-planificacion',
+  templateUrl: './vista-planificacion.component.html',
+  styleUrls: ['./vista-planificacion.component.css']
 })
-export class VistaAdminPlanificacionComponent {
+export class VistaPlanificacionComponent {
   arrayDesPlan = [
     {
       des:'Hipertrofia',
@@ -15,27 +15,27 @@ export class VistaAdminPlanificacionComponent {
   arrayPlan = [
     {
       dia:'Lunes',
-      des:'  revicir input',
+      des:'  recibir input',
     },
     {
       dia:'Martes',
-      des:'  revicir input',
+      des:'  recibir input',
     },
     {
       dia:'Miércoles',
-      des:'  revicir input',
+      des:'  recibir input',
     },
     {
       dia:'Jueves',
-      des:'  revicir input',
+      des:'  recibir input',
     },
     {
       dia:'Viernes',
-      des:'  revicir input',
+      des:'  recibir input',
     },
     {
       dia:'Sábado',
-      des:'  revicir input',
+      des:'  recibir input',
     },
   ]
   constructor() {}

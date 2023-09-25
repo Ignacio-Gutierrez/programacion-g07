@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-vista-alumno',
-  templateUrl: './vista-alumno.component.html',
-  styleUrls: ['./vista-alumno.component.css']
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html',
+  styleUrls: ['./perfil.component.css']
 })
-export class VistaAlumnoComponent {
-  arrayAlumData = [
+export class PerfilComponent {
+  arrayUserData = [
     {
       mail:'mrsaractunga@gmail.com',
       tel:'261455471',
@@ -14,11 +14,12 @@ export class VistaAlumnoComponent {
       peso:'65',
       altura:'1.77',
       sexo:'Mujer ',
+      especialidad:'Muzcualción',
     },
   ]
   constructor() {}
 
   ngOnInit(): void {
-    console.log('arrayAlumData: ', this.arrayAlumData);
+    console.log('arrayAlumData: ', this.arrayUserData);
   }
 }

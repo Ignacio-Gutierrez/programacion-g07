@@ -1,16 +1,91 @@
 <!-- Tabla de planificación -->
-<div>
-    <div class="container" style="margin-bottom: 50px;">
-        <div class="row">
-            <div *ngFor="let plan of arrayPlan" class="col-lg-4 col-md-6 card-space">
-                <div class="card-clase">
-                    <div class="card-c-header">
-                        <h4 class="card-c-title">{{plan.dia}}</h4>
-                    </div>
-                    <div class="card-c-body">
-                        <p class="card-c-text">{{plan.des}}</p>
+
+<div class="container mt-5" style="margin-bottom: 50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="rounded-box" style="margin-bottom: 25px;">
+                
+                <div class="d-flex align-items-center justify-content-center titulo-edit-alumno">
+                    <h1 style="margin-top: 15px; padding-right: 50px;">Planificación</h1>
+                    <button data-bs-toggle="modal" data-bs-target="#editarPlanificacion" class="btn btn-primary btn-lm me-2"><i class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
+                </div>
+
+                <div *ngFor="let des of arrayDesPlan" class="col-md-6">
+                    <h5>Descripción</h5>
+                    <h2>{{des.des}}</h2>
+                    <hr>
+                    <h5>Fecha</h5>
+                    <h2>{{des.fecha}}</h2>
+                    <hr>
+                    
+                </div>
+                <div style="display: flex; align-items: center; justify-content: end;">
+                    <a routerLink="/vPerfil"><button class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
+                </div>
+            </div>
+            <div>
+                <div class="container" style="margin-bottom: 50px;">
+                    <div class="row">
+                        <div *ngFor="let plan of arrayPlan" class="col-lg-4 col-md-6 card-space">
+                            <div class="card-clase">
+                                <div class="card-c-header">
+                                    <h4 class="card-c-title">{{plan.dia}}</h4>
+                                </div>
+                                <div class="card-c-body">
+                                    <p class="card-c-text">{{plan.des}}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para agregar nuevo usuario -->
+<div class="modal fade" id="editarPlanificacion" tabindex="-1" aria-labelledby="editarPlanificacionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarPlanificacionModalLabel">Editar Planificación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para cargar un nuevo usuario -->
+                <form>
+                    <div class="mb-3">
+                        <label for="lunes" class="form-label">Lunes</label>
+                        <input type="text" class="form-control" id="lunes">
+                    </div>
+                    <div class="mb-3">
+                        <label for="martes" class="form-label">Martes</label>
+                        <input type="text" class="form-control" id="martes">
+                    </div>
+                    <div class="mb-3">
+                        <label for="miercoles" class="form-label">Miércoles</label>
+                        <input type="text" class="form-control" id="miercoles">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jueves" class="form-label">Jueves</label>
+                        <input type="text" class="form-control" id="jueves">
+                    </div>
+                    <div class="mb-3">
+                        <label for="viernes" class="form-label">Viernes</label>
+                        <input type="text" class="form-control" id="viernes">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sabado" class="form-label">Sábado</label>
+                        <input type="text" class="form-control" id="sabado">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-success" >Guardar</button>
             </div>
         </div>
     </div>
