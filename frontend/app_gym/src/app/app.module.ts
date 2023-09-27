@@ -13,6 +13,7 @@ import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuari
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { VistaPerfilComponent } from './pages/vista-perfil/vista-perfil.component';
 import { VistaInicioComponent } from './pages/vista-inicio/vista-inicio.component';
+import { VistaErrorComponent } from './pages/vista-error/vista-error.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { VistaInicioComponent } from './pages/vista-inicio/vista-inicio.componen
     VistaPerfilComponent,
     VistaInicioComponent,
     ListaUsuariosComponent,
+    VistaErrorComponent,
 
   ],
   imports: [

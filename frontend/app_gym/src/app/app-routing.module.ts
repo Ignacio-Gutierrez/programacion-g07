@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { VistaInicioComponent } from './pages/vista-inicio/vista-inicio.component';
 import { VistaPerfilComponent } from './pages/vista-perfil/vista-perfil.component';
 import { VistaPlanificacionComponent } from './pages/vista-planificacion/vista-planificacion.component';
+import { VistaErrorComponent } from './pages/vista-error/vista-error.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -12,8 +13,9 @@ const routes: Routes = [
   { path: 'vInicio', component: VistaInicioComponent},
   { path: 'vPerfil', component: VistaPerfilComponent },
   { path: 'vPlanif', component: VistaPlanificacionComponent },
+  { path: 'vError', component: VistaErrorComponent },
   { path: '', redirectTo: "/home", pathMatch: "full" },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: 'vError' },
 ];
 
 @NgModule({
