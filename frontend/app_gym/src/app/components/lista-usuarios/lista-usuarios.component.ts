@@ -29,5 +29,5 @@ export class ListaUsuariosComponent {
     this.router.navigateByUrl('/usuario/'+usuario.id+'/Editar')
   }
 
-  selectedRole = localStorage.getItem('selectedRole');
+  selectedRole = localStorage.getItem('role')
 }

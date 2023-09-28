@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
-  selectedRole = localStorage.getItem('selectedRole');
+  selectedRole = localStorage.getItem('role')
   
   arrayUserData = [
     {

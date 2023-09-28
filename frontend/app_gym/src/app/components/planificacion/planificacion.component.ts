@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./planificacion.component.css']
 })
 export class PlanificacionComponent {
-  selectedRole = localStorage.getItem('selectedRole');
+  selectedRole = localStorage.getItem('role')
   arrayDesPlan = [
     {
       des:'Hipertrofia',
