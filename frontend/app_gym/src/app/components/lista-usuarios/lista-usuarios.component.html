@@ -23,77 +23,13 @@
             </div>
             
             <!-- Paginación -->
-            <ul class="list-group">
+            <ul *ngFor="let user of arrayUsers" class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Usuario 1
+                    {{user.nombre}} {{user.apellido}}
                     <div>
                         <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
                                 class="fa-solid fa-pen-to-square text-white"></i></a>
                         <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Usuario 2
-                    <div>
-                        <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white"></i></a>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Usuario 3
-                    <div>
-                        <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white"></i></a>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Usuario 4
-                    <div>
-                        <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white"></i></a>
-                            <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Usuario 5
-                    <div>
-                        <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white"></i></a>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Usuario 6
-                    <div>
-                        <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white"></i></a>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Usuario 7
-                    <div>
-                        <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white"></i></a>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Usuario 8
-                    <div>
-                        <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white"></i></a>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </li>
-                <li *ngIf="selectedRole === 'admin'" class="list-group-item d-flex justify-content-between align-items-center">
-                    Profesor 1
-                    <div>
-                        <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white"></i></a>
-                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </li>
             </ul>
