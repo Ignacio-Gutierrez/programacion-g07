@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service'
 
 
 @Component({
@@ -9,26 +9,22 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  selectedRole: string | null = null;
+  constructor(
+    private authService: AuthService
+  ) {}
 
-  selectRole(role: string) {
-    this.selectedRole = role;
+  login(dataLogin:any = {} ){
+    console.log('comprobando credenciales');
+    this.authService.login().subscribe({
+      next: (rta:any) => {
+        alert('Login exitoso');
+        console.log('Respuesta login: ',rta);
+      }, error:(error) => {
 
-    localStorage.setItem('selectedRole', role);
-  }
-  
-  constructor(private router: Router) {}
-
-  login() {
-    if (this.selectedRole === 'alumno') {
-      this.router.navigate(['/vPerfil']);
-    } else if (this.selectedRole === 'profesor') {
-      this.router.navigate(['/vInicio']);
-    } else if (this.selectedRole === 'admin') {
-      this.router.navigate(['/vInicio']);
-    } else {
-      this.router.navigate(['/home']);
-    }
+      }, complete: () => {
+        console.log('Finalizo')
+      }
+    })
   }
 }
 

@@ -15,6 +15,7 @@ import { VistaPerfilComponent } from './pages/vista-perfil/vista-perfil.componen
 import { VistaInicioComponent } from './pages/vista-inicio/vista-inicio.component';
 import { VistaErrorComponent } from './pages/vista-error/vista-error.component';
 
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { VistaErrorComponent } from './pages/vista-error/vista-error.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
