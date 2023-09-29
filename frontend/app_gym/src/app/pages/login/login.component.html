@@ -10,18 +10,17 @@
         <div class="col-md-6">
             <div class="d-flex flex-column align-items-center">
                 <h1 class="title-main">Iniciar sesión</h1>
-                <form>
+                <form [formGroup]='loginForm'>
                     <div>
                         <label for="email" class="form-label" style="font-weight: bold">Correo electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico">
+                        <input type="email" class="form-control" formControlName="email" placeholder="Tu correo electrónico">
                     </div>
                     <div>
                         <label for="password" class="form-label" style="font-weight: bold">Contraseña</label>
-                        <input type="password" class="form-control" id="password" placeholder="Tu contraseña">
+                        <input type="password" class="form-control" formControlName="password" placeholder="Tu contraseña">
                     </div>
                     <div class="text-center">
-                        <a type="button" (click)="login()" class="btn btn-dark col-10">Ingresar</a>
-    
+                        <a type="button" (click)="submit()" class="btn btn-dark col-10">Ingresar</a>
                     </div>
                 </form>
             </div>

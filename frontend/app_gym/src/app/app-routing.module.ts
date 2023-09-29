@@ -6,13 +6,14 @@ import { VistaInicioComponent } from './pages/vista-inicio/vista-inicio.componen
 import { VistaPerfilComponent } from './pages/vista-perfil/vista-perfil.component';
 import { VistaPlanificacionComponent } from './pages/vista-planificacion/vista-planificacion.component';
 import { VistaErrorComponent } from './pages/vista-error/vista-error.component';
+import { authsessionGuard } from './guards/authsession.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'vInicio', component: VistaInicioComponent},
-  { path: 'vPerfil', component: VistaPerfilComponent },
-  { path: 'vPlanif', component: VistaPlanificacionComponent },
+  { path: 'vInicio', component: VistaInicioComponent, canActivate:[authsessionGuard]},
+  { path: 'vPerfil', component: VistaPerfilComponent, canActivate:[authsessionGuard] },
+  { path: 'vPlanif', component: VistaPlanificacionComponent, canActivate:[authsessionGuard] },
   { path: 'vError', component: VistaErrorComponent },
   { path: '', redirectTo: "/home", pathMatch: "full" },
   { path: '**', redirectTo: 'vError' },
