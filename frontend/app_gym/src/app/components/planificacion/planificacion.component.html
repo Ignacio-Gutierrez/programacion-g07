@@ -13,15 +13,15 @@
 
                 <div class="col-md-6">
                     <h5>Descripción</h5>
-                    <h2>des.des</h2>
+                    <h2>{{UserPlanif.des}}</h2>
                     <hr>
                     <h5>Fecha</h5>
-                    <h2>des.fecha</h2>
+                    <h2>{{UserPlanif.fecha}}</h2>
                     <hr>
                     
                 </div>
                 <div style="display: flex; align-items: center; justify-content: end;">
-                    <a (click)="verPerfil(perfilDni)"><button class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
+                    <a (click)="verPerfil(UserPlanif.alumno_dni)"><button class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
                 </div>
             </div>
             <div>
@@ -30,10 +30,10 @@
                         <div class="col-lg-4 col-md-6 card-space">
                             <div class="card-clase">
                                 <div class="card-c-header">
-                                    <h4 class="card-c-title">plan.dia</h4>
+                                    <h4 class="card-c-title">{{UserPlanif.dia}}</h4>
                                 </div>
                                 <div class="card-c-body">
-                                    <p class="card-c-text">plan.des</p>
+                                    <p class="card-c-text">{{UserPlanif.des}}</p>
                                 </div>
                             </div>
                         </div>
