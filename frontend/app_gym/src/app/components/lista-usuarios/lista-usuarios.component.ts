@@ -23,6 +23,9 @@ export class ListaUsuariosComponent {
     })
   }
 
+  verPerfil(dni: string) {
+    this.router.navigate(['/vPerfil', dni]);
+  }
 
   editarUsuario(usuario:any){
     console.log('Usuario a editar', usuario);

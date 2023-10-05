@@ -9,7 +9,7 @@ from main.auth.decorators import role_required
 
 class Usuario(Resource):
 
-    @jwt_required(optional=True)
+    @jwt_required()
     def get(self,dni):
         usuario=db.session.query(UsuarioModel).get_or_404(dni)
         current_identity = get_jwt_identity()       
@@ -90,7 +90,7 @@ class Usuarios(Resource):
     
 
 class UsuarioAlumno(Resource):
-    @jwt_required(optional=True)
+    @jwt_required()
     def get(self,dni):
         usuario_a=db.session.query(AlumnoModel).get_or_404(dni)
         return usuario_a.to_json_complete()

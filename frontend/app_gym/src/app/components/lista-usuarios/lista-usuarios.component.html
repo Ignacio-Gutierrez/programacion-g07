@@ -27,7 +27,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{user.nombre}} {{user.apellido}}
                     <div>
-                        <a type="button" routerLink="/vPerfil" class="btn btn-primary btn-sm me-2"><i
+                        <a type="button" (click)="verPerfil(user.dni)" class="btn btn-primary btn-sm me-2"><i
                                 class="fa-solid fa-pen-to-square text-white"></i></a>
                         <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
                     </div>
