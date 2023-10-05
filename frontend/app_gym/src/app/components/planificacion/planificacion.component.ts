@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-planificacion',
@@ -7,42 +9,22 @@ import { Component } from '@angular/core';
 })
 export class PlanificacionComponent {
   selectedRole = localStorage.getItem('role')
-  arrayDesPlan = [
-    {
-      des:'Hipertrofia',
-      fecha:'07-09-2023',
-    },
-  ]
-  arrayPlan = [
-    {
-      dia:'Lunes',
-      des:'  recibir input',
-    },
-    {
-      dia:'Martes',
-      des:'  recibir input',
-    },
-    {
-      dia:'Miércoles',
-      des:'  recibir input',
-    },
-    {
-      dia:'Jueves',
-      des:'  recibir input',
-    },
-    {
-      dia:'Viernes',
-      des:'  recibir input',
-    },
-    {
-      dia:'Sábado',
-      des:'  recibir input',
-    },
-  ]
-  constructor() {}
+
+  private perfilDni: any;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
-    console.log('arrayDesPlan: ', this.arrayDesPlan);
-    console.log('arrayPlan: ', this.arrayPlan);
+    this.route.params.subscribe((params: Params) => {
+      this.perfilDni = params['dni'];
+    });
   }
+
+  verPerfil(dni: string) {
+    this.router.navigate(['/vPerfil', dni]);
+  }
+  
 }

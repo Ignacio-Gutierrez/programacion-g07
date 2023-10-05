@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'vInicio', component: VistaInicioComponent, canActivate:[authsessionGuard]},
   { path: 'vPerfil/:dni', component: VistaPerfilComponent, canActivate:[authsessionGuard] },
-  { path: 'vPlanif', component: VistaPlanificacionComponent, canActivate:[authsessionGuard] },
+  { path: 'vPlanif/:dni', component: VistaPlanificacionComponent, canActivate:[authsessionGuard] },
   { path: 'vError', component: VistaErrorComponent },
   { path: '', redirectTo: "/home", pathMatch: "full" },
   { path: '**', redirectTo: 'vError' },

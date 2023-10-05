@@ -13,9 +13,11 @@ export class PerfilComponent implements OnInit {
   UserData: any;
   AlumData: any;
   ProfData: any;
+
   private perfilDni: any;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private usuariosService: UsuariosService
   ) {}
@@ -84,5 +86,9 @@ export class PerfilComponent implements OnInit {
     } else {
       console.error('No se pudo obtener el DNI del token.');
     }
+  }
+  
+  verPlanif(dni: string) {
+    this.router.navigate(['/vPlanif', dni]);
   }
 }
