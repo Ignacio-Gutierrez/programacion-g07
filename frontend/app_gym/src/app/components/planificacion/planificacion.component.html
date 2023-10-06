@@ -11,29 +11,82 @@
                     <button *ngIf="selectedRole === 'admin' || selectedRole === 'profesor'" data-bs-toggle="modal" data-bs-target="#editarPlanificacion" class="btn btn-primary btn-lm me-2"><i class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6" *ngIf="UserPlanif && UserPlanif.length > 0">
                     <h5>Descripción</h5>
-                    <h2>{{UserPlanif.des}}</h2>
+                    <h2>{{ UserPlanif[0].descripcion }}</h2>
                     <hr>
                     <h5>Fecha</h5>
-                    <h2>{{UserPlanif.fecha}}</h2>
+                    <h2>{{ UserPlanif[0].fecha }}</h2>
                     <hr>
                     
                 </div>
-                <div style="display: flex; align-items: center; justify-content: end;">
-                    <a (click)="verPerfil(UserPlanif.alumno_dni)"><button class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
+                <div style="display: flex; align-items: center; justify-content: flex-end;">
+                    <button class="btn btn-primary btn-lm" (click)="verPerfil(UserPlanif[0].alumno.dni)">
+                        <i class="fa-solid fa-left-long fa-lg"></i>
+                    </button>
                 </div>
+                
             </div>
             <div>
                 <div class="container" style="margin-bottom: 50px;">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 card-space">
+                        <div class="col-lg-4 col-md-6 card-space" *ngIf="UserPlanif[0]?.lunes">
                             <div class="card-clase">
                                 <div class="card-c-header">
-                                    <h4 class="card-c-title">{{UserPlanif.dia}}</h4>
+                                    <h4 class="card-c-title">Lunes</h4>
                                 </div>
                                 <div class="card-c-body">
-                                    <p class="card-c-text">{{UserPlanif.des}}</p>
+                                    <p class="card-c-text">{{ UserPlanif[0]?.lunes }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 card-space" *ngIf="UserPlanif[0]?.martes">
+                            <div class="card-clase">
+                                <div class="card-c-header">
+                                    <h4 class="card-c-title">Martes</h4>
+                                </div>
+                                <div class="card-c-body">
+                                    <p class="card-c-text">{{ UserPlanif[0]?.martes }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 card-space" *ngIf="UserPlanif[0]?.miercoles">
+                            <div class="card-clase">
+                                <div class="card-c-header">
+                                    <h4 class="card-c-title">Miercoles</h4>
+                                </div>
+                                <div class="card-c-body">
+                                    <p class="card-c-text">{{ UserPlanif[0]?.miercoles }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 card-space" *ngIf="UserPlanif[0]?.jueves">
+                            <div class="card-clase">
+                                <div class="card-c-header">
+                                    <h4 class="card-c-title">Jueves</h4>
+                                </div>
+                                <div class="card-c-body">
+                                    <p class="card-c-text">{{ UserPlanif[0]?.jueves }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 card-space" *ngIf="UserPlanif[0]?.viernes">
+                            <div class="card-clase">
+                                <div class="card-c-header">
+                                    <h4 class="card-c-title">Viernes</h4>
+                                </div>
+                                <div class="card-c-body">
+                                    <p class="card-c-text">{{ UserPlanif[0]?.viernes }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 card-space" *ngIf="UserPlanif[0]?.sabado">
+                            <div class="card-clase">
+                                <div class="card-c-header">
+                                    <h4 class="card-c-title">Sabado</h4>
+                                </div>
+                                <div class="card-c-body">
+                                    <p class="card-c-text">{{ UserPlanif[0]?.sabado }}</p>
                                 </div>
                             </div>
                         </div>
