@@ -11,7 +11,7 @@ import { PlanificacionService } from 'src/app/services/planificacion.service';
 export class PlanificacionComponent {
   selectedRole = localStorage.getItem('role')
 
-  UserPlanif: any={};
+  UserPlanif: any;
 
   private perfilDni: any;
 
