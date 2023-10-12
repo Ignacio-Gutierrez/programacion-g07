@@ -12,6 +12,7 @@ export class PlanificacionComponent {
   selectedRole = localStorage.getItem('role')
 
   UserPlanif: any;
+  private parametrosOcultos:any;
 
   perfilDni: any;
 
@@ -22,8 +23,9 @@ export class PlanificacionComponent {
   ) {}
 
   ngOnInit(): void {
+    this.parametrosOcultos = history.state;
     this.route.params.subscribe((params: Params) => {
-      this.perfilDni = params['dni'];
+      this.perfilDni = this.parametrosOcultos.dni;
     });
 
     this.planifiacionservice.getPlanif(this.perfilDni).subscribe(
@@ -35,7 +37,11 @@ export class PlanificacionComponent {
   }
 
   verPerfil(dni: number) {
-    this.router.navigate(['/vPlanif', dni]);
+    const parametrosOcultos = {
+      dni: dni
+    };
+  
+    this.router.navigate(['/vPerfil'], { state: parametrosOcultos });
   }
   
 }

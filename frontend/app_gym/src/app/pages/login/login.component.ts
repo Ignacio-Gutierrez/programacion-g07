@@ -41,7 +41,7 @@ export class LoginComponent {
         if (localStorage.getItem('role') === 'admin' || localStorage.getItem('role') === 'profesor') {
           this.router.navigateByUrl('vInicio');
         } else if (localStorage.getItem('role') === 'user') {
-          this.router.navigate(['/vPerfil', decodedToken.dni]);
+          this.router.navigateByUrl('/vPerfil');
         } else {
           console.error('No posee rol de usuario');
         }

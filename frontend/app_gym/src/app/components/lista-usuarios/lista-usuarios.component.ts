@@ -30,7 +30,11 @@ export class ListaUsuariosComponent {
   }
 
   verPerfil(dni: string) {
-    this.router.navigate(['/vPerfil', dni]);
+    const parametrosOcultos = {
+      dni: dni
+    };
+  
+    this.router.navigate(['/vPerfil'], { state: parametrosOcultos });
   }
 
   cargarPaginaSiguiente() {

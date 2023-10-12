@@ -15,6 +15,7 @@ export class PerfilComponent implements OnInit {
   ProfData: any;
 
   private perfilDni: any;
+  private parametrosOcultos: any;
   
 
   constructor(
@@ -25,9 +26,10 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     const userDNI = this.usuariosService.getUserDNIFromToken();
+    this.parametrosOcultos = history.state;
 
     this.route.params.subscribe((params: Params) => {
-      this.perfilDni = params['dni'];
+      this.perfilDni = this.parametrosOcultos.dni;
     });
 
     if (userDNI && this.selectedRole === 'user') {
@@ -90,6 +92,10 @@ export class PerfilComponent implements OnInit {
   }
   
   verPlanif(dni: string) {
-    this.router.navigate(['/vPlanif', dni]);
+    const parametrosOcultos = {
+      dni: dni
+    };
+  
+    this.router.navigate(['/vPlanif'], { state: parametrosOcultos });;
   }
 }
