@@ -13,7 +13,7 @@ export class PlanificacionComponent {
 
   UserPlanif: any;
 
-  private perfilDni: any;
+  perfilDni: any;
 
   constructor(
     private router: Router,

@@ -15,6 +15,7 @@ export class PerfilComponent implements OnInit {
   ProfData: any;
 
   private perfilDni: any;
+  
 
   constructor(
     private router: Router,
