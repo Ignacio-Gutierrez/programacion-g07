@@ -36,7 +36,6 @@ class Usuario(Resource):
         return usuario.to_json(), 201
     
 class Usuarios(Resource):
-
     @jwt_required()
     def get(self):
         page = 1
@@ -66,6 +65,16 @@ class Usuarios(Resource):
         if request.args.get('sortby_apellido'):
             usuarios=usuarios.order_by(desc(UsuarioModel.apellido))
         
+
+        #Busqueda por rol_p
+        if request.args.get('profesor'):
+            usuarios=usuarios.filter(UsuarioModel.rol.like("%"+request.args.get('profesor')+"%"))
+
+        #Busqueda por rol_p
+        if request.args.get('alumno'):
+            usuarios=usuarios.filter(UsuarioModel.rol.like("%"+request.args.get('alumno')+"%"))
+
+
         ### FIN FILTROS ####
         
         #Obtener valor paginado

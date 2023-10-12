@@ -24,77 +24,22 @@
     </div>
     <div class="container" style="margin-bottom: 50px;">
         <div class="row">
-            <div class="col-lg-4 col-md-6 card-space">
-                <div class="card-clase">
-                    <div class="card-c-header">
-                        <h4 class="card-c-title">Lunes</h4>
+            <div class="row">
+                <ng-container *ngFor="let dia of ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']">
+                    <div class="col-lg-4 col-md-6 card-space">
+                        <div class="card-clase">
+                            <div class="card-c-header">
+                                <h4 class="card-c-title">{{ dia }}</h4>
+                            </div>
+                            <div class="card-c-body">
+                                <ng-container *ngFor="let clase of getClasesPorDia(dia)">
+                                    <p class="card-c-text" *ngIf="clase.dia === dia">{{ clase.nombre }}: {{
+                                        clase.horario }}</p>
+                                </ng-container>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-c-body">
-                        <p class="card-c-text">Boxeo A: 9:00</p>
-                        <p class="card-c-text">Posing Training: 13:00</p>
-                        <p class="card-c-text">Karate B: 17:00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 card-space">
-                <div class="card-clase">
-                    <div class="card-c-header">
-                        <h4 class="card-c-title">Martes</h4>
-                    </div>
-                    <div class="card-c-body">
-                        <p class="card-c-text">Karate B: 9:00</p>
-                        <p class="card-c-text">Posing Training: 13:00</p>
-                        <p class="card-c-text">Boxeo A: 17:00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 card-space">
-                <div class="card-clase">
-                    <div class="card-c-header">
-                        <h4 class="card-c-title">Miércoles</h4>
-                    </div>
-                    <div class="card-c-body">
-                        <p class="card-c-text">Boxeo A: 9:00</p>
-                        <p class="card-c-text">Posing Training: 13:00</p>
-                        <p class="card-c-text">Karate B: 17:00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 card-space">
-                <div class="card-clase">
-                    <div class="card-c-header">
-                        <h4 class="card-c-title">Jueves</h4>
-                    </div>
-                    <div class="card-c-body">
-                        <p class="card-c-text">Karate B: 9:00</p>
-                        <p class="card-c-text">Posing Training: 13:00</p>
-                        <p class="card-c-text">Boxeo A: 17:00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 card-space">
-                <div class="card-clase">
-                    <div class="card-c-header">
-                        <h5 class="card-c-title">Viernes</h5>
-                    </div>
-                    <div class="card-c-body">
-                        <p class="card-c-text">Boxeo A: 9:00</p>
-                        <p class="card-c-text">Posing Training: 13:00</p>
-                        <p class="card-c-text">Karate B: 17:00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 card-space">
-                <div class="card-clase">
-                    <div class="card-c-header">
-                        <h5 class="card-c-title">Sábado</h5>
-                    </div>
-                    <div class="card-c-body">
-                        <p class="card-c-text">Karate B: 9:00</p>
-                        <p class="card-c-text">Posing Training: 13:00</p>
-                        <p class="card-c-text">Boxeo A: 17:00</p>
-                    </div>
-                </div>
+                </ng-container>
             </div>
         </div>
     </div>

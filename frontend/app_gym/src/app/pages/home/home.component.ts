@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ClasesService } from 'src/app/services/clases.service';
 
 @Component({
   selector: 'app-home',
@@ -60,10 +62,42 @@ export class HomeComponent {
       info:'Entrenador personal y boxeador amateur.',
     },
   ]
-  constructor() {}
+  
+  arrayClases: any;
+
+  constructor(
+    private router: Router,
+    private clasesService: ClasesService
+  ) {}
 
   ngOnInit(): void {
-    console.log('arrayPromos: ', this.arrayPromos);
-    console.log('arrayProfes: ', this.arrayProfes);
+    this.cargarClases();
   }
+
+  cargarClases() {
+    this.clasesService.getClases().subscribe((data: any) => {
+      console.log('JSON data:', data);
+      this.arrayClases = data;
+    });
+  }
+  getClasesPorDia(dia: string): any {
+    return this.arrayClases
+      .filter((clase: any) => clase.dia === dia)
+      .sort((a: any, b: any) => {
+
+        const horaA = parseInt(a.horario.split(":")[0]);
+        const minutoA = parseInt(a.horario.split(":")[1]);
+        const horaB = parseInt(b.horario.split(":")[0]);
+        const minutoB = parseInt(b.horario.split(":")[1]);
+  
+        if (horaA !== horaB) {
+          return horaA - horaB;
+        } else {
+          return minutoA - minutoB;
+        }
+      });
+  }
+  
+  
+
 }
