@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -10,27 +11,42 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 
 export class ListaUsuariosComponent {
   arrayUsers: any;
+  currentPage: number = 1;
+  maxPages: number = 3;
 
   constructor(
     private router: Router,
     private usuariosService: UsuariosService
-  ){}
-  
+  ) {}
+
   ngOnInit() {
-    this.usuariosService.getUsers().subscribe((data:any) =>{
+    this.cargarUsuarios();
+  }
+
+  cargarUsuarios() {
+    this.usuariosService.getUsers(this.currentPage).subscribe((data: any) => {
       console.log('JSON data:', data);
       this.arrayUsers = data.usuarios;
-    })
+    });
   }
 
   verPerfil(dni: string) {
     this.router.navigate(['/vPerfil', dni]);
   }
 
-  editarUsuario(usuario:any){
-    console.log('Usuario a editar', usuario);
-    this.router.navigateByUrl('/usuario/'+usuario.id+'/Editar')
+  cargarPaginaSiguiente() {
+    if (this.currentPage > 1) {
+      this.currentPage++;
+      this.cargarUsuarios();
+    }
+  }
+  
+  cargarPaginaPrevia() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.cargarUsuarios();
+    }
   }
 
-  selectedRole = localStorage.getItem('role')
+  selectedRole = localStorage.getItem('role');
 }

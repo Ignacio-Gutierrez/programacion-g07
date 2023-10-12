@@ -35,7 +35,7 @@ export class PlanificacionComponent {
   }
 
   verPerfil(dni: number) {
-    this.router.navigate(['/vPerfil', dni]);
+    this.router.navigate(['/vPlanif', dni]);
   }
   
 }
