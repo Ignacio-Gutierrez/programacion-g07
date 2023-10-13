@@ -10,7 +10,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   styleUrls: ['./planificacion.component.css']
 })
 export class PlanificacionComponent {
-  selectedRole = localStorage.getItem('role')
+  selectedRole = localStorage.getItem('role');
   UserPlanif: any;
   private parametrosOcultos: any;
   perfilDni: any = null;
@@ -33,7 +33,7 @@ export class PlanificacionComponent {
     private route: ActivatedRoute,
     private planificacionService: PlanificacionService,
     private usuariosService: UsuariosService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const userDNI = this.usuariosService.getUserDNIFromToken();
@@ -63,26 +63,28 @@ export class PlanificacionComponent {
   }
 
   CrearPlanificacion() {
-    // Check if a planification exists for the given student DNI
-    this.planificacionService.getPlanif(this.planificacionData.alumno_dni).subscribe(
-      (existingPlanif) => {
-        // If a planification already exists, update it with a PUT request
-        if (existingPlanif) {
-          this.planificacionService.updatePlanif(this.UserPlanif[0]?.id, this.planificacionData).subscribe(
+    // Formatea la fecha manualmente en formato "yyyy-MM-dd"
+    const fechaParts = this.planificacionData.fecha.split('-');
+    const fechaFormatted = `${fechaParts[0]}-${fechaParts[1]}-${fechaParts[2]}`;
+    this.planificacionData.fecha = fechaFormatted;
+
+    this.planificacionService.getPlanif(this.perfilDni).subscribe(
+      (UserPlanif) => {
+        if (Array.isArray(UserPlanif) && UserPlanif.length > 0) {
+          this.planificacionService.updatePlanif(UserPlanif[0].id, this.planificacionData).subscribe(
             (response) => {
               console.log('Planification updated:', response);
-              // You can perform additional actions here if needed
+              // Puedes realizar acciones adicionales aquí si es necesario
             },
             (error) => {
               console.error('Error updating planification:', error);
             }
           );
         } else {
-          // If no planification exists, create a new one with a POST request
           this.planificacionService.createPlanif(this.planificacionData).subscribe(
             (response) => {
               console.log('Planification created:', response);
-              // You can perform additional actions here if needed
+              // Puedes realizar acciones adicionales aquí si es necesario
             },
             (error) => {
               console.error('Error creating planification:', error);
