@@ -10,7 +10,7 @@ class Alumno(db.Model):
     
     usuario = db.relationship("Usuario", uselist=False, back_populates="alumno",cascade="all, delete-orphan", single_parent=True)
 
-    planificaciones = db.relationship("Planificacion", back_populates="alumno",cascade="all, delete-orphan")
+    planificacion = db.relationship("Planificaciones", uselist=False, back_populates="alumno",cascade="all, delete-orphan", single_parent=True)
 
 
     def __repr__(self):

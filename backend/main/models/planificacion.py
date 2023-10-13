@@ -15,7 +15,7 @@ class Planificacion(db.Model):
     sabado = db.Column(db.String(1000), nullable=True)
 
 
-    alumno_dni = db.Column(db.Integer, db.ForeignKey("alumno.dni"), nullable=False)
+    alumno_dni = db.Column(db.Integer, db.ForeignKey("alumno.dni"), nullable=False, primary_key=True)
     alumno = db.relationship("Alumno", back_populates="planificaciones", uselist=False, single_parent=True)
     
     profesor_dni = db.Column(db.Integer, db.ForeignKey("profesor.dni"), nullable=False)
