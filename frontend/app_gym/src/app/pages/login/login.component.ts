@@ -22,8 +22,8 @@ export class LoginComponent {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['c.portal@alumno.um.edu.ar', Validators.required],
-      password: ['hola123', Validators.required]
+      email: ['johnnylawrence@nomail.com', Validators.required],
+      password: ['clave1234', Validators.required]
     })
   }
 
@@ -37,6 +37,7 @@ export class LoginComponent {
 
         const decodedToken: any = jwtDecode(rta.access_token);
         localStorage.setItem('role', decodedToken.rol)
+        localStorage.setItem('dni', decodedToken.dni)
 
         if (localStorage.getItem('role') === 'admin' || localStorage.getItem('role') === 'profesor') {
           this.router.navigateByUrl('vInicio');
@@ -48,6 +49,7 @@ export class LoginComponent {
 
       }, error:(error) => {
           alert('Credenciales incorrectas');
+          localStorage.removeItem('dni');
           localStorage.removeItem('role');
           localStorage.removeItem('token');
           

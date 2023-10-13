@@ -30,7 +30,7 @@ class Planificacion(db.Model):
         planificacion_json = {
             'id': self.id,
             'descripcion': str(self.descripcion),
-            'fecha': str(self.fecha.strftime("%d-%m-%Y")),
+            'fecha': str(self.fecha.strftime("%Y-%m-%d")),
             'lunes': str(self.lunes),
             'martes': str(self.martes),
             'miercoles': str(self.miercoles),
@@ -47,7 +47,7 @@ class Planificacion(db.Model):
         planificacion_json = {
             'id': self.id,
             'descripcion': str(self.descripcion),
-            'fecha': str(self.fecha.strftime("%d-%m-%Y")),
+            'fecha': str(self.fecha.strftime("%Y-%m-%d")),
             'lunes': str(self.lunes),
             'martes': str(self.martes),
             'miercoles': str(self.miercoles),
@@ -63,7 +63,7 @@ class Planificacion(db.Model):
     def from_json(planificacion_json):
         id = planificacion_json.get('id')
         descripcion = planificacion_json.get('descripcion')
-        fecha = datetime.strptime(planificacion_json.get('fecha'),'%d-%m-%Y')
+        fecha = datetime.strptime(planificacion_json.get('fecha'),'%Y-%m-%d')
         lunes = planificacion_json.get('lunes')
         martes = planificacion_json.get('martes')
         miercoles = planificacion_json.get('miercoles')

@@ -77,7 +77,7 @@ class Planificaciones(Resource):
                   'page': page
                 })
 
-    @role_required(roles=["admin"])
+    @role_required(roles=["admin", "profesor"])
     def post(self):
         planificaciones=PlanificacionModel.from_json(request.get_json())
         print(planificaciones)
