@@ -48,31 +48,32 @@ class Usuarios(Resource):
             per_page = int(request.args.get('per_page'))
 
         ### FILTROS ###
-
-        #Busqueda por nombre
-        if request.args.get('nombre'):
-            usuarios=usuarios.filter(UsuarioModel.nombre.like("%"+request.args.get('nombre')+"%"))
         
-        #Ordeno por nombre
-        if request.args.get('sortby_nombre'):
-            usuarios=usuarios.order_by(desc(UsuarioModel.nombre))
+        # Busqueda por nombre (Input busqueda)
+        if request.args.get('search_term'):
+            search_term = request.args.get('search_term')
+            usuarios = usuarios.filter(UsuarioModel.nombre.like(f"%{search_term}%"))
+
+        #Busqueda por nombre (Input busqueda)
+        if request.args.get('searchby_nombre'):
+            searchby_nombre = request.args.get('searchby_nombre')
+            usuarios = usuarios.filter(UsuarioModel.nombre.like(f"%{searchby_nombre}%")) 
+
             
         #Busqueda por apellido
-        if request.args.get('apellido'):
-            usuarios=usuarios.filter(UsuarioModel.apellido.like("%"+request.args.get('apellido')+"%"))
+        if request.args.get('searchby_apellido'):
+            searchby_apellido = request.args.get('searchby_apellido')
+            usuarios = usuarios.filter(UsuarioModel.apellido.like(f"%{searchby_apellido}%")) 
         
-        #Ordeno por apellido
-        if request.args.get('sortby_apellido'):
-            usuarios=usuarios.order_by(desc(UsuarioModel.apellido))
         
 
         #Busqueda por rol_p
         if request.args.get('profesor'):
             usuarios=usuarios.filter(UsuarioModel.rol.like("%"+request.args.get('profesor')+"%"))
 
-        #Busqueda por rol_p
-        if request.args.get('alumno'):
-            usuarios=usuarios.filter(UsuarioModel.rol.like("%"+request.args.get('alumno')+"%"))
+        #Busqueda por rol_a
+        if request.args.get('user'):
+            usuarios=usuarios.filter(UsuarioModel.rol.like("%"+request.args.get('user')+"%"))
 
 
         ### FIN FILTROS ####

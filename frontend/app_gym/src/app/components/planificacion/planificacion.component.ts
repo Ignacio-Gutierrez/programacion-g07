@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PlanificacionService } from 'src/app/services/planificacion.service';
@@ -50,6 +50,22 @@ export class PlanificacionComponent {
       (userPlanif) => {
         this.UserPlanif = userPlanif;
         console.log('UserPlanif: ', this.UserPlanif);
+
+        if (Array.isArray(userPlanif) && userPlanif.length > 0) {
+          const planif = userPlanif[0];
+          this.planificacionData = {
+            descripcion: planif.descripcion,
+            fecha: planif.fecha,
+            lunes: planif.lunes,
+            martes: planif.martes,
+            miercoles: planif.miercoles,
+            jueves: planif.jueves,
+            viernes: planif.viernes,
+            sabado: planif.sabado,
+            alumno_dni: planif.alumno_dni,
+            profesor_dni: planif.profesor_dni
+          };
+        }
       }
     );
   }
@@ -62,19 +78,19 @@ export class PlanificacionComponent {
     this.router.navigate(['/vPerfil'], { state: parametrosOcultos });
   }
 
-  CrearPlanificacion() {
-    // Formatea la fecha manualmente en formato "yyyy-MM-dd"
+  crearPlanificacion() {
     const fechaParts = this.planificacionData.fecha.split('-');
     const fechaFormatted = `${fechaParts[0]}-${fechaParts[1]}-${fechaParts[2]}`;
     this.planificacionData.fecha = fechaFormatted;
-
+  
     this.planificacionService.getPlanif(this.perfilDni).subscribe(
       (UserPlanif) => {
         if (Array.isArray(UserPlanif) && UserPlanif.length > 0) {
           this.planificacionService.updatePlanif(UserPlanif[0].id, this.planificacionData).subscribe(
             (response) => {
               console.log('Planification updated:', response);
-              // Puedes realizar acciones adicionales aquí si es necesario
+              // Recarga la página después de completar la actualización
+              window.location.reload();
             },
             (error) => {
               console.error('Error updating planification:', error);
@@ -84,7 +100,8 @@ export class PlanificacionComponent {
           this.planificacionService.createPlanif(this.planificacionData).subscribe(
             (response) => {
               console.log('Planification created:', response);
-              // Puedes realizar acciones adicionales aquí si es necesario
+              // Recarga la página después de completar la creación
+              window.location.reload();
             },
             (error) => {
               console.error('Error creating planification:', error);
@@ -97,4 +114,5 @@ export class PlanificacionComponent {
       }
     );
   }
+  
 }

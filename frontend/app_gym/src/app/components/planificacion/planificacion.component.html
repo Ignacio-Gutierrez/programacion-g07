@@ -103,12 +103,14 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editarPlanificacionModalLabel">Editar Planificación</h5>
+                <h5 class="modal-title" id="editarPlanificacionModalLabel">
+                    {{ UserPlanif && UserPlanif.length > 0 ? 'Editar Planificación' : 'Crear Planificación' }}
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Formulario para cargar una nueva planificación -->
-                <form #planificacionForm="ngForm" (ngSubmit)="CrearPlanificacion()">
+                <form #planificacionForm="ngForm">
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
                         <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="planificacionData.descripcion">
@@ -145,7 +147,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-success" (click)="planificacionForm.form.valid && CrearPlanificacion()">Guardar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="planificacionForm.form.valid && crearPlanificacion()" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>

@@ -22,13 +22,13 @@ export class LoginComponent {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['johnnylawrence@nomail.com', Validators.required],
-      password: ['clave1234', Validators.required]
+      email: ['c.portal@alumno.um.edu.ar', Validators.required],
+      password: ['hola123', Validators.required]
     })
   }
 
   login(dataLogin:any = {} ){
-    //dataLogin = {email: 'c.portal@alumno.um.edu.ar', password: 'hola123'}
+    //dataLogin = {email: 'johnnylawrence@nomail.com', password: 'clave1234'}
     console.log('comprobando credenciales');
     this.authService.login(dataLogin).subscribe({
       next: (rta:any) => {
