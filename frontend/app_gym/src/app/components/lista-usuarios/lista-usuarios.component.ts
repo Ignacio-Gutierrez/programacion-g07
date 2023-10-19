@@ -12,11 +12,22 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 export class ListaUsuariosComponent {
   arrayUsers: any;
   currentPage: number = 1;
+  searchby_nombre: string = '';
 
   constructor(
     private router: Router,
     private usuariosService: UsuariosService
   ) {}
+
+  newUser: any = {
+    dni: null,
+    nombre: '',
+    apellido: '',
+    email: '',
+    password: '',
+    telefono: null,
+    rol: '',
+  };
 
   ngOnInit() {
     this.cargarUsuarios();
@@ -56,6 +67,37 @@ export class ListaUsuariosComponent {
       this.cargarUsuarios();
     }
   }
+
+  buscarUsuarios() {
+    // Verifica que haya un término de búsqueda
+    if (this.searchby_nombre.trim() !== '') {
+      // Realiza una solicitud HTTP al backend con el término de búsqueda
+      this.usuariosService.searchUsers(this.searchby_nombre).subscribe((data: any) => {
+        // Actualiza la lista de usuarios en el frontend con los resultados de la búsqueda
+        this.arrayUsers = data.usuarios;
+      });
+    } else {
+      // Si no hay término de búsqueda, carga todos los usuarios
+      this.cargarUsuarios();
+    }
+  }
+  
+  buscarConEnter(event: KeyboardEvent) {
+    // Manejar la pulsación de "Enter"
+    if (event.key === 'Enter') {
+      this.buscarUsuarios();
+    }
+  }
+  
+  crearUsuario() {
+    this.usuariosService.createUser(this.newUser).subscribe((data: any) => {
+      // Lógica para manejar la respuesta después de crear el usuario
+      console.log('Usuario creado:', data);
+      // Recargar la lista de usuarios o realizar otra acción necesaria
+      this.cargarUsuarios();
+    });
+  }
+
 
   selectedRole = localStorage.getItem('role');
 }

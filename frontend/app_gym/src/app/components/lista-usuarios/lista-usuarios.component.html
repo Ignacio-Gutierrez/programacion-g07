@@ -3,9 +3,7 @@
         <div class="col-md-8 offset-md-2">
             <h1 class="text-center mb-4">Bienvenido {{selectedRole}}</h1>
             <div class="d-flex mb-3">
-                <input type="text" class="form-control me-2 flex-grow-1" placeholder="Buscar usuario...">
-                <button class="btn btn-outline-secondary" type="button"><i
-                        class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="text" class="form-control me-2 flex-grow-1" placeholder="Buscar usuario..." [(ngModel)]="searchby_nombre" (keypress)="buscarConEnter($event)">
                 <button *ngIf="selectedRole === 'admin'" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">
                     <i class="fa-solid fa-plus"></i>
                 </button>
@@ -27,9 +25,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{user.nombre}} {{user.apellido}}
                     <div>
-                        <a type="button" (click)="verPerfil(user.dni)" class="btn btn-primary btn-sm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white"></i></a>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash"></i></button>
+                        <a type="button" (click)="verPerfil(user.dni)" class="btn btn-primary btn-sm me-2"><i class="fa-solid fa-pen-to-square text-white"></i></a>
                     </div>
                 </li>
             </ul>
@@ -53,45 +49,44 @@
                         <label for="nombre" class="form-label">Rol</label>
                     </div>
                     <div class="btn-group d-flex justify-content-center" style="margin-bottom: 15px;" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" [(ngModel)]="newUser.rol" value="admin">
                         <label class="btn btn-outline-primary" for="btnradio1">Admin</label>
                         
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" [(ngModel)]="newUser.rol" value="profesor">
                         <label class="btn btn-outline-primary" for="btnradio2">Profesor</label>
                         
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" [(ngModel)]="newUser.rol" value="user">
                         <label class="btn btn-outline-primary" for="btnradio3">Alumno</label>
                     </div>
-                    
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre">
+                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre">
                     </div>
                     <div class="mb-3">
                         <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido">
+                        <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="newUser.apellido">
                     </div>
                     <div class="mb-3">
                         <label for="dni" class="form-label">DNI</label>
-                        <input type="number" class="form-control" id="dni">
+                        <input type="number" class="form-control" id="dni" name="dni" [(ngModel)]="newUser.dni">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email">
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="newUser.email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="passwordl">
+                        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="newUser.password">
                     </div>
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control" id="telefono">
+                        <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="newUser.telefono">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" >Guardar</button>
+                <button type="button" class="btn btn-primary" (click)="crearUsuario()" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
@@ -105,22 +100,3 @@
         <li class="page-item custom-hover-cursor"><a class="page-link" (click)="cargarPaginaSiguiente()" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
     </ul>
 </nav>
-
-<!-- Eliminar? -->
-<div class="modal" id="eliminarModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Eliminar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>¿Está seguro que desea eliminar a este Usuario?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
