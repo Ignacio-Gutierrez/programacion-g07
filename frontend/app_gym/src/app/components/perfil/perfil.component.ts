@@ -91,6 +91,23 @@ export class PerfilComponent implements OnInit {
     }
   }
   
+  borrarUsuario() {
+    if (this.perfilDni) {
+      this.usuariosService.deleteUser(this.perfilDni).subscribe(
+        () => {
+          console.log(`Usuario Eliminado`);
+          this.router.navigate(['/vInicio']);
+        },
+        (error) => {
+          console.error(`Error al eliminar user: ${error}`);
+        }
+      );
+    }
+  }
+  
+  
+
+
   verPlanif(dni: string) {
     const parametrosOcultos = {
       dni: dni

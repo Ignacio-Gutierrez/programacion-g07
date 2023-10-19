@@ -34,6 +34,7 @@ class Usuario(db.Model):
             'apellido': str(self.apellido),
             'email': str(self.email),
             'telefono': str(self.telefono),
+            'password':str(self.password),
             'rol': str(self.rol)
         }
         return usuario_json
@@ -49,6 +50,7 @@ class Usuario(db.Model):
             'email': str(self.email),
             'telefono': str(self.telefono),
             'rol': str(self.rol),
+            'password':str(self.password),
             'alumno': alumno,
             'profesor': profesor
 

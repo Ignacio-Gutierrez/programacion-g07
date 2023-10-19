@@ -12,7 +12,21 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 export class ListaUsuariosComponent {
   arrayUsers: any;
   currentPage: number = 1;
-  searchby_nombre: string = '';
+  perPage: number = 10;
+  filtroRol: string = '';
+  searchTerm: string = '';
+  
+  actualContraseña: string= ''
+
+  usuarioAEditar: any = {
+    dni: null,
+    nombre: '',
+    apellido: '',
+    email: '',
+    password: '',
+    telefono: null,
+    rol: '',
+  };
 
   constructor(
     private router: Router,
@@ -26,7 +40,6 @@ export class ListaUsuariosComponent {
     email: '',
     password: '',
     telefono: null,
-    rol: '',
   };
 
   ngOnInit() {
@@ -34,7 +47,7 @@ export class ListaUsuariosComponent {
   }
 
   cargarUsuarios() {
-    this.usuariosService.getUsers(this.currentPage).subscribe((data: any) => {
+    this.usuariosService.getUsers(this.currentPage, this.perPage, this.filtroRol).subscribe((data: any) => {
       console.log('JSON data:', data);
       this.arrayUsers = data.usuarios;
     });
@@ -51,7 +64,7 @@ export class ListaUsuariosComponent {
   cargarPaginaSiguiente() {
     const nextPage = this.currentPage + 1;
   
-    this.usuariosService.getUsers(nextPage).subscribe((data: any) => {
+    this.usuariosService.getUsers(nextPage, this.perPage, this.filtroRol).subscribe((data: any) => {
       if (data.usuarios && data.usuarios.length > 0) {
         this.currentPage = nextPage;
         this.cargarUsuarios();
@@ -68,24 +81,26 @@ export class ListaUsuariosComponent {
     }
   }
 
+  filtrarUsuarios(rol: string) {
+    this.filtroRol = rol;
+    this.currentPage = 1;
+    this.cargarUsuarios();
+}
+  eliminarFiltro() {
+    this.filtroRol = '';
+    this.currentPage = 1;
+    this.cargarUsuarios(); 
+  }
+
+
   buscarUsuarios() {
-    // Verifica que haya un término de búsqueda
-    if (this.searchby_nombre.trim() !== '') {
-      // Realiza una solicitud HTTP al backend con el término de búsqueda
-      this.usuariosService.searchUsers(this.searchby_nombre).subscribe((data: any) => {
-        // Actualiza la lista de usuarios en el frontend con los resultados de la búsqueda
+    if (this.searchTerm.length >= 3) {
+      this.usuariosService.searchUsers(this.searchTerm).subscribe((data: any) => {
         this.arrayUsers = data.usuarios;
       });
     } else {
-      // Si no hay término de búsqueda, carga todos los usuarios
+      // Si el término de búsqueda tiene menos de 3 caracteres, puedes mostrar un mensaje de error o limpiar la lista de usuarios.
       this.cargarUsuarios();
-    }
-  }
-  
-  buscarConEnter(event: KeyboardEvent) {
-    // Manejar la pulsación de "Enter"
-    if (event.key === 'Enter') {
-      this.buscarUsuarios();
     }
   }
   
@@ -98,6 +113,24 @@ export class ListaUsuariosComponent {
     });
   }
 
-
+  saveDni(user: any) {
+    this.usuarioAEditar = user;
+    this.actualContraseña = user.password;
+  }
+  
+  editarUsuario() {
+    if (this.actualContraseña === this.usuarioAEditar.password) {
+      delete this.usuarioAEditar.password;
+    }
+    
+    this.usuariosService.updateUser(this.usuarioAEditar.dni, this.usuarioAEditar).subscribe((data: any) => {
+      console.log('Usuario editado:', data);
+      this.cargarUsuarios();
+    });
+  }
+  
+  
+  
   selectedRole = localStorage.getItem('role');
 }
+

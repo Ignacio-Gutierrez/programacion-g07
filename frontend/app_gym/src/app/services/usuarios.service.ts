@@ -13,17 +13,20 @@ export class UsuariosService {
     private httpClient: HttpClient,
   ) { }
   
-  getUsers(page: number) {
+  getUsers(page: number, perPage: number, filtroRol: string): Observable<any> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-  
-    return this.httpClient.get(this.url + '/usuarios', {
-      headers: headers,
-      params: { page: page.toString() }
-    });
+
+    const params = {
+      page: page.toString(),
+      per_page: perPage.toString(),
+      rol: filtroRol
+    };
+
+    return this.httpClient.get(`${this.url}/usuarios`, { headers, params });
   }
 
   getUserDNIFromToken(): number | null {
@@ -37,7 +40,6 @@ export class UsuariosService {
 
   getUser(userDNI: number){
     let auth_token=localStorage.getItem('token');
-  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`   
@@ -47,7 +49,6 @@ export class UsuariosService {
 
   getUserAlum(userDNI: number){
     let auth_token=localStorage.getItem('token');
-  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`   
@@ -57,7 +58,6 @@ export class UsuariosService {
 
   getUserProf(userDNI: number){
     let auth_token=localStorage.getItem('token');
-  
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`   
@@ -65,10 +65,8 @@ export class UsuariosService {
       return this.httpClient.get(this.url + '/usuario_p/' + userDNI, {headers: headers});
   }
 
-
   searchUsers(searchTerm: string): Observable<any> {
     let auth_token=localStorage.getItem('token');
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`   
@@ -79,15 +77,68 @@ export class UsuariosService {
       params: { search_term: searchTerm }
     });
   }
-  
-  
+    
   createUser(userData: any) {
     const auth_token = localStorage.getItem('token');
-    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
     return this.httpClient.post(this.url + '/usuarios', userData, { headers: headers });
   }
+
+  updateUser(dni: number, userData: any) {
+    const auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.httpClient.put(this.url + '/usuario/' + dni, userData, { headers: headers });
+  }
+
+  deleteUser(dni: number) {
+    const auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.httpClient.delete(this.url + '/usuario/' + dni, { headers: headers });
+  }
+
+  createAlumno(dni: number) {
+    const auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.httpClient.delete(this.url + '/usuarios_a/' + dni, { headers: headers });
+  }
+
+  updateAlumno(dni: number) {
+    const auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.httpClient.delete(this.url + '/usuario_a/' + dni, { headers: headers });
+  }
+
+  createProfesor(dni: number) {
+    const auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.httpClient.delete(this.url + '/usuarios_p/' + dni, { headers: headers });
+  }
+
+  updateProfesor(dni: number) {
+    const auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.httpClient.delete(this.url + '/usuario_p/' + dni, { headers: headers });
+  }
+
 }

@@ -52,7 +52,6 @@
 </div>
 
 
-
 <!-- Editar Usuario -->
 <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel"
     aria-hidden="true">
@@ -65,55 +64,35 @@
             <div class="modal-body">
                 <!-- Formulario para editar -->
                 <form>
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre">
-                    </div>
-                    <div class="mb-3">
-                        <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido">
-                    </div>
-                    <div class="mb-3">
-                        <label for="dni" class="form-label">DNI</label>
-                        <input type="number" class="form-control" id="dni">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control" id="telefono">
-                    </div>
-                    <div class="mb-3">
+                    <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="edad" class="form-label">Edad</label>
                         <input type="number" class="form-control" id="edad">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="peso" class="form-label">Peso</label>
                         <input type="number" class="form-control" id="peso">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="altura" class="form-label">Altura</label>
                         <input type="number" class="form-control" id="altura">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="sexo" class="form-label">Sexo</label>
                         <input type="number" class="form-control" id="sexo">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="especialidad" class="form-label">Especialidad</label>
                         <input type="text" class="form-control" id="especialidad">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="clase" class="form-label">Clase</label>
                         <input type="text" class="form-control" id="clase">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="d-clase" class="form-label">Día Clase</label>
                         <input type="text" class="form-control" id="d-clase">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="d-clase" class="form-label">Horario Clase</label>
                         <input type="date" class="form-control" id="h-clase">
                     </div>
@@ -121,7 +100,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-success" >Guardar</button>
+                <button type="button" class="btn btn-primary btn-success" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
@@ -140,7 +119,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger">Eliminar</button>
+                <button type="button" class="btn btn-danger" (click)="borrarUsuario()" data-bs-dismiss="modal">Eliminar</button>
             </div>
         </div>
     </div>
