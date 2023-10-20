@@ -65,18 +65,25 @@ export class UsuariosService {
       return this.httpClient.get(this.url + '/usuario_p/' + userDNI, {headers: headers});
   }
 
-  searchUsers(searchTerm: string): Observable<any> {
-    let auth_token=localStorage.getItem('token');
+  
+  searchUsers(searchTerm: string, filtroRol: string): Observable<any> {
+    let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`   
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth_token}`
     });
 
-    return this.httpClient.get(this.url + '/usuarios', {
-      headers: headers,
-      params: { search_term: searchTerm }
-    });
+    const params: any = {
+        search_term: searchTerm,
+    };
+
+    if (filtroRol) {
+        params.rol = filtroRol;
+    }
+
+    return this.httpClient.get(`${this.url}/usuarios`, { headers, params });
   }
+
     
   createUser(userData: any) {
     const auth_token = localStorage.getItem('token');
@@ -105,40 +112,40 @@ export class UsuariosService {
     return this.httpClient.delete(this.url + '/usuario/' + dni, { headers: headers });
   }
 
-  createAlumno(dni: number) {
+  createUserAlum(userData: any) {
     const auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.httpClient.delete(this.url + '/usuarios_a/' + dni, { headers: headers });
+    return this.httpClient.post(this.url + '/usuarios_a', userData,{ headers: headers });
   }
 
-  updateAlumno(dni: number) {
+  updateUserAlum(dni: number, userData: any) {
     const auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.httpClient.delete(this.url + '/usuario_a/' + dni, { headers: headers });
+    return this.httpClient.put(this.url + '/usuario_a/' + dni, userData, { headers: headers });
   }
 
-  createProfesor(dni: number) {
+  createUserProf(userData: any) {
     const auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.httpClient.delete(this.url + '/usuarios_p/' + dni, { headers: headers });
+    return this.httpClient.post(this.url + '/usuarios_p', userData,{ headers: headers });
   }
 
-  updateProfesor(dni: number) {
+  updateUserProf(dni: number, userData: any) {
     const auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.httpClient.delete(this.url + '/usuario_p/' + dni, { headers: headers });
+    return this.httpClient.put(this.url + '/usuario_p/' + dni, userData, { headers: headers });
   }
 
 }

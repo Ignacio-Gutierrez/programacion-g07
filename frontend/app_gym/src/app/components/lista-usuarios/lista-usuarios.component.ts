@@ -94,15 +94,16 @@ export class ListaUsuariosComponent {
 
 
   buscarUsuarios() {
-    if (this.searchTerm.length >= 3) {
-      this.usuariosService.searchUsers(this.searchTerm).subscribe((data: any) => {
-        this.arrayUsers = data.usuarios;
-      });
+    if (this.searchTerm.length >= 3 || this.filtroRol) {
+        this.usuariosService.searchUsers(this.searchTerm, this.filtroRol).subscribe((data: any) => {
+            this.arrayUsers = data.usuarios;
+        });
     } else {
-      // Si el término de búsqueda tiene menos de 3 caracteres, puedes mostrar un mensaje de error o limpiar la lista de usuarios.
-      this.cargarUsuarios();
+        // Si el término de búsqueda tiene menos de 3 caracteres o no hay filtro de roles, puedes mostrar un mensaje de error o limpiar la lista de usuarios.
+        this.cargarUsuarios();
     }
-  }
+}
+
   
   crearUsuario() {
     this.usuariosService.createUser(this.newUser).subscribe((data: any) => {

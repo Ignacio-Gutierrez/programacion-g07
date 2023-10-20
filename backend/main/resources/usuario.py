@@ -57,16 +57,24 @@ class Usuarios(Resource):
         ### FILTROS ###
         
         # Busqueda por nombre (Input busqueda)
+
         if request.args.get('search_term'):
             search_term = request.args.get('search_term')
-            usuarios = usuarios.filter(or_(
-                UsuarioModel.nombre.like(f"%{search_term}%"), 
-                UsuarioModel.apellido.like(f"%{search_term}%"),
-                and_(
-                    UsuarioModel.nombre.like(f"%{search_term.split(' ')[0]}%"),
-                    UsuarioModel.apellido.like(f"%{search_term.split(' ')[1]}%")
-                )
-            ))
+            search_terms = search_term.split(' ')
+            
+            if len(search_terms) == 1:
+                # Si solo hay un término en la búsqueda, busca en el nombre o en el apellido.
+                usuarios = usuarios.filter(or_(
+                    UsuarioModel.nombre.like(f"%{search_term}%"), 
+                    UsuarioModel.apellido.like(f"%{search_term}%")
+                ))
+            else:
+                # Si hay dos términos, busca en el nombre y en el apellido.
+                usuarios = usuarios.filter(and_(
+                    UsuarioModel.nombre.like(f"%{search_terms[0]}%"),
+                    UsuarioModel.apellido.like(f"%{search_terms[1]}%")
+                ))
+
 
 
         

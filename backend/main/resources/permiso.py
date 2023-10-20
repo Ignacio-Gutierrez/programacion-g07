@@ -8,7 +8,7 @@ from main.auth.decorators import role_required
 
     
 class Permisos(Resource):
-       
+    
     @role_required(roles=["admin"])
     def post(self):
         permisos=PermisoModel.from_json(request.get_json())
@@ -19,8 +19,8 @@ class Permisos(Resource):
         except:
             return 'Formato no correcto', 400
         return permisos.to_json(), 201
+    
 class Permiso(Resource):
-
     def put(self,id):
         permiso=db.session.query(PermisoModel).get_or_404(id)
         data=request.get_json().items()

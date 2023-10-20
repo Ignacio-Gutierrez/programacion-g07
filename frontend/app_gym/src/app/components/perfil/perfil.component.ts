@@ -14,9 +14,11 @@ export class PerfilComponent implements OnInit {
   AlumData: any;
   ProfData: any;
 
+  newAlumData: any;
+  newProfData: any;
+
   private perfilDni: any;
   private parametrosOcultos: any;
-  
 
   constructor(
     private router: Router,
@@ -65,6 +67,13 @@ export class PerfilComponent implements OnInit {
               (alumData) => {
                 this.AlumData = alumData;
                 console.log('AlumData: ', this.AlumData);
+                this.newAlumData = {
+                  "dni": this.AlumData.dni,
+                  "edad": this.AlumData.edad,
+                  "peso": this.AlumData.peso,
+                  "altura": this.AlumData.altura,
+                  "sexo": this.AlumData.sexo,
+                  };
               },
               (alumError) => {
                 console.error('Error fetching AlumData: ', alumError);
@@ -75,6 +84,10 @@ export class PerfilComponent implements OnInit {
               (profData) => {
                 this.ProfData = profData;
                 console.log('ProfData: ', this.ProfData);
+                this.newProfData = {
+                  "dni": this.ProfData.dni,
+                  "especialidad": this.ProfData.especialidad,
+                  };
               },
               (profError) => {
                 console.error('Error fetching ProfData: ', profError);
@@ -105,8 +118,34 @@ export class PerfilComponent implements OnInit {
     }
   }
   
-  
+  editarCrearAlumProf() {
 
+    if (this.UserData.rol === 'user') {
+      if (this.AlumData) {
+        this.usuariosService.updateUserAlum(this.perfilDni, this.newAlumData).subscribe(
+          (response) => {
+            console.log('Alumno actualizado con éxito', response);
+          },
+        );
+      } else {
+        this.newAlumData.dni = this.perfilDni;
+        this.usuariosService.createUserAlum(this.newAlumData).subscribe(
+          (response) => {
+            console.log('Alumno creado con éxito', response);
+          },
+        );
+      }
+    } else if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
+      if (this.ProfData) {
+        this.usuariosService.updateUserProf(this.perfilDni, this.newProfData).subscribe(
+          (response) => {
+            console.log('Profesor actualizado con éxito', response);
+          },
+        );
+      }
+    }
+  }
+  
 
   verPlanif(dni: string) {
     const parametrosOcultos = {

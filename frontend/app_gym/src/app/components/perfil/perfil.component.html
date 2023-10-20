@@ -6,10 +6,15 @@
                     <h1 style="margin-top: 15px; padding-right: 60px;">{{UserData.nombre}}  {{UserData.apellido}}</h1>
                     <button *ngIf="selectedRole === 'admin'" data-bs-toggle="modal" data-bs-target="#editUsuarioModal" class="btn btn-primary btn-lm me-2"><i class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
                 </div>
-                
-                <div class="d-flex mb-3">
+                <div *ngIf="UserData.rol === 'user'" class="d-flex mb-3">
                     <a type="button" (click)="verPlanif(UserData.dni)"
                         class="btn btn-primary btn-sm me-2 custom-button">Planificaciones</a>
+                </div>
+                <div>
+                    <pre>{{ AlumData | json }}</pre>
+                </div>
+                <div>
+                    <pre>{{ ProfData | json }}</pre>
                 </div>
                 <div class="col-md-6">
                     <h3>Mail</h3>
@@ -66,41 +71,41 @@
                 <form>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="edad" class="form-label">Edad</label>
-                        <input type="number" class="form-control" id="edad">
+                        <input type="number" class="form-control" id="edad" name="edad" [(ngModel)]="AlumData.edad">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="peso" class="form-label">Peso</label>
-                        <input type="number" class="form-control" id="peso">
+                        <input type="number" class="form-control" id="peso" name="peso" [(ngModel)]="AlumData.peso">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="altura" class="form-label">Altura</label>
-                        <input type="number" class="form-control" id="altura">
+                        <input type="text" class="form-control" id="altura" name="altura" [(ngModel)]="AlumData.altura">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="sexo" class="form-label">Sexo</label>
-                        <input type="number" class="form-control" id="sexo">
+                        <input type="text" class="form-control" id="sexo" name="sexo" [(ngModel)]="AlumData.sexo">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="especialidad" class="form-label">Especialidad</label>
-                        <input type="text" class="form-control" id="especialidad">
+                        <input type="text" class="form-control" id="especialidad" name="especialidad" [(ngModel)]="ProfData.especialidad" >
                     </div>
-                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
+<!--                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="clase" class="form-label">Clase</label>
-                        <input type="text" class="form-control" id="clase">
+                        <input type="text" class="form-control" id="clase" name="nombre" [(ngModel)]=".clase">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="d-clase" class="form-label">Día Clase</label>
-                        <input type="text" class="form-control" id="d-clase">
+                        <input type="text" class="form-control" id="d-clase" name="dia" [(ngModel)]=".clase">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="d-clase" class="form-label">Horario Clase</label>
-                        <input type="date" class="form-control" id="h-clase">
-                    </div>
+                        <input type="date" class="form-control" id="h-clase" name="horario" [(ngModel)]=".horario">
+                    </div> -->
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-success" data-bs-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="editarCrearAlumProf()" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
