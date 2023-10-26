@@ -14,7 +14,13 @@ export class PerfilComponent implements OnInit {
   AlumData: any;
   ProfData: any;
 
-  newAlumData: any;
+  newAlumData: any ={
+    "dni": null,
+    "edad": null,
+    "peso": null,
+    "altura": null,
+    "sexo": null,
+    };
   newProfData: any;
 
   private perfilDni: any;
@@ -121,6 +127,7 @@ export class PerfilComponent implements OnInit {
   editarCrearAlumProf() {
 
     if (this.UserData.rol === 'user') {
+      console.log( "datos alumno: ", this.AlumData)
       if (this.AlumData) {
         this.usuariosService.updateUserAlum(this.perfilDni, this.newAlumData).subscribe(
           (response) => {

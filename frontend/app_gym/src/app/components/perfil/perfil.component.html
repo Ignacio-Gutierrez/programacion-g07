@@ -9,12 +9,12 @@
                 <div *ngIf="UserData.rol === 'user'" class="d-flex mb-3">
                     <a type="button" (click)="verPlanif(UserData.dni)"
                         class="btn btn-primary btn-sm me-2 custom-button">Planificaciones</a>
-                </div>
+                <!-- </div>
                 <div>
                     <pre>{{ AlumData | json }}</pre>
                 </div>
                 <div>
-                    <pre>{{ ProfData | json }}</pre>
+                    <pre>{{ ProfData | json }}</pre> -->
                 </div>
                 <div class="col-md-6">
                     <h3>Mail</h3>
@@ -25,16 +25,16 @@
                     <hr>
                     <div *ngIf="UserData.rol === 'user'">
                         <h3>Edad</h3>
-                        <h4>{{AlumData.edad}} años</h4>
+                        <h4>{{AlumData?.edad}} años</h4>
                         <hr>
                         <h3>Peso</h3>
-                        <h4>{{AlumData.peso}} kg</h4>
+                        <h4>{{AlumData?.peso}} kg</h4>
                         <hr>
                         <h3>Altura</h3>
-                        <h4>{{AlumData.altura}} m</h4>
+                        <h4>{{AlumData?.altura}} m</h4>
                         <hr>
                         <h3>Sexo</h3>
-                        <h4>{{AlumData.sexo}}</h4>
+                        <h4>{{AlumData?.sexo}}</h4>
                         <hr>
                     </div>
                     <div *ngIf="UserData.rol === 'profesor'">
