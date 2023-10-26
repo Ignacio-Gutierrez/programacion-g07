@@ -9,12 +9,12 @@
                 <div *ngIf="UserData.rol === 'user'" class="d-flex mb-3">
                     <a type="button" (click)="verPlanif(UserData.dni)"
                         class="btn btn-primary btn-sm me-2 custom-button">Planificaciones</a>
-                <!-- </div>
-                <div>
-                    <pre>{{ AlumData | json }}</pre>
                 </div>
                 <div>
-                    <pre>{{ ProfData | json }}</pre> -->
+                    <!-- <pre>{{ AlumData | json }}</pre> -->
+                </div>
+                <div>
+                    <pre>{{ ProfData | json }}</pre>
                 </div>
                 <div class="col-md-6">
                     <h3>Mail</h3>
@@ -68,26 +68,26 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario para editar -->
-                <form>
+                <form [formGroup]='profileForm'>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="edad" class="form-label">Edad</label>
-                        <input type="number" class="form-control" id="edad" name="edad" [(ngModel)]="AlumData.edad">
+                        <input type="number" class="form-control" formControlName="edad">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="peso" class="form-label">Peso</label>
-                        <input type="number" class="form-control" id="peso" name="peso" [(ngModel)]="AlumData.peso">
+                        <input type="text" class="form-control" formControlName="peso">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="altura" class="form-label">Altura</label>
-                        <input type="text" class="form-control" id="altura" name="altura" [(ngModel)]="AlumData.altura">
+                        <input type="text" class="form-control" formControlName="altura">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="sexo" class="form-label">Sexo</label>
-                        <input type="text" class="form-control" id="sexo" name="sexo" [(ngModel)]="AlumData.sexo">
+                        <input type="text" class="form-control" formControlName="sexo">
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="especialidad" class="form-label">Especialidad</label>
-                        <input type="text" class="form-control" id="especialidad" name="especialidad" [(ngModel)]="ProfData.especialidad" >
+                        <input type="text" class="form-control" formControlName="especialidad" >
                     </div>
 <!--                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="clase" class="form-label">Clase</label>
@@ -105,7 +105,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-success" (click)="editarCrearAlumProf()" data-bs-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="submit()" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>

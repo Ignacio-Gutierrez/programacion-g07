@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-perfil',
@@ -9,30 +11,63 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
+  profileForm!: FormGroup 
   selectedRole = localStorage.getItem('role');
-  UserData: any;
-  AlumData: any;
-  ProfData: any;
 
-  newAlumData: any ={
+  UserData: any = {
+    "nombre": null,
+    "apellido": null,
+    "dni": null,
+    "rol": null
+    };
+
+  AlumData: any = {
     "dni": null,
     "edad": null,
     "peso": null,
     "altura": null,
     "sexo": null,
     };
-  newProfData: any;
 
+  newAlumData: any = {
+    "dni": null,
+    "edad": null,
+    "peso": null,
+    "altura": null,
+    "sexo": null,
+    };
+
+  ProfData: any = {
+    "dni": null,
+    "especialidad": null,
+    };
+
+  newProfData: any = {
+    "dni": null,
+    "especialidad": null,
+    };
   private perfilDni: any;
   private parametrosOcultos: any;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private usuariosService: UsuariosService
-  ) {}
+    private usuariosService: UsuariosService,
+    private formBuilder: FormBuilder,
+    private location: Location
+  ) {
+    this.profileForm = this.formBuilder.group({
+      dni: [''],
+      edad: [''],
+      peso: [''],
+      altura: [''],
+      sexo: [''],
+      especialidad: ['']
+    });
+  }
 
   ngOnInit(): void {
+
     const userDNI = this.usuariosService.getUserDNIFromToken();
     this.parametrosOcultos = history.state;
 
@@ -80,6 +115,14 @@ export class PerfilComponent implements OnInit {
                   "altura": this.AlumData.altura,
                   "sexo": this.AlumData.sexo,
                   };
+
+                this.profileForm = this.formBuilder.group({
+                  dni: [this.perfilDni, Validators.required],
+                  edad: [this.AlumData.edad, Validators.required],
+                  peso: [this.AlumData.peso, Validators.required],
+                  altura: [this.AlumData.altura, Validators.required],
+                  sexo: [this.AlumData.sexo, Validators.required],
+                })
               },
               (alumError) => {
                 console.error('Error fetching AlumData: ', alumError);
@@ -94,6 +137,12 @@ export class PerfilComponent implements OnInit {
                   "dni": this.ProfData.dni,
                   "especialidad": this.ProfData.especialidad,
                   };
+
+                this.profileForm = this.formBuilder.group({
+                  dni: [this.perfilDni, Validators.required],
+                  especialidad: [this.ProfData.especialidad, Validators.required],
+       
+                  })
               },
               (profError) => {
                 console.error('Error fetching ProfData: ', profError);
@@ -124,32 +173,70 @@ export class PerfilComponent implements OnInit {
     }
   }
   
-  editarCrearAlumProf() {
+  crearAlumno(dataAlum:any = {} ){
+    this.usuariosService.createUserAlum(dataAlum).subscribe(
+      (response) => {
+        console.log('Alumno creado con éxito', response);
+      },
+    );
+  }
+  crearProfesor(dataProf:any = {} ){
+    this.usuariosService.createUserProf(dataProf).subscribe(
+      (response) => {
+        console.log('Profesor creado con éxito', response);
+      },
+    );
+  }
+  editarAlumno(dataAlum:any = {} ){
+    this.usuariosService.updateUserAlum(this.perfilDni, dataAlum).subscribe(
+      (response) => {
+        console.log('Alumno actualizado con éxito', response);
+      }
+    );
+  }
+  editarProfesor(dataProf:any = {} ){
+    this.usuariosService.updateUserProf(this.perfilDni, dataProf).subscribe(
+      (response) => {
+        console.log('Profesor actualizado con éxito', response);
+      },
+    );
+  }
 
-    if (this.UserData.rol === 'user') {
-      console.log( "datos alumno: ", this.AlumData)
-      if (this.AlumData) {
-        this.usuariosService.updateUserAlum(this.perfilDni, this.newAlumData).subscribe(
-          (response) => {
-            console.log('Alumno actualizado con éxito', response);
+
+  submit() {
+    if (this.profileForm.valid) {
+      if (this.UserData.rol === 'user') {
+        // Access and log the form control values
+        console.log("Datos alumno:", this.profileForm.value);
+  
+        this.usuariosService.getUserAlum(this.perfilDni).subscribe(
+          (alumData) => {
+            // If the user is an "alumno," edit the data
+            this.editarAlumno(this.profileForm.value);
+  
+            // Reload the current view
+            window.location.reload();
           },
+          (alumError) => {
+            console.error('Error fetching AlumData: ', alumError);
+          }
         );
-      } else {
-        this.newAlumData.dni = this.perfilDni;
-        this.usuariosService.createUserAlum(this.newAlumData).subscribe(
-          (response) => {
-            console.log('Alumno creado con éxito', response);
+      } else if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
+        this.usuariosService.getUserProf(this.perfilDni).subscribe(
+          (profData) => {
+            // If the user is a "profesor," edit the data
+            this.editarProfesor(this.profileForm.value);
+  
+            // Reload the current view
+            window.location.reload();
           },
+          (profError) => {
+            console.error('Error fetching ProfData: ', profError);
+          }
         );
       }
-    } else if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
-      if (this.ProfData) {
-        this.usuariosService.updateUserProf(this.perfilDni, this.newProfData).subscribe(
-          (response) => {
-            console.log('Profesor actualizado con éxito', response);
-          },
-        );
-      }
+    } else {
+      alert('Formulario inválido');
     }
   }
   
