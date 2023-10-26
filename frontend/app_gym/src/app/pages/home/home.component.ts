@@ -81,22 +81,26 @@ export class HomeComponent {
     });
   }
   getClasesPorDia(dia: string): any {
-    return this.arrayClases
-      .filter((clase: any) => clase.dia === dia)
-      .sort((a: any, b: any) => {
-
-        const horaA = parseInt(a.horario.split(":")[0]);
-        const minutoA = parseInt(a.horario.split(":")[1]);
-        const horaB = parseInt(b.horario.split(":")[0]);
-        const minutoB = parseInt(b.horario.split(":")[1]);
+    if (this.arrayClases) {
+      return this.arrayClases
+        .filter((clase: any) => clase.dia === dia)
+        .sort((a: any, b: any) => {
+          const horaA = parseInt(a.horario.split(":")[0]);
+          const minutoA = parseInt(a.horario.split(":")[1]);
+          const horaB = parseInt(b.horario.split(":")[0]);
+          const minutoB = parseInt(b.horario.split(":")[1]);
   
-        if (horaA !== horaB) {
-          return horaA - horaB;
-        } else {
-          return minutoA - minutoB;
-        }
-      });
+          if (horaA !== horaB) {
+            return horaA - horaB;
+          } else {
+            return minutoA - minutoB;
+          }
+        });
+    } else {
+      return []
+    }
   }
+  
   
   
 

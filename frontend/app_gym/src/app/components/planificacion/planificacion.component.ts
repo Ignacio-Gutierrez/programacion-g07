@@ -11,7 +11,18 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class PlanificacionComponent {
   selectedRole = localStorage.getItem('role');
-  UserPlanif: any;
+  UserPlanif: any = {
+    descripcion: '',
+    fecha: '',
+    lunes: '',
+    martes: '',
+    miercoles: '',
+    jueves: '',
+    viernes: '',
+    sabado: '',
+    alumno_dni: null,
+    profesor_dni: null
+  };
   private parametrosOcultos: any;
   perfilDni: any = null;
 

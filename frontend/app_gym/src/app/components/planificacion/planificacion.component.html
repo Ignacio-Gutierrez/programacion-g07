@@ -13,10 +13,10 @@
 
                 <div class="col-md-6" *ngIf="UserPlanif && UserPlanif.length > 0">
                     <h5>Descripción</h5>
-                    <h2>{{ UserPlanif[0].descripcion }}</h2>
+                    <h2>{{ UserPlanif[0]?.descripcion }}</h2>
                     <hr>
                     <h5>Fecha</h5>
-                    <h2>{{ UserPlanif[0].fecha }}</h2>
+                    <h2>{{ UserPlanif[0]?.fecha }}</h2>
                     <hr>
                     
                 </div>
