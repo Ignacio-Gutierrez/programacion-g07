@@ -206,32 +206,29 @@ export class PerfilComponent implements OnInit {
   submit() {
     if (this.profileForm.valid) {
       if (this.UserData.rol === 'user') {
-        // Access and log the form control values
         console.log("Datos alumno:", this.profileForm.value);
   
         this.usuariosService.getUserAlum(this.perfilDni).subscribe(
           (alumData) => {
-            // If the user is an "alumno," edit the data
             this.editarAlumno(this.profileForm.value);
-  
-            // Reload the current view
             window.location.reload();
           },
           (alumError) => {
-            console.error('Error fetching AlumData: ', alumError);
+            this.profileForm.value.dni = this.perfilDni
+            this.crearAlumno(this.profileForm.value);
+            window.location.reload();
           }
         );
       } else if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
         this.usuariosService.getUserProf(this.perfilDni).subscribe(
           (profData) => {
-            // If the user is a "profesor," edit the data
             this.editarProfesor(this.profileForm.value);
-  
-            // Reload the current view
             window.location.reload();
           },
           (profError) => {
-            console.error('Error fetching ProfData: ', profError);
+            this.profileForm.value.dni = this.perfilDni
+            this.crearProfesor(this.profileForm.value);
+            window.location.reload();
           }
         );
       }
