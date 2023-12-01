@@ -118,27 +118,3 @@
         </div>
     </div>
 </div>
-
-<div class="container" style="margin-bottom: 50px;" *ngIf="UserData.rol === 'profesor' || UserData.rol === 'admin'">
-    <div class="row">
-        <div class="col-lg-4 col-md-6 card-space">
-            <div class="card-clase">
-                <div class="card-c-header d-flex justify-content-between align-items-center">
-                    <div>
-                        <button style="margin-left: 7px;" *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-lm" data-bs-toggle="modal"
-                            data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
-                    </div>
-                    <h4 class="card-c-title">Lunes</h4>
-                    <div>
-                        <button *ngIf="selectedRole === 'admin'" data-bs-toggle="modal" data-bs-target="#editUsuarioModal"
-                            class="btn btn-primary btn-lm me-2"><i
-                                class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
-                    </div>
-                </div>
-                <div class="card-c-body">
-                    <p class="card-c-text">data</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

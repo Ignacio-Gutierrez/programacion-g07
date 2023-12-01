@@ -46,6 +46,7 @@ export class PerfilComponent implements OnInit {
     "dni": null,
     "especialidad": null,
     };
+
   private perfilDni: any;
   private parametrosOcultos: any;
 
@@ -236,7 +237,13 @@ export class PerfilComponent implements OnInit {
   }
   
   shouldEditUser(): boolean {
-    return (this.profileForm.value && Object.values(this.profileForm.value).some(value => value !== null && value !== ''));
+    if (this.UserData.rol === 'user') {
+      return this.AlumData !== null && Object.values(this.AlumData).some((value) => value !== null && value !== '');
+    } else if (this.UserData.rol === 'profesor') {
+      return this.ProfData !== null && Object.values(this.ProfData).some((value) => value !== null && value !== '');
+    } else {
+      return false;
+    }
   }
 
   verPlanif(dni: string) {
