@@ -54,7 +54,6 @@ export class PerfilComponent implements OnInit {
     private route: ActivatedRoute,
     private usuariosService: UsuariosService,
     private formBuilder: FormBuilder,
-    private location: Location
   ) {
     this.profileForm = this.formBuilder.group({
       dni: [''],
@@ -67,7 +66,7 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
     const userDNI = this.usuariosService.getUserDNIFromToken();
     this.parametrosOcultos = history.state;
 
@@ -202,7 +201,6 @@ export class PerfilComponent implements OnInit {
     );
   }
 
-
   submit() {
     if (this.profileForm.valid) {
       if (this.UserData.rol === 'user') {
@@ -237,6 +235,9 @@ export class PerfilComponent implements OnInit {
     }
   }
   
+  shouldEditUser(): boolean {
+    return (this.profileForm.value && Object.values(this.profileForm.value).some(value => value !== null && value !== ''));
+  }
 
   verPlanif(dni: string) {
     const parametrosOcultos = {

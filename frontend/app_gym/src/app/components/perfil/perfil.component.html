@@ -3,8 +3,10 @@
         <div class="col-md-8">
             <div class="rounded-box">
                 <div class="d-flex align-items-center justify-content-center titulo-edit-alumno">
-                    <h1 style="margin-top: 15px; padding-right: 60px;">{{UserData.nombre}}  {{UserData.apellido}}</h1>
-                    <button *ngIf="selectedRole === 'admin'" data-bs-toggle="modal" data-bs-target="#editUsuarioModal" class="btn btn-primary btn-lm me-2"><i class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
+                    <h1 style="margin-top: 15px; padding-right: 60px;">{{UserData.nombre}} {{UserData.apellido}}</h1>
+                    <button *ngIf="selectedRole === 'admin'" data-bs-toggle="modal" data-bs-target="#editUsuarioModal"
+                        class="btn btn-primary btn-lm me-2"><i
+                            class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
                 </div>
                 <div *ngIf="UserData.rol === 'user'" class="d-flex mb-3">
                     <a type="button" (click)="verPlanif(UserData.dni)"
@@ -39,10 +41,12 @@
                 </div>
                 <div style="display: flex; justify-content: space-between;">
                     <div>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-lm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
+                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-lm" data-bs-toggle="modal"
+                            data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
                     </div>
                     <div>
-                        <a *ngIf="selectedRole === 'admin' || selectedRole === 'profesor'" routerLink="/vInicio"><button class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
+                        <a *ngIf="selectedRole === 'admin' || selectedRole === 'profesor'" routerLink="/vInicio"><button
+                                class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
                     </div>
                 </div>
             </div>
@@ -52,12 +56,13 @@
 
 
 <!-- Editar Usuario -->
-<div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editUsuarioModalLabel">Editar Usuario</h5>
+                <h5 class="modal-title" id="editUsuarioModalLabel">
+                    {{ shouldEditUser() ? 'Editar Usuario' : 'Crear Usuario' }}
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -81,31 +86,20 @@
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
                         <label for="especialidad" class="form-label">Especialidad</label>
-                        <input type="text" class="form-control" formControlName="especialidad" >
+                        <input type="text" class="form-control" formControlName="especialidad">
                     </div>
-<!--                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
-                        <label for="clase" class="form-label">Clase</label>
-                        <input type="text" class="form-control" id="clase" name="nombre" [(ngModel)]=".clase">
-                    </div>
-                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
-                        <label for="d-clase" class="form-label">Día Clase</label>
-                        <input type="text" class="form-control" id="d-clase" name="dia" [(ngModel)]=".clase">
-                    </div>
-                    <div class="mb-3" *ngIf="UserData.rol === 'profesor'">
-                        <label for="d-clase" class="form-label">Horario Clase</label>
-                        <input type="date" class="form-control" id="h-clase" name="horario" [(ngModel)]=".horario">
-                    </div> -->
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-success" (click)="submit()" data-bs-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="submit()"
+                    data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Eliminar? -->
+<!-- Eliminar? Usuario -->
 <div class="modal" id="eliminarModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -118,7 +112,32 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" (click)="borrarUsuario()" data-bs-dismiss="modal">Eliminar</button>
+                <button type="button" class="btn btn-danger" (click)="borrarUsuario()"
+                    data-bs-dismiss="modal">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-bottom: 50px;" *ngIf="UserData.rol === 'profesor' || UserData.rol === 'admin'">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 card-space">
+            <div class="card-clase">
+                <div class="card-c-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <button style="margin-left: 7px;" *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-lm" data-bs-toggle="modal"
+                            data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
+                    </div>
+                    <h4 class="card-c-title">Lunes</h4>
+                    <div>
+                        <button *ngIf="selectedRole === 'admin'" data-bs-toggle="modal" data-bs-target="#editUsuarioModal"
+                            class="btn btn-primary btn-lm me-2"><i
+                                class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
+                    </div>
+                </div>
+                <div class="card-c-body">
+                    <p class="card-c-text">data</p>
+                </div>
             </div>
         </div>
     </div>
