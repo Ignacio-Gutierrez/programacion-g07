@@ -48,3 +48,14 @@ class Clases(Resource):
         db.session.add(clases)
         db.session.commit()
         return clases.to_json(), 201
+    
+
+class ClasesPorProfesor(Resource):
+    def get(self, dni_profesor):
+        profesor = db.session.query(ProfesorModel).filter_by(dni=dni_profesor).first()
+
+        if profesor:
+            clases_del_profesor = profesor.clases
+            return jsonify([clase.to_json() for clase in clases_del_profesor])
+        else:
+            return {"message": "Profesor no encontrado"}, 404
