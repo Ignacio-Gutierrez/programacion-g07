@@ -1,0 +1,130 @@
+<div class="container mt-5" style="margin-bottom: 15px;" *ngIf="UserData.rol === 'profesor'">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="rounded-box d-flex align-items-center justify-content-between" style="height: 60px;">
+                <div class="titulo-edit-alumno">
+                    <h1 style="margin: 0; margin-left: 190%">Clases</h1>
+                </div>
+                <button *ngIf="selectedRole === 'admin'" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#crearClaseModal">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="margin-bottom: 50px;" *ngIf="UserData.rol === 'profesor' || UserData.rol === 'admin'">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 card-space" *ngFor="let clase of ProfClases">
+            <div class="mx-auto card-clase" style="min-width: 270px; max-width: 300px;">
+                <div class="card-c-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <button style="margin-left: 7px;" *ngIf="selectedRole === 'admin'" (click)="initFormForDeleteClase(clase)" class="btn btn-danger btn-lm" data-bs-toggle="modal" data-bs-target="#eliminarClaseModal">
+                                <i class="fa-solid fa-trash fa-lg"></i>
+                              </button>
+                    </div>
+                    <h4 class="card-c-title">{{ clase.dia }}</h4>
+                    <div>
+                        <button *ngIf="selectedRole === 'admin'" (click)="initFormForEditClase(clase)" data-bs-toggle="modal" data-bs-target="#editClaseModal" class="btn btn-primary btn-lm me-2">
+                            <i class="fa-solid fa-pen-to-square text-white fa-lg"></i>
+                          </button>
+                    </div>
+                </div>
+                <div class="card-c-body text-center">
+                    <p class="card-c-text">{{ clase.nombre }} - {{ clase.horario }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Crear Clase -->
+<div class="modal fade" id="crearClaseModal" tabindex="-1" aria-labelledby="crearClaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editClaseModalLabel">Crear Clase</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para crear -->
+                <form [formGroup]='newclaseForm'>
+                    <div class="mb-3">
+                        <label for="dia" class="form-label">Día</label>
+                        <input type="text" class="form-control" formControlName="dia">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="horario" class="form-label">Horario</label>
+                        <input type="text" class="form-control" formControlName="horario">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="submitClase()"
+                    data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Editar Clase -->
+<div class="modal fade" id="editClaseModal" tabindex="-1" aria-labelledby="editClaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editClaseModalLabel">Editar Clase</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para editar -->
+                <form [formGroup]='claseForm'>
+                    <div class="mb-3">
+                        <label for="dia" class="form-label">Día</label>
+                        <input type="text" class="form-control" formControlName="dia">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="horario" class="form-label">Horario</label>
+                        <input type="text" class="form-control" formControlName="horario">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="editClase()"
+                    data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Eliminar? Clase -->
+<div class="modal" id="eliminarClaseModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar Clase</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar esta Clase?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="borrarClase()"
+                    data-bs-dismiss="modal">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
