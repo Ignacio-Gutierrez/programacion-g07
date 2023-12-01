@@ -15,6 +15,7 @@ import { VistaInicioComponent } from './pages/vista-inicio/vista-inicio.componen
 import { VistaErrorComponent } from './pages/vista-error/vista-error.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClaseComponent } from './components/clase/clase.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     VistaInicioComponent,
     ListaUsuariosComponent,
     VistaErrorComponent,
+    ClaseComponent,
 
   ],
   imports: [
