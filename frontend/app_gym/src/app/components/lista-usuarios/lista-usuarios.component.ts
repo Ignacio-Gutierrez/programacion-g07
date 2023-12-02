@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./lista-usuarios.component.css']
 })
 
-export class ListaUsuariosComponent implements OnInit{
+export class ListaUsuariosComponent implements OnInit {
   newUserForm!: FormGroup;
   editUserForm!: FormGroup;
   arrayUsers: any;
@@ -19,8 +19,8 @@ export class ListaUsuariosComponent implements OnInit{
   perPage: number = 10;
   filtroRol: string = '';
   searchTerm: string = '';
-  
-  actualContraseña: string= ''
+
+  actualContraseña: string = ''
 
   usuarioAEditar: any = {
     dni: null,
@@ -37,24 +37,24 @@ export class ListaUsuariosComponent implements OnInit{
     private usuariosService: UsuariosService,
     private formBuilder: FormBuilder
   ) {
-    
+
     this.newUserForm = this.formBuilder.group({
-      dni: [''],
+      dni: ['', Validators.required],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      telefono: [''],
+      rol: ['', Validators.required],
+    });
+
+    this.editUserForm = this.formBuilder.group({
       nombre: [''],
       apellido: [''],
       email: [''],
       password: [''],
       telefono: [''],
-      rol: [''],
-   });
-
-   this.editUserForm = this.formBuilder.group({
-    nombre: [''],
-    apellido: [''],
-    email: [''],
-    password: [''],
-    telefono: [''],
-   });
+    });
   }
 
   ngOnInit(): void {
@@ -63,23 +63,23 @@ export class ListaUsuariosComponent implements OnInit{
 
   cargarUsuarios() {
     this.usuariosService.getUsers(this.currentPage, this.perPage, this.filtroRol)
-    .subscribe((data: any) => {
-      console.log('JSON data:', data);
-      this.arrayUsers = data.usuarios;
-    });
+      .subscribe((data: any) => {
+        console.log('JSON data:', data);
+        this.arrayUsers = data.usuarios;
+      });
   }
 
   verPerfil(dni: string) {
     const parametrosOcultos = {
       dni: dni
     };
-  
+
     this.router.navigate(['/vPerfil'], { state: parametrosOcultos });
   }
 
   cargarPaginaSiguiente() {
     const nextPage = this.currentPage + 1;
-  
+
     this.usuariosService.getUsers(nextPage, this.perPage, this.filtroRol).subscribe((data: any) => {
       if (data.usuarios && data.usuarios.length > 0) {
         this.currentPage = nextPage;
@@ -89,7 +89,7 @@ export class ListaUsuariosComponent implements OnInit{
       }
     });
   }
-  
+
   cargarPaginaPrevia() {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -101,34 +101,39 @@ export class ListaUsuariosComponent implements OnInit{
     this.filtroRol = rol;
     this.currentPage = 1;
     this.cargarUsuarios();
-}
+  }
   eliminarFiltro() {
     this.filtroRol = '';
     this.currentPage = 1;
-    this.cargarUsuarios(); 
+    this.cargarUsuarios();
   }
 
 
   buscarUsuarios() {
     if (this.searchTerm.length >= 3 || this.filtroRol) {
-        this.usuariosService.searchUsers(this.searchTerm, this.filtroRol).subscribe((data: any) => {
-            this.arrayUsers = data.usuarios;
-        });
+      this.usuariosService.searchUsers(this.searchTerm, this.filtroRol).subscribe((data: any) => {
+        this.arrayUsers = data.usuarios;
+      });
     } else {
-        // Si el término de búsqueda tiene menos de 3 caracteres o no hay filtro de roles, puedes mostrar un mensaje de error o limpiar la lista de usuarios.
-        this.cargarUsuarios();
-    }
-}
-
-  
-  crearUsuario() {
-    this.usuariosService.createUser(this.newUserForm.value).subscribe((data: any) => {
-      // Lógica para manejar la respuesta después de crear el usuario
-      console.log('Usuario creado:', data);
-      // Recargar la lista de usuarios o realizar otra acción necesaria
       this.cargarUsuarios();
-    });
+    }
   }
+
+
+  crearUsuario() {
+    if (this.newUserForm.valid) {
+      this.usuariosService.createUser(this.newUserForm.value).subscribe(
+        (data: any) => {
+          console.log('Usuario creado:', data);
+          this.cargarUsuarios();
+        },
+      );
+    } else {
+      alert('Error al crear usuario. Por favor, complete el formulario correctamente.');
+    }
+  }
+  
+  
 
   saveDni(user: any) {
     this.usuarioAEditar = user;
@@ -141,20 +146,20 @@ export class ListaUsuariosComponent implements OnInit{
       telefono: user.telefono,
     })
   }
-  
+
   editarUsuario() {
     if (this.actualContraseña === this.editUserForm.value.password) {
       delete this.editUserForm.value.password;
     }
-    
+
     this.usuariosService.updateUser(this.usuarioAEditar.dni, this.editUserForm.value).subscribe((data: any) => {
       console.log('Usuario editado:', data);
       this.cargarUsuarios();
     });
   }
-  
-  
-  
+
+
+
   selectedRole = localStorage.getItem('role');
 }
 
