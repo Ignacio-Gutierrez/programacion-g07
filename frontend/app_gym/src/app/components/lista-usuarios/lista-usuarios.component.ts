@@ -44,7 +44,7 @@ export class ListaUsuariosComponent implements OnInit {
       apellido: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      telefono: ['', Validators.pattern(/^[0-9]+$/)],
+      telefono: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       rol: ['', Validators.required],
     });
 
@@ -53,7 +53,7 @@ export class ListaUsuariosComponent implements OnInit {
       apellido: [''],
       email: [''],
       password: [''],
-      telefono: [''],
+      telefono: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
     });
   }
 
