@@ -64,13 +64,15 @@ export class ClaseComponent implements OnInit {
       (userData) => {
         this.UserData = userData;
         console.log('UserData: ', this.UserData);
-      }
-    )
-
-    this.claseService.getClaseProfesor(this.perfilDni).subscribe(
-      (profClase) => {
-        this.ProfClases = profClase;
-      }
+        if (this.UserData.rol === 'admin' || this.UserData.rol === 'profesor') {
+          this.claseService.getClaseProfesor(this.perfilDni).subscribe(
+            (profClase) => {
+              this.ProfClases = profClase;
+            }
+          );
+        } else {
+          console.log("No tienes permisos para ejecutar esta función");
+        }}
     )
   }
 
