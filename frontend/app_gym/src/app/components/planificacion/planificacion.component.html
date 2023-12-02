@@ -104,50 +104,50 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editarPlanificacionModalLabel">
-                    {{ UserPlanif && UserPlanif.length > 0 ? 'Editar Planificación' : 'Crear Planificación' }}
+                    Editar Planificación' : 'Crear Planificación
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Formulario para cargar una nueva planificación -->
-                <form #planificacionForm="ngForm">
+                <form [formGroup]="planifForm">
                     <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="planificacionData.descripcion">
+                      <label for="descripcion" class="form-label">Descripción</label>
+                      <input type="text" class="form-control" formControlName="descripcion">
                     </div>
                     <div class="mb-3">
-                        <label for="fecha" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="fecha" name="fecha" [(ngModel)]="planificacionData.fecha">
+                      <label for="fecha" class="form-label">Fecha</label>
+                      <input type="date" class="form-control" formControlName="fecha">
                     </div>
                     <div class="mb-3">
-                        <label for="lunes" class="form-label">Lunes</label>
-                        <input type="text" class="form-control" id="lunes" name="lunes" [(ngModel)]="planificacionData.lunes">
+                      <label for="lunes" class="form-label">Lunes</label>
+                      <input type="text" class="form-control" formControlName="lunes">
                     </div>
                     <div class="mb-3">
-                        <label for="martes" class="form-label">Martes</label>
-                        <input type="text" class="form-control" id="martes" name="martes" [(ngModel)]="planificacionData.martes">
+                      <label for="martes" class="form-label">Martes</label>
+                      <input type="text" class="form-control" formControlName="martes">
                     </div>
                     <div class="mb-3">
-                        <label for="miercoles" class="form-label">Miércoles</label>
-                        <input type="text" class="form-control" id="miercoles" name="miercoles" [(ngModel)]="planificacionData.miercoles">
+                      <label for="miercoles" class="form-label">Miércoles</label>
+                      <input type="text" class="form-control" formControlName="miercoles">
                     </div>
                     <div class="mb-3">
-                        <label for="jueves" class="form-label">Jueves</label>
-                        <input type="text" class="form-control" id="jueves" name="jueves" [(ngModel)]="planificacionData.jueves">
+                      <label for="jueves" class="form-label">Jueves</label>
+                      <input type="text" class="form-control" formControlName="jueves">
                     </div>
                     <div class="mb-3">
-                        <label for="viernes" class="form-label">Viernes</label>
-                        <input type="text" class="form-control" id="viernes" name="viernes" [(ngModel)]="planificacionData.viernes">
+                      <label for="viernes" class="form-label">Viernes</label>
+                      <input type="text" class="form-control"  formControlName="viernes">
                     </div>
                     <div class="mb-3">
-                        <label for="sabado" class="form-label">Sábado</label>
-                        <input type="text" class="form-control" id="sabado" name="sabado" [(ngModel)]="planificacionData.sabado">
+                      <label for="sabado" class="form-label">Sábado</label>
+                      <input type="text" class="form-control" formControlName="sabado">
                     </div>
-                </form>
+                  </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-success" (click)="planificacionForm.form.valid && crearPlanificacion()" data-bs-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="crearPlanificacion()" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
