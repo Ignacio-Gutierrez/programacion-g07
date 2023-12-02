@@ -148,4 +148,12 @@ export class UsuariosService {
     return this.httpClient.put(this.url + '/usuario_p/' + dni, userData, { headers: headers });
   }
 
+  getAllProf(): Observable<any> {
+    let auth_token=localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`   
+    });
+      return this.httpClient.get<any>(this.url + '/usuarios_p', {headers: headers});
+  }
 }
