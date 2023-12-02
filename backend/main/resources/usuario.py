@@ -197,48 +197,19 @@ class UsuariosProfesores(Resource):
 
     @jwt_required(optional=True)
     def get(self):
-        page = 1
-        per_page = 10
-        
-        usuarios_p = db.session.query(ProfesorModel)
-        
-        if request.args.get('page'):
-            page = int(request.args.get('page'))
-        if request.args.get('per_page'):
-            per_page = int(request.args.get('per_page'))
-        
-        ### FILTROS ###
-        if request.args.get('nrPlanificaciones'):
-            usuarios_p=usuarios_p.outerjoin(ProfesorModel.planificaciones).group_by(ProfesorModel.id).having(func.count(PlanificacionModel.id) >= int(request.args.get('nrPlanificaciones')))
-        
-        #Busqueda por name
-        if request.args.get('nombre'):
-            usuarios_p=usuarios_p.filter(ProfesorModel.nombre.like("%"+request.args.get('nombre')+"%"))
-        #Ordeno por name
-        if request.args.get('sortby_nombre'):
-            usuarios_p=usuarios_p.order_by(desc(ProfesorModel.nombre))
+            usuarios_p = db.session.query(ProfesorModel).all()
+            resultados = []
 
-        #Busqueda por apellido
-        if request.args.get('apellido'):
-            usuarios_p=usuarios_p.filter(ProfesorModel.apellido.like("%"+request.args.get('apellido')+"%"))
-        #Ordeno por apellido
-        if request.args.get('sortby_apellido'):
-            usuarios_p=usuarios_p.order_by(desc(ProfesorModel.apellido))
-            
-        #Ordeno por id de Planificacion
-        if request.args.get('sortby_nrPlanificaciones'):
-            usuarios_p=usuarios_p.outerjoin(ProfesorModel.Planificaciones).group_by(ProfesorModel.id).order_by(func.count(PlanificacionModel.id).desc())
-        
-        ### FIN FILTROS ####
-        
-        #Obtener valor paginado
-        usuarios_p = usuarios_p.paginate(page=page, per_page=per_page, error_out=True, max_per_page=30)
-
-        return jsonify({'usuarios': [usuario_p.to_json() for usuario_p in usuarios_p],
-                  'total': usuarios_p.total,
-                  'pages': usuarios_p.pages,
-                  'page': page
-                })
+            for usuario_p in usuarios_p:
+                nombre = usuario_p.usuario.nombre if usuario_p.usuario else None
+                resultado = {
+                    'dni': usuario_p.dni,
+                    'especialidad': usuario_p.especialidad,
+                    'nombre': nombre
+                }
+                resultados.append(resultado)
+            return jsonify(resultados)
+    
 
     @role_required(roles=["admin"])
     def post(self):
