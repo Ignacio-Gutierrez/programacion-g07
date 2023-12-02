@@ -1,14 +1,19 @@
 <!-- Tabla de planificación -->
 
+<pre>{{allProf |json}}</pre>
+<div>{{ planifForm.value.profesor_dni | json }}</div>
+<pre>{{ planifForm.value | json }}</pre>
 <div class="container mt-5" style="margin-bottom: 50px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
             <div class="rounded-box" style="margin-bottom: 25px;">
-                
+
                 <div class="d-flex align-items-center justify-content-center titulo-edit-alumno">
                     <h1 style="margin-top: 15px; padding-right: 50px;">Planificación</h1>
-                    <button *ngIf="selectedRole === 'admin' || selectedRole === 'profesor'" data-bs-toggle="modal" data-bs-target="#editarPlanificacion" class="btn btn-primary btn-lm me-2"><i class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
+                    <button *ngIf="selectedRole === 'admin' || selectedRole === 'profesor'" data-bs-toggle="modal"
+                        data-bs-target="#editarPlanificacion" class="btn btn-primary btn-lm me-2"><i
+                            class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
                 </div>
 
                 <div class="col-md-6" *ngIf="UserPlanif && UserPlanif.length > 0">
@@ -18,14 +23,20 @@
                     <h5>Fecha</h5>
                     <h2>{{ UserPlanif[0]?.fecha }}</h2>
                     <hr>
-                    
+
                 </div>
-                <div style="display: flex; align-items: center; justify-content: flex-end;">
-                    <button class="btn btn-primary btn-lm" (click)="verPerfil(perfilDni)">
-                        <i class="fa-solid fa-left-long fa-lg"></i>
-                    </button>
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-lm" data-bs-toggle="modal"
+                            data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary btn-lm" (click)="verPerfil(perfilDni)">
+                            <i class="fa-solid fa-left-long fa-lg"></i>
+                        </button>
+                    </div>
                 </div>
-                
+
             </div>
             <div>
                 <div class="container" style="margin-bottom: 50px;">
@@ -99,12 +110,13 @@
 
 
 <!-- Modal para agregar nueva planificación -->
-<div class="modal fade" id="editarPlanificacion" tabindex="-1" aria-labelledby="editarPlanificacionModalLabel" aria-hidden="true">
+<div class="modal fade" id="editarPlanificacion" tabindex="-1" aria-labelledby="editarPlanificacionModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editarPlanificacionModalLabel">
-                    Editar Planificación' : 'Crear Planificación
+                    {{ shouldEditPlanif() ? 'Editar Planificación' : 'Crear Planificación' }}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -112,42 +124,73 @@
                 <!-- Formulario para cargar una nueva planificación -->
                 <form [formGroup]="planifForm">
                     <div class="mb-3">
-                      <label for="descripcion" class="form-label">Descripción</label>
-                      <input type="text" class="form-control" formControlName="descripcion">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" formControlName="descripcion">
                     </div>
                     <div class="mb-3">
-                      <label for="fecha" class="form-label">Fecha</label>
-                      <input type="date" class="form-control" formControlName="fecha">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" formControlName="fecha">
                     </div>
                     <div class="mb-3">
-                      <label for="lunes" class="form-label">Lunes</label>
-                      <input type="text" class="form-control" formControlName="lunes">
+                        <label for="lunes" class="form-label">Lunes</label>
+                        <input type="text" class="form-control" formControlName="lunes">
                     </div>
                     <div class="mb-3">
-                      <label for="martes" class="form-label">Martes</label>
-                      <input type="text" class="form-control" formControlName="martes">
+                        <label for="martes" class="form-label">Martes</label>
+                        <input type="text" class="form-control" formControlName="martes">
                     </div>
                     <div class="mb-3">
-                      <label for="miercoles" class="form-label">Miércoles</label>
-                      <input type="text" class="form-control" formControlName="miercoles">
+                        <label for="miercoles" class="form-label">Miércoles</label>
+                        <input type="text" class="form-control" formControlName="miercoles">
                     </div>
                     <div class="mb-3">
-                      <label for="jueves" class="form-label">Jueves</label>
-                      <input type="text" class="form-control" formControlName="jueves">
+                        <label for="jueves" class="form-label">Jueves</label>
+                        <input type="text" class="form-control" formControlName="jueves">
                     </div>
                     <div class="mb-3">
-                      <label for="viernes" class="form-label">Viernes</label>
-                      <input type="text" class="form-control"  formControlName="viernes">
+                        <label for="viernes" class="form-label">Viernes</label>
+                        <input type="text" class="form-control" formControlName="viernes">
                     </div>
                     <div class="mb-3">
-                      <label for="sabado" class="form-label">Sábado</label>
-                      <input type="text" class="form-control" formControlName="sabado">
+                        <label for="sabado" class="form-label">Sábado</label>
+                        <input type="text" class="form-control" formControlName="sabado">
                     </div>
-                  </form>
+                    <div *ngIf="!shouldEditPlanif()">
+                        <label for="nombre" class="form-label" >Profesor</label>
+                    </div>
+                    <div class="btn-group d-flex justify-content-center" style="margin-bottom: 15px;" role="group" aria-label="Basic radio toggle button group" *ngIf="!shouldEditPlanif()">
+                        <ng-container *ngFor="let prof of allProf">
+                            <input type="radio" class="btn-check" name="btnradio" formControlName="profesor_dni" [value]="prof.dni" [id]="'btnradio' + prof.dni">
+                            <label class="btn btn-outline-primary" [for]="'btnradio' + prof.dni">{{ prof.nombre }}</label>
+                        </ng-container>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-success" (click)="crearPlanificacion()" data-bs-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="submit()"
+                    data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Eliminar? Planifiación -->
+<div class="modal" id="eliminarModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eliminar Planificación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro que desea eliminar esta Planificación?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="borrarPlanifiacacion()"
+                    data-bs-dismiss="modal">Eliminar</button>
             </div>
         </div>
     </div>
