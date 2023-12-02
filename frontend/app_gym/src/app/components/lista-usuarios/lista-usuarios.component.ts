@@ -1,7 +1,9 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -9,7 +11,8 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   styleUrls: ['./lista-usuarios.component.css']
 })
 
-export class ListaUsuariosComponent {
+export class ListaUsuariosComponent implements OnInit{
+  newUserForm!: FormGroup
   arrayUsers: any;
   currentPage: number = 1;
   perPage: number = 10;
@@ -30,24 +33,27 @@ export class ListaUsuariosComponent {
 
   constructor(
     private router: Router,
-    private usuariosService: UsuariosService
-  ) {}
+    private usuariosService: UsuariosService,
+    private formBuilder: FormBuilder
+  ) {
+    
+    this.newUserForm = this.formBuilder.group({
+      dni: [''],
+      nombre: [''],
+      apellido: [''],
+      email: [''],
+      password: [''],
+      telefono: [''],
+   });
+  }
 
-  newUser: any = {
-    dni: null,
-    nombre: '',
-    apellido: '',
-    email: '',
-    password: '',
-    telefono: null,
-  };
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.cargarUsuarios();
   }
 
   cargarUsuarios() {
-    this.usuariosService.getUsers(this.currentPage, this.perPage, this.filtroRol).subscribe((data: any) => {
+    this.usuariosService.getUsers(this.currentPage, this.perPage, this.filtroRol)
+    .subscribe((data: any) => {
       console.log('JSON data:', data);
       this.arrayUsers = data.usuarios;
     });
@@ -106,7 +112,7 @@ export class ListaUsuariosComponent {
 
   
   crearUsuario() {
-    this.usuariosService.createUser(this.newUser).subscribe((data: any) => {
+    this.usuariosService.createUser(this.newUserForm.value).subscribe((data: any) => {
       // Lógica para manejar la respuesta después de crear el usuario
       console.log('Usuario creado:', data);
       // Recargar la lista de usuarios o realizar otra acción necesaria

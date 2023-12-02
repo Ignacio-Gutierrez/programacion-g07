@@ -37,6 +37,15 @@
     </div>
 </div>
 
+<!-- Botones de Navegación -->
+<nav aria-label="Page navigation example" class="nav-bar-num">
+    <ul class="pagination">
+        <li class="page-item custom-hover-cursor"><a class="page-link" (click)="cargarPaginaPrevia()" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        <li class="page-item"><a class="page-link">{{currentPage}}</a></li>
+        <li class="page-item custom-hover-cursor"><a class="page-link" (click)="cargarPaginaSiguiente()" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+</nav>
+
 <!-- Modal para agregar nuevo usuario -->
 <div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" aria-labelledby="nuevoUsuarioModalLabel"
     aria-hidden="true">
@@ -47,44 +56,46 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Formulario para cargar un nuevo usuario -->
-                <form>
+                <!-- Formulario para crear un nuevo usuario -->
+                <form [formGroup]="newUserForm">
                     <div>
-                        <label for="nombre" class="form-label">Rol</label>
+                      <label for="nombre" class="form-label">Rol</label>
                     </div>
                     <div class="btn-group d-flex justify-content-center" style="margin-bottom: 15px;" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" [(ngModel)]="newUser.rol" value="admin">
+                        
+                        <input type="radio" class="btn-check" name="btnradio" formControlName="rol" value="admin" id="btnradio1">
                         <label class="btn btn-outline-primary" for="btnradio1">Admin</label>
                         
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" [(ngModel)]="newUser.rol" value="profesor">
+                        <input type="radio" class="btn-check" name="btnradio" formControlName="rol" value="profesor" id="btnradio2">
                         <label class="btn btn-outline-primary" for="btnradio2">Profesor</label>
                         
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" [(ngModel)]="newUser.rol" value="user">
+                        <input type="radio" class="btn-check" name="btnradio" formControlName="rol" value="user" id="btnradio3">
                         <label class="btn btn-outline-primary" for="btnradio3">Alumno</label>
+                        
                     </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre">
+                        <input type="text" class="form-control" formControlName="nombre">
                     </div>
                     <div class="mb-3">
                         <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="newUser.apellido">
+                        <input type="text" class="form-control" formControlName="apellido">
                     </div>
                     <div class="mb-3">
                         <label for="dni" class="form-label">DNI</label>
-                        <input type="number" class="form-control" id="dni" name="dni" [(ngModel)]="newUser.dni">
+                        <input type="number" class="form-control" formControlName="dni">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="newUser.email">
+                        <input type="email" class="form-control" formControlName="email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="newUser.password">
+                        <input type="password" class="form-control" formControlName="password">
                     </div>
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="newUser.telefono">
+                        <input type="number" class="form-control" formControlName="telefono">
                     </div>
                 </form>
             </div>
@@ -95,7 +106,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Modal para editar usuario -->
 <div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel"
@@ -140,11 +150,3 @@
 </div>
 
 
-<!-- Botones de Navegación -->
-<nav aria-label="Page navigation example" class="nav-bar-num">
-    <ul class="pagination">
-        <li class="page-item custom-hover-cursor"><a class="page-link" (click)="cargarPaginaPrevia()" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-        <li class="page-item"><a class="page-link">{{currentPage}}</a></li>
-        <li class="page-item custom-hover-cursor"><a class="page-link" (click)="cargarPaginaSiguiente()" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-    </ul>
-</nav>
