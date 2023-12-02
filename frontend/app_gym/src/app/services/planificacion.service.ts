@@ -36,4 +36,13 @@ export class PlanificacionService {
     });
     return this.httpClient.put(this.url + '/planificacion/' + id, planificacionData, { headers: headers });
   }
+
+  deletePlanif(id: number) {
+    const auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.httpClient.delete(this.url + '/planificacion/' + id, { headers: headers });
+  }
 }
