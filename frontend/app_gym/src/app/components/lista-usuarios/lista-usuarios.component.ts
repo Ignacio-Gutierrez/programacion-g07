@@ -12,7 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class ListaUsuariosComponent implements OnInit{
-  newUserForm!: FormGroup
+  newUserForm!: FormGroup;
+  editUserForm!: FormGroup;
   arrayUsers: any;
   currentPage: number = 1;
   perPage: number = 10;
@@ -44,6 +45,14 @@ export class ListaUsuariosComponent implements OnInit{
       email: [''],
       password: [''],
       telefono: [''],
+   });
+
+   this.editUserForm = this.formBuilder.group({
+    nombre: [''],
+    apellido: [''],
+    email: [''],
+    password: [''],
+    telefono: [''],
    });
   }
 
@@ -123,14 +132,21 @@ export class ListaUsuariosComponent implements OnInit{
   saveDni(user: any) {
     this.usuarioAEditar = user;
     this.actualContraseña = user.password;
+    this.editUserForm.setValue({
+      nombre: user.nombre,
+      apellido: user.apellido,
+      email: user.email,
+      password: user.password,
+      telefono: user.telefono,
+    })
   }
   
   editarUsuario() {
-    if (this.actualContraseña === this.usuarioAEditar.password) {
-      delete this.usuarioAEditar.password;
+    if (this.actualContraseña === this.editUserForm.value.password) {
+      delete this.editUserForm.value.password;
     }
     
-    this.usuariosService.updateUser(this.usuarioAEditar.dni, this.usuarioAEditar).subscribe((data: any) => {
+    this.usuariosService.updateUser(this.usuarioAEditar.dni, this.editUserForm.value).subscribe((data: any) => {
       console.log('Usuario editado:', data);
       this.cargarUsuarios();
     });

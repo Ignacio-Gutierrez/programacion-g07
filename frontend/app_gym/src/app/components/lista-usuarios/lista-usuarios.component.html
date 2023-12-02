@@ -118,26 +118,26 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario para editar un usuario -->
-                <form>
+                <form [formGroup]="editUserForm">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="usuarioAEditar.nombre">
+                        <input type="text" class="form-control" formControlName="nombre">
                     </div>
                     <div class="mb-3">
                         <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="usuarioAEditar.apellido">
+                        <input type="text" class="form-control" formControlName="apellido">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="usuarioAEditar.email">
+                        <input type="email" class="form-control" formControlName="email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="usuarioAEditar.password">
+                        <input type="password" class="form-control" formControlName="password">
                     </div>
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="usuarioAEditar.telefono">
+                        <input type="number" class="form-control" formControlName="telefono">
                     </div>
                 </form>
             </div>
