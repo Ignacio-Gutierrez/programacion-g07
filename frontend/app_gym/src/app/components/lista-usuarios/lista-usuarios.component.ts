@@ -45,6 +45,7 @@ export class ListaUsuariosComponent implements OnInit{
       email: [''],
       password: [''],
       telefono: [''],
+      rol: [''],
    });
 
    this.editUserForm = this.formBuilder.group({
