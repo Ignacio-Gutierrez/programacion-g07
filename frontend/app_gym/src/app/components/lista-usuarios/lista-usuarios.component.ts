@@ -24,12 +24,12 @@ export class ListaUsuariosComponent implements OnInit {
 
   usuarioAEditar: any = {
     dni: null,
-    nombre: '',
-    apellido: '',
-    email: '',
-    password: '',
+    nombre: null,
+    apellido: null,
+    email: null,
+    password: null,
     telefono: null,
-    rol: '',
+    rol: null,
   };
 
   constructor(
@@ -39,12 +39,12 @@ export class ListaUsuariosComponent implements OnInit {
   ) {
 
     this.newUserForm = this.formBuilder.group({
-      dni: ['', Validators.required],
+      dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      telefono: [''],
+      telefono: ['', Validators.pattern(/^[0-9]+$/)],
       rol: ['', Validators.required],
     });
 
@@ -132,8 +132,6 @@ export class ListaUsuariosComponent implements OnInit {
       alert('Error al crear usuario. Por favor, complete el formulario correctamente.');
     }
   }
-  
-  
 
   saveDni(user: any) {
     this.usuarioAEditar = user;
