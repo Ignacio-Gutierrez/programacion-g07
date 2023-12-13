@@ -91,7 +91,10 @@ class Usuarios(Resource):
 
 
         ### FIN FILTROS ####
-        
+    
+        # Ordenar por nombre alfabéticamente
+        usuarios = usuarios.order_by(UsuarioModel.nombre)
+
         #Obtener valor paginado
         usuarios = usuarios.paginate(page=page, per_page=per_page, error_out=True, max_per_page=30)
 
