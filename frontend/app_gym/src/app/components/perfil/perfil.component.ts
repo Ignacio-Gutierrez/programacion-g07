@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  profileForm!: FormGroup 
+  profileForm!: FormGroup
   selectedRole = localStorage.getItem('role');
 
   UserData: any = {
@@ -19,7 +19,7 @@ export class PerfilComponent implements OnInit {
     "apellido": null,
     "dni": null,
     "rol": null
-    };
+  };
 
   AlumData: any = {
     "dni": null,
@@ -27,7 +27,7 @@ export class PerfilComponent implements OnInit {
     "peso": null,
     "altura": null,
     "sexo": null,
-    };
+  };
 
   newAlumData: any = {
     "dni": null,
@@ -35,17 +35,17 @@ export class PerfilComponent implements OnInit {
     "peso": null,
     "altura": null,
     "sexo": null,
-    };
+  };
 
   ProfData: any = {
     "dni": null,
     "especialidad": null,
-    };
+  };
 
   newProfData: any = {
     "dni": null,
     "especialidad": null,
-    };
+  };
 
   private perfilDni: any;
   private parametrosOcultos: any;
@@ -67,7 +67,7 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
     const userDNI = this.usuariosService.getUserDNIFromToken();
     this.parametrosOcultos = history.state;
 
@@ -114,7 +114,7 @@ export class PerfilComponent implements OnInit {
                   "peso": this.AlumData.peso,
                   "altura": this.AlumData.altura,
                   "sexo": this.AlumData.sexo,
-                  };
+                };
 
                 this.profileForm = this.formBuilder.group({
                   dni: [this.perfilDni, Validators.required],
@@ -136,13 +136,13 @@ export class PerfilComponent implements OnInit {
                 this.newProfData = {
                   "dni": this.ProfData.dni,
                   "especialidad": this.ProfData.especialidad,
-                  };
+                };
 
                 this.profileForm = this.formBuilder.group({
                   dni: [this.perfilDni, Validators.required],
                   especialidad: [this.ProfData.especialidad, Validators.required],
-       
-                  })
+
+                })
               },
               (profError) => {
                 console.error('Error fetching ProfData: ', profError);
@@ -158,7 +158,7 @@ export class PerfilComponent implements OnInit {
       console.error('No se pudo obtener el DNI del token.');
     }
   }
-  
+
   borrarUsuario() {
     if (this.perfilDni) {
       this.usuariosService.deleteUser(this.perfilDni).subscribe(
@@ -172,29 +172,29 @@ export class PerfilComponent implements OnInit {
       );
     }
   }
-  
-  crearAlumno(dataAlum:any = {} ){
+
+  crearAlumno(dataAlum: any = {}) {
     this.usuariosService.createUserAlum(dataAlum).subscribe(
       (response) => {
         console.log('Alumno creado con éxito', response);
       },
     );
   }
-  crearProfesor(dataProf:any = {} ){
+  crearProfesor(dataProf: any = {}) {
     this.usuariosService.createUserProf(dataProf).subscribe(
       (response) => {
         console.log('Profesor creado con éxito', response);
       },
     );
   }
-  editarAlumno(dataAlum:any = {} ){
+  editarAlumno(dataAlum: any = {}) {
     this.usuariosService.updateUserAlum(this.perfilDni, dataAlum).subscribe(
       (response) => {
         console.log('Alumno actualizado con éxito', response);
       }
     );
   }
-  editarProfesor(dataProf:any = {} ){
+  editarProfesor(dataProf: any = {}) {
     this.usuariosService.updateUserProf(this.perfilDni, dataProf).subscribe(
       (response) => {
         console.log('Profesor actualizado con éxito', response);
@@ -206,7 +206,7 @@ export class PerfilComponent implements OnInit {
     if (this.profileForm.valid) {
       if (this.UserData.rol === 'user') {
         console.log("Datos alumno:", this.profileForm.value);
-  
+
         this.usuariosService.getUserAlum(this.perfilDni).subscribe(
           (alumData) => {
             this.editarAlumno(this.profileForm.value);
@@ -235,7 +235,7 @@ export class PerfilComponent implements OnInit {
       alert('Formulario inválido');
     }
   }
-  
+
   shouldEditUser(): boolean {
     if (this.UserData.rol === 'user') {
       return this.AlumData !== null && Object.values(this.AlumData).some((value) => value !== null && value !== '');
@@ -246,11 +246,18 @@ export class PerfilComponent implements OnInit {
     }
   }
 
+
   verPlanif(dni: string) {
-    const parametrosOcultos = {
-      dni: dni
-    };
-  
-    this.router.navigate(['/vPlanif'], { state: parametrosOcultos });;
+    if (this.AlumData !== null && Object.values(this.AlumData).some((value) => value !== null && value !== '')) {
+      const parametrosOcultos = {
+        dni: dni
+      };
+
+      this.router.navigate(['/vPlanif'], { state: parametrosOcultos });
+
+    } else {
+      alert("Complete los datos del alumno")
+
+    }
   }
 }

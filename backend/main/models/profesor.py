@@ -11,7 +11,7 @@ class Profesor(db.Model):
     dni = db.Column(db.Integer, db.ForeignKey(UsuarioModel.dni), primary_key=True)
     especialidad = db.Column(db.String(100), nullable=False)
 
-    clases = db.relationship('Clase', secondary=procla, backref=db.backref('profesores', lazy='dynamic'))
+    clases = db.relationship('Clase', secondary=procla, backref=db.backref('profesores', lazy='dynamic'),cascade="all")
     
     usuario = db.relationship("Usuario", uselist=False, back_populates="profesor",cascade="all, delete-orphan",single_parent=True)
     
