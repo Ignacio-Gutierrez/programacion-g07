@@ -56,7 +56,28 @@
                 <form [formGroup]='newclaseForm'>
                     <div class="mb-3">
                         <label for="dia" class="form-label">Día</label>
-                        <input type="text" class="form-control" formControlName="dia">
+                        <div class="btn-group d-flex justify-content-center" style="margin-bottom: 15px;" role="group" aria-label="Basic radio toggle button group">
+                        
+                            <input type="radio" class="btn-check" name="dia" formControlName="dia"  value="Lunes" id="btnradio1">
+                            <label class="btn btn-outline-primary" for="btnradio1">Lunes</label>
+                            
+                            <input type="radio" class="btn-check" name="dia" formControlName="dia"  value="Martes" id="btnradio2">
+                            <label class="btn btn-outline-primary" for="btnradio2">Martes</label>
+                            
+                            <input type="radio" class="btn-check" name="dia" formControlName="dia"  value="Miércoles" id="btnradio3">
+                            <label class="btn btn-outline-primary" for="btnradio3">Miércoles</label>
+
+                            <input type="radio" class="btn-check" name="dia" formControlName="dia"  value="Jueves" id="btnradio4">
+                            <label class="btn btn-outline-primary" for="btnradio4">Jueves</label>
+                            
+                            <input type="radio" class="btn-check" name="dia" formControlName="dia" value="Viernes" id="btnradio5">
+                            <label class="btn btn-outline-primary" for="btnradio5">Viernes</label>
+                            
+                            <input type="radio" class="btn-check" name="dia" formControlName="dia" value="Sábado" id="btnradio6">
+                            <label class="btn btn-outline-primary" for="btnradio6">Sábado</label>
+
+                            
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>

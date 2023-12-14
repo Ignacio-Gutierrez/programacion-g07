@@ -1,0 +1,18 @@
+.btn-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  
+  .btn-check,
+  .btn {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  
+  .btn-group .btn {
+    min-width: 90px;
+    max-width: 90px;
+    border-radius: 5px;
+  }
+  

@@ -24,7 +24,8 @@ export class ClaseComponent implements OnInit {
     "rol": null
   };
 
-  ProfClases: any
+  ProfClases: any;
+  ProfData: boolean = false;
 
   private perfilDni: any;
   private parametrosOcultos: any;
@@ -124,8 +125,22 @@ export class ClaseComponent implements OnInit {
 
 
 submitClase() {
-  if (this.newclaseForm.valid) {
-    if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
+  try {
+    this.usuariosService.getUserProf(this.perfilDni);
+  
+  
+  } catch (error) {
+    if (error === 404) {
+
+      this.ProfData = true;
+    } else {
+      this.ProfData = false;
+
+    }
+  }
+  
+  if (this.newclaseForm.valid && this.ProfData === true) {
+    if (this.UserData.rol === 'profesor') {
       this.newclaseForm.value.profesores = this.perfilDni
       this.crearClase(this.newclaseForm.value);
       window.location.reload();
