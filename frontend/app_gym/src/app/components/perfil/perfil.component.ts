@@ -213,10 +213,14 @@ export class PerfilComponent implements OnInit {
             window.location.reload();
           },
           (alumError) => {
+            if (this.AlumData !== null && Object.values(this.AlumData).some((value) => value !== null && value !== '')) {
             this.profileForm.value.dni = this.perfilDni
             this.crearAlumno(this.profileForm.value);
             window.location.reload();
+          } else {
+            alert("Complete el formulario de alumno");
           }
+        }
         );
       } else if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
         this.usuariosService.getUserProf(this.perfilDni).subscribe(
