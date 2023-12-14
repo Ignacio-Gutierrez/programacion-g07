@@ -4,7 +4,7 @@
             <div class="rounded-box">
                 <div class="d-flex align-items-center justify-content-center titulo-edit-alumno">
                     <h1 style="margin-top: 15px; padding-right: 60px;">{{UserData.nombre}} {{UserData.apellido}}</h1>
-                    <button *ngIf="selectedRole === 'admin'" data-bs-toggle="modal" data-bs-target="#editUsuarioModal"
+                    <button *ngIf="selectedRole === 'admin' && UserData.rol !== 'admin'" data-bs-toggle="modal" data-bs-target="#editUsuarioModal"
                         class="btn btn-primary btn-lm me-2"><i
                             class="fa-solid fa-pen-to-square text-white fa-lg"></i></button>
                 </div>
