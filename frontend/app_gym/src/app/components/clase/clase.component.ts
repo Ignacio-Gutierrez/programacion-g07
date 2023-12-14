@@ -119,15 +119,11 @@ export class ClaseComponent implements OnInit {
 submitClase() {
   try {
     this.usuariosService.getUserProf(this.perfilDni);
-  
-  
   } catch (error) {
     if (error === 404) {
-
       this.ProfData = true;
     } else {
       this.ProfData = false;
-
     }
   }
   
