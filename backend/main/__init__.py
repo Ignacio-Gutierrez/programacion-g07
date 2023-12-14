@@ -32,9 +32,6 @@ def create_app():
     #Importar directorio de recursos
     import main.resources as resources
 
-    from main.resources.clases import ClasesPorProfesor
-
-
     api.add_resource(resources.UsuariosResource,"/usuarios")
 
     api.add_resource(resources.UsuarioResource, "/usuario/<dni>")
@@ -65,7 +62,7 @@ def create_app():
 
     api.add_resource(resources.PermisoResource,"/permiso/<id>")
 
-    api.add_resource(ClasesPorProfesor, '/clases_por_profesor/<dni_profesor>')
+    api.add_resource(resources.ClasesPorProfesorResource, '/clases_por_profesor/<dni_profesor>')
 
     api.init_app(app)
 
