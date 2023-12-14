@@ -85,13 +85,13 @@ export class UsuariosService {
   }
 
     
-  createUser(userData: any) {
+  registerUser(userData: any) {
     const auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.httpClient.post(this.url + '/usuarios', userData, { headers: headers });
+    return this.httpClient.post(this.url + '/auth/register', userData, { headers: headers });
   }
 
   updateUser(dni: number, userData: any) {

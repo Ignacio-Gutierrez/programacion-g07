@@ -122,7 +122,7 @@ export class ListaUsuariosComponent implements OnInit {
 
   crearUsuario() {
     if (this.newUserForm.valid) {
-      this.usuariosService.createUser(this.newUserForm.value).subscribe(
+      this.usuariosService.registerUser(this.newUserForm.value).subscribe(
         (data: any) => {
           console.log('Usuario creado:', data);
           this.cargarUsuarios();
