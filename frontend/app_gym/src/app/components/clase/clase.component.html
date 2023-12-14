@@ -22,14 +22,14 @@
                 <div class="card-c-header d-flex justify-content-between align-items-center">
                     <div>
                         <button style="margin-left: 7px;" *ngIf="selectedRole === 'admin'"
-                            (click)="initFormForDeleteClase(clase)" class="btn btn-danger btn-lm" data-bs-toggle="modal"
+                            (click)="initFormForUseClase(clase)" class="btn btn-danger btn-lm" data-bs-toggle="modal"
                             data-bs-target="#eliminarClaseModal">
                             <i class="fa-solid fa-trash fa-lg"></i>
                         </button>
                     </div>
                     <h4 class="card-c-title">{{ clase.dia }}</h4>
                     <div>
-                        <button *ngIf="selectedRole === 'admin'" (click)="initFormForEditClase(clase)"
+                        <button *ngIf="selectedRole === 'admin'" (click)="initFormForUseClase(clase)"
                             data-bs-toggle="modal" data-bs-target="#editClaseModal" class="btn btn-primary btn-lm me-2">
                             <i class="fa-solid fa-pen-to-square text-white fa-lg"></i>
                         </button>

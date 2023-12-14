@@ -87,15 +87,7 @@ export class ClaseComponent implements OnInit {
     );
   }
 
-  initFormForEditClase(clase: any) {
-    this.claseForm.setValue({
-      nombre: clase.nombre,
-      dia: clase.dia,
-      horario: clase.horario,
-      id: clase.id
-    });
-  }
-  initFormForDeleteClase(clase: any) {
+  initFormForUseClase(clase: any) {
     this.claseForm.setValue({
       nombre: clase.nombre,
       dia: clase.dia,
