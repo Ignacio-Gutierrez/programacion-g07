@@ -120,39 +120,83 @@
                 <!-- Formulario para cargar una nueva planificación -->
                 <form [formGroup]="planifForm">
                     <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" formControlName="descripcion">
+                        <label for="descripcion" class="form-label">Descripción <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="descripcion" 
+                               [class.is-invalid]="planifForm.get('descripcion')?.invalid && planifForm.get('descripcion')?.touched"
+                               placeholder="Ingrese una descripción de la planificación">
+                        <div class="invalid-feedback" *ngIf="planifForm.get('descripcion')?.invalid && planifForm.get('descripcion')?.touched">
+                            <div *ngIf="planifForm.get('descripcion')?.errors?.['required']">La descripción es requerida</div>
+                            <div *ngIf="planifForm.get('descripcion')?.errors?.['minlength']">La descripción debe tener al menos 3 caracteres</div>
+                            <div *ngIf="planifForm.get('descripcion')?.errors?.['maxlength']">La descripción no puede exceder 200 caracteres</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="fecha" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" formControlName="fecha">
+                        <label for="fecha" class="form-label">Fecha <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" formControlName="fecha"
+                               [class.is-invalid]="planifForm.get('fecha')?.invalid && planifForm.get('fecha')?.touched">
+                        <div class="invalid-feedback" *ngIf="planifForm.get('fecha')?.invalid && planifForm.get('fecha')?.touched">
+                            <div *ngIf="planifForm.get('fecha')?.errors?.['required']">La fecha es requerida</div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="lunes" class="form-label">Lunes</label>
-                        <input type="text" class="form-control" formControlName="lunes">
+                        <input type="text" class="form-control" formControlName="lunes" 
+                               [class.is-invalid]="planifForm.get('lunes')?.invalid && planifForm.get('lunes')?.touched"
+                               placeholder="Ejercicios para el lunes">
+                        <div class="invalid-feedback" *ngIf="planifForm.get('lunes')?.invalid && planifForm.get('lunes')?.touched">
+                            <div *ngIf="planifForm.get('lunes')?.errors?.['maxlength']">No puede exceder 100 caracteres</div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="martes" class="form-label">Martes</label>
-                        <input type="text" class="form-control" formControlName="martes">
+                        <input type="text" class="form-control" formControlName="martes"
+                               [class.is-invalid]="planifForm.get('martes')?.invalid && planifForm.get('martes')?.touched"
+                               placeholder="Ejercicios para el martes">
+                        <div class="invalid-feedback" *ngIf="planifForm.get('martes')?.invalid && planifForm.get('martes')?.touched">
+                            <div *ngIf="planifForm.get('martes')?.errors?.['maxlength']">No puede exceder 100 caracteres</div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="miercoles" class="form-label">Miércoles</label>
-                        <input type="text" class="form-control" formControlName="miercoles">
+                        <input type="text" class="form-control" formControlName="miercoles"
+                               [class.is-invalid]="planifForm.get('miercoles')?.invalid && planifForm.get('miercoles')?.touched"
+                               placeholder="Ejercicios para el miércoles">
+                        <div class="invalid-feedback" *ngIf="planifForm.get('miercoles')?.invalid && planifForm.get('miercoles')?.touched">
+                            <div *ngIf="planifForm.get('miercoles')?.errors?.['maxlength']">No puede exceder 100 caracteres</div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="jueves" class="form-label">Jueves</label>
-                        <input type="text" class="form-control" formControlName="jueves">
+                        <input type="text" class="form-control" formControlName="jueves"
+                               [class.is-invalid]="planifForm.get('jueves')?.invalid && planifForm.get('jueves')?.touched"
+                               placeholder="Ejercicios para el jueves">
+                        <div class="invalid-feedback" *ngIf="planifForm.get('jueves')?.invalid && planifForm.get('jueves')?.touched">
+                            <div *ngIf="planifForm.get('jueves')?.errors?.['maxlength']">No puede exceder 100 caracteres</div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="viernes" class="form-label">Viernes</label>
-                        <input type="text" class="form-control" formControlName="viernes">
+                        <input type="text" class="form-control" formControlName="viernes"
+                               [class.is-invalid]="planifForm.get('viernes')?.invalid && planifForm.get('viernes')?.touched"
+                               placeholder="Ejercicios para el viernes">
+                        <div class="invalid-feedback" *ngIf="planifForm.get('viernes')?.invalid && planifForm.get('viernes')?.touched">
+                            <div *ngIf="planifForm.get('viernes')?.errors?.['maxlength']">No puede exceder 100 caracteres</div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="sabado" class="form-label">Sábado</label>
-                        <input type="text" class="form-control" formControlName="sabado">
+                        <input type="text" class="form-control" formControlName="sabado"
+                               [class.is-invalid]="planifForm.get('sabado')?.invalid && planifForm.get('sabado')?.touched"
+                               placeholder="Ejercicios para el sábado">
+                        <div class="invalid-feedback" *ngIf="planifForm.get('sabado')?.invalid && planifForm.get('sabado')?.touched">
+                            <div *ngIf="planifForm.get('sabado')?.errors?.['maxlength']">No puede exceder 100 caracteres</div>
+                        </div>
                     </div>
                     <div *ngIf="!shouldEditPlanif()">
-                        <label for="nombre" class="form-label" >Profesor</label>
+                        <label for="nombre" class="form-label">Profesor <span class="text-danger">*</span></label>
+                        <div class="invalid-feedback d-block" *ngIf="planifForm.get('profesor_dni')?.invalid && planifForm.get('profesor_dni')?.touched">
+                            <div *ngIf="planifForm.get('profesor_dni')?.errors?.['required']">Debe seleccionar un profesor</div>
+                        </div>
                     </div>
                     <div class="btn-group d-flex justify-content-center" style="margin-bottom: 15px;" role="group" aria-label="Basic radio toggle button group" *ngIf="!shouldEditPlanif()">
                         <ng-container *ngFor="let prof of allProf">
@@ -165,7 +209,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary btn-success" (click)="submit()"
-                    data-bs-dismiss="modal">Guardar</button>
+                    [disabled]="planifForm.invalid" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>

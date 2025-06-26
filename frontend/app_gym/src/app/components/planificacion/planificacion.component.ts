@@ -46,16 +46,16 @@ export class PlanificacionComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) {
     this.planifForm = this.formBuilder.group({
-      descripcion: [''],
-      fecha: [''],
-      lunes: [''],
-      martes: [''],
-      miercoles: [''],
-      jueves: [''],
-      viernes: [''],
-      sabado: [''],
-      alumno_dni: [''],
-      profesor_dni: [''],
+      descripcion: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
+      fecha: ['', [Validators.required]],
+      lunes: ['', [Validators.maxLength(100)]],
+      martes: ['', [Validators.maxLength(100)]],
+      miercoles: ['', [Validators.maxLength(100)]],
+      jueves: ['', [Validators.maxLength(100)]],
+      viernes: ['', [Validators.maxLength(100)]],
+      sabado: ['', [Validators.maxLength(100)]],
+      alumno_dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      profesor_dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
     });
   }
 
