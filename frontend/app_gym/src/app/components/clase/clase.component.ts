@@ -38,15 +38,15 @@ export class ClaseComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) {
     this.claseForm = this.formBuilder.group({
-      nombre: [''],
-      dia: [''],
-      horario: [''],
+      nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s0-9]+$/)]],
+      dia: ['', [Validators.required]],
+      horario: ['', [Validators.required, Validators.pattern(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9](-([0-1]?[0-9]|2[0-3]):[0-5][0-9])?$/)]],
       id: []
     });
     this.newclaseForm = this.formBuilder.group({
-      nombre: [''],
-      dia: [''],
-      horario: [''],
+      nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s0-9]+$/)]],
+      dia: ['', [Validators.required]],
+      horario: ['', [Validators.required, Validators.pattern(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9](-([0-1]?[0-9]|2[0-3]):[0-5][0-9])?$/)]],
       profesores: [[]]
     });
 

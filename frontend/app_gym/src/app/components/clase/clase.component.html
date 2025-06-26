@@ -55,7 +55,7 @@
                 <!-- Formulario para crear -->
                 <form [formGroup]='newclaseForm'>
                     <div class="mb-3">
-                        <label for="dia" class="form-label">Día</label>
+                        <label for="dia" class="form-label">Día <span class="text-danger">*</span></label>
                         <div class="btn-group d-flex justify-content-center" style="margin-bottom: 15px;" role="group" aria-label="Basic radio toggle button group">
                         
                             <input type="radio" class="btn-check" name="dia" formControlName="dia"  value="Lunes" id="btnradio1">
@@ -75,24 +75,40 @@
                             
                             <input type="radio" class="btn-check" name="dia" formControlName="dia" value="Sábado" id="btnradio6">
                             <label class="btn btn-outline-primary" for="btnradio6">Sábado</label>
-
-                            
+                        </div>
+                        <div class="invalid-feedback d-block" *ngIf="newclaseForm.get('dia')?.invalid && newclaseForm.get('dia')?.touched">
+                            <div *ngIf="newclaseForm.get('dia')?.errors?.['required']">Debe seleccionar un día</div>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" formControlName="nombre">
+                        <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="nombre" 
+                               [class.is-invalid]="newclaseForm.get('nombre')?.invalid && newclaseForm.get('nombre')?.touched"
+                               placeholder="Ingrese el nombre de la clase">
+                        <div class="invalid-feedback" *ngIf="newclaseForm.get('nombre')?.invalid && newclaseForm.get('nombre')?.touched">
+                            <div *ngIf="newclaseForm.get('nombre')?.errors?.['required']">El nombre es requerido</div>
+                            <div *ngIf="newclaseForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres</div>
+                            <div *ngIf="newclaseForm.get('nombre')?.errors?.['maxlength']">El nombre no puede exceder 50 caracteres</div>
+                            <div *ngIf="newclaseForm.get('nombre')?.errors?.['pattern']">Solo se permiten letras, números y espacios</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="horario" class="form-label">Horario</label>
-                        <input type="text" class="form-control" formControlName="horario">
+                        <label for="horario" class="form-label">Horario <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="horario" 
+                               [class.is-invalid]="newclaseForm.get('horario')?.invalid && newclaseForm.get('horario')?.touched"
+                               placeholder="Formato: 08:00-09:00 o 08:00">
+                        <small class="form-text text-muted">Ejemplos: 08:00, 14:30-15:30</small>
+                        <div class="invalid-feedback" *ngIf="newclaseForm.get('horario')?.invalid && newclaseForm.get('horario')?.touched">
+                            <div *ngIf="newclaseForm.get('horario')?.errors?.['required']">El horario es requerido</div>
+                            <div *ngIf="newclaseForm.get('horario')?.errors?.['pattern']">Formato inválido. Use HH:MM o HH:MM-HH:MM</div>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary btn-success" (click)="submitClase()"
-                    data-bs-dismiss="modal">Guardar</button>
+                    [disabled]="newclaseForm.invalid" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
@@ -111,23 +127,50 @@
                 <!-- Formulario para editar -->
                 <form [formGroup]='claseForm'>
                     <div class="mb-3">
-                        <label for="dia" class="form-label">Día</label>
-                        <input type="text" class="form-control" formControlName="dia">
+                        <label for="dia" class="form-label">Día <span class="text-danger">*</span></label>
+                        <select class="form-control" formControlName="dia" 
+                                [class.is-invalid]="claseForm.get('dia')?.invalid && claseForm.get('dia')?.touched">
+                            <option value="">Seleccione un día</option>
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miércoles">Miércoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                            <option value="Sábado">Sábado</option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="claseForm.get('dia')?.invalid && claseForm.get('dia')?.touched">
+                            <div *ngIf="claseForm.get('dia')?.errors?.['required']">El día es requerido</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" formControlName="nombre">
+                        <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="nombre" 
+                               [class.is-invalid]="claseForm.get('nombre')?.invalid && claseForm.get('nombre')?.touched"
+                               placeholder="Ingrese el nombre de la clase">
+                        <div class="invalid-feedback" *ngIf="claseForm.get('nombre')?.invalid && claseForm.get('nombre')?.touched">
+                            <div *ngIf="claseForm.get('nombre')?.errors?.['required']">El nombre es requerido</div>
+                            <div *ngIf="claseForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres</div>
+                            <div *ngIf="claseForm.get('nombre')?.errors?.['maxlength']">El nombre no puede exceder 50 caracteres</div>
+                            <div *ngIf="claseForm.get('nombre')?.errors?.['pattern']">Solo se permiten letras, números y espacios</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="horario" class="form-label">Horario</label>
-                        <input type="text" class="form-control" formControlName="horario">
+                        <label for="horario" class="form-label">Horario <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="horario" 
+                               [class.is-invalid]="claseForm.get('horario')?.invalid && claseForm.get('horario')?.touched"
+                               placeholder="Formato: 08:00-09:00 o 08:00">
+                        <small class="form-text text-muted">Ejemplos: 08:00, 14:30-15:30</small>
+                        <div class="invalid-feedback" *ngIf="claseForm.get('horario')?.invalid && claseForm.get('horario')?.touched">
+                            <div *ngIf="claseForm.get('horario')?.errors?.['required']">El horario es requerido</div>
+                            <div *ngIf="claseForm.get('horario')?.errors?.['pattern']">Formato inválido. Use HH:MM o HH:MM-HH:MM</div>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary btn-success" (click)="editClase()"
-                    data-bs-dismiss="modal">Guardar</button>
+                    [disabled]="claseForm.invalid" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
