@@ -18,26 +18,48 @@ class Alumno(db.Model):
     def validate_edad(self, key, edad):
         if edad is None:
             raise ValueError("Edad es requerida")
-        if not isinstance(edad, int) or edad <= 0:
+        
+        try:
+            edad = int(edad)
+        except (ValueError, TypeError):
+            raise ValueError("Edad debe ser un número entero válido")
+        
+        if edad <= 0:
             raise ValueError("Edad debe ser un número entero positivo")
         if not (13 <= edad <= 100):
-            raise ValueError("Edad debe estar entre 16 y 80 años")
+            raise ValueError("Edad debe estar entre 13 y 100 años")
         return edad
     
     @validates('peso')
     def validate_peso(self, key, peso):
         if peso is None:
             raise ValueError("Peso es requerido")
-        if not (40 <= peso <= 200):
-            raise ValueError("Peso debe estar entre 40 y 200 kg")
-        return peso
+        
+        try:
+            peso = float(peso)
+        except (ValueError, TypeError):
+            raise ValueError("Peso debe ser un número válido")
+        
+        if peso <= 0:
+            raise ValueError("Peso debe ser un número positivo")
+        if not (20 <= peso <= 300):
+            raise ValueError("Peso debe estar entre 20 y 300 kg")
+        return round(peso, 2)
     
     @validates('altura')
     def validate_altura(self, key, altura):
         if altura is None:
             raise ValueError("Altura es requerida")
-        if not (1.40 <= altura <= 2.20):
-            raise ValueError("Altura debe estar entre 1.40 y 2.20 metros")
+        
+        try:
+            altura = float(altura)
+        except (ValueError, TypeError):
+            raise ValueError("Altura debe ser un número válido")
+        
+        if altura <= 0:
+            raise ValueError("Altura debe ser un número positivo")
+        if not (0.50 <= altura <= 2.50):
+            raise ValueError("Altura debe estar entre 0.50 y 2.50 metros")
         return round(float(altura), 2)
     
     @validates('sexo')

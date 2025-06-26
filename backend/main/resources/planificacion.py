@@ -25,22 +25,27 @@ class Planificacion(Resource):
         planificacion = db.session.query(PlanificacionModel).get_or_404(id)
         data = request.get_json()
         
-        # Verifica si la fecha está presente en los datos
-        if 'fecha' in data:
-            fecha_str = data['fecha']
-            try:
-                fecha = datetime.strptime(fecha_str, '%Y-%m-%d')
-                data['fecha'] = fecha
-            except ValueError:
-                return {"message": "Formato de fecha incorrecto. Use 'yyyy-MM-dd'."}, 400
+        try:
+            if 'fecha' in data:
+                fecha_str = data['fecha']
+                try:
+                    fecha = datetime.strptime(fecha_str, '%Y-%m-%d')
+                    data['fecha'] = fecha
+                except ValueError:
+                    return {"error": "Formato de fecha incorrecto. Use 'yyyy-MM-dd'."}, 400
 
-        # Actualiza la planificación con los datos
-        for key, value in data.items():
-            setattr(planificacion, key, value)
+            for key, value in data.items():
+                setattr(planificacion, key, value)
 
-        db.session.add(planificacion)
-        db.session.commit()
-        return planificacion.to_json(), 201
+            db.session.add(planificacion)
+            db.session.commit()
+            return planificacion.to_json(), 200
+        except ValueError as e:
+            db.session.rollback()
+            return {'error': str(e)}, 400
+        except Exception as e:
+            db.session.rollback()
+            return {'error': 'Error interno del servidor'}, 500
 
 class Planificaciones(Resource):
 
@@ -92,14 +97,18 @@ class Planificaciones(Resource):
 
     @role_required(roles=["admin", "profesor"])
     def post(self):
-        planificaciones=PlanificacionModel.from_json(request.get_json())
-        print(planificaciones)
         try:
+            planificaciones=PlanificacionModel.from_json(request.get_json())
+            print(planificaciones)
             db.session.add(planificaciones)
             db.session.commit()
-        except:
-            return 'Formato no correcto', 400
-        return planificaciones.to_json(), 201
+            return planificaciones.to_json(), 201
+        except ValueError as e:
+            db.session.rollback()
+            return {'error': str(e)}, 400
+        except Exception as e:
+            db.session.rollback()
+            return {'error': 'Formato no correcto o error interno'}, 400
 
 class PlanificacionAlumno(Resource):
 

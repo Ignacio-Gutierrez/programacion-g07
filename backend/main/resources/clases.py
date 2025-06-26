@@ -24,11 +24,18 @@ class Clase(Resource):
     def put(self,id):
         clase=db.session.query(ClaseModel).get_or_404(id)
         data=request.get_json().items()
-        for key, value in data:
-            setattr(clase, key, value)
-        db.session.add(clase)
-        db.session.commit()
-        return clase.to_json(), 201
+        try:
+            for key, value in data:
+                setattr(clase, key, value)
+            db.session.add(clase)
+            db.session.commit()
+            return clase.to_json(), 200
+        except ValueError as e:
+            db.session.rollback()
+            return {'error': str(e)}, 400
+        except Exception as e:
+            db.session.rollback()
+            return {'error': 'Error interno del servidor'}, 500
     
 class Clases(Resource):
     @jwt_required(optional=True)
@@ -38,16 +45,23 @@ class Clases(Resource):
     
     @role_required(roles=["admin"])
     def post(self):
-        profesores_dni = request.get_json().get('profesores')
-        clases=ClaseModel.from_json(request.get_json())
+        try:
+            profesores_dni = request.get_json().get('profesores')
+            clases=ClaseModel.from_json(request.get_json())
 
-        if profesores_dni:
-            profesores = ProfesorModel.query.filter(ProfesorModel.dni.in_(profesores_dni)).all()
-            clases.profesores.extend(profesores)
+            if profesores_dni:
+                profesores = ProfesorModel.query.filter(ProfesorModel.dni.in_(profesores_dni)).all()
+                clases.profesores.extend(profesores)
 
-        db.session.add(clases)
-        db.session.commit()
-        return clases.to_json(), 201
+            db.session.add(clases)
+            db.session.commit()
+            return clases.to_json(), 201
+        except ValueError as e:
+            db.session.rollback()
+            return {'error': str(e)}, 400
+        except Exception as e:
+            db.session.rollback()
+            return {'error': 'Error interno del servidor'}, 500
     
 
 class ClasesPorProfesor(Resource):
