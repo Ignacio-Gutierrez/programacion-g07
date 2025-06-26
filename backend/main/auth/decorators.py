@@ -26,7 +26,7 @@ def role_required(roles):
 
 @jwt.user_identity_loader
 def user_identity_lookup(usuario):
-    return usuario.dni
+    return str(usuario.dni)
 
 @jwt.additional_claims_loader
 def add_claims_to_access_token(usuario):

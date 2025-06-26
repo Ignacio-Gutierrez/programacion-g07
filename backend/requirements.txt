@@ -1,7 +1,6 @@
-flask
-python-dotenv
-flask-restful
-flask_sqlalchemy
-flask_migrate
-flask_jwt_extended
-flask-mail
+Flask==3.1.1
+Flask-RESTful==0.3.10
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.1.0
+Flask-JWT-Extended==4.7.1
+Flask-Mail==0.10.0
