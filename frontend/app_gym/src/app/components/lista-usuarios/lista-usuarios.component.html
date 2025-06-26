@@ -59,7 +59,7 @@
                 <!-- Formulario para crear un nuevo usuario -->
                 <form [formGroup]="newUserForm">
                     <div>
-                      <label for="nombre" class="form-label">Rol</label>
+                      <label for="nombre" class="form-label">Rol <span class="text-danger">*</span></label>
                     </div>
                     <div class="btn-group d-flex justify-content-center" style="margin-bottom: 15px;" role="group" aria-label="Basic radio toggle button group">
                         
@@ -73,35 +73,81 @@
                         <label class="btn btn-outline-primary" for="btnradio3">Alumno</label>
                         
                     </div>
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" formControlName="nombre">
+                    <div class="invalid-feedback d-block" *ngIf="newUserForm.get('rol')?.invalid && newUserForm.get('rol')?.touched">
+                        <div *ngIf="newUserForm.get('rol')?.errors?.['required']">Debe seleccionar un rol</div>
                     </div>
                     <div class="mb-3">
-                        <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" formControlName="apellido">
+                        <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="nombre" 
+                               [class.is-invalid]="newUserForm.get('nombre')?.invalid && newUserForm.get('nombre')?.touched"
+                               placeholder="Ingrese el nombre">
+                        <div class="invalid-feedback" *ngIf="newUserForm.get('nombre')?.invalid && newUserForm.get('nombre')?.touched">
+                            <div *ngIf="newUserForm.get('nombre')?.errors?.['required']">El nombre es requerido</div>
+                            <div *ngIf="newUserForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 2 caracteres</div>
+                            <div *ngIf="newUserForm.get('nombre')?.errors?.['maxlength']">El nombre no puede exceder 50 caracteres</div>
+                            <div *ngIf="newUserForm.get('nombre')?.errors?.['pattern']">Solo se permiten letras y espacios</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="dni" class="form-label">DNI</label>
-                        <input type="number" class="form-control" formControlName="dni">
+                        <label for="apellido" class="form-label">Apellido <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="apellido" 
+                               [class.is-invalid]="newUserForm.get('apellido')?.invalid && newUserForm.get('apellido')?.touched"
+                               placeholder="Ingrese el apellido">
+                        <div class="invalid-feedback" *ngIf="newUserForm.get('apellido')?.invalid && newUserForm.get('apellido')?.touched">
+                            <div *ngIf="newUserForm.get('apellido')?.errors?.['required']">El apellido es requerido</div>
+                            <div *ngIf="newUserForm.get('apellido')?.errors?.['minlength']">El apellido debe tener al menos 2 caracteres</div>
+                            <div *ngIf="newUserForm.get('apellido')?.errors?.['maxlength']">El apellido no puede exceder 50 caracteres</div>
+                            <div *ngIf="newUserForm.get('apellido')?.errors?.['pattern']">Solo se permiten letras y espacios</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" formControlName="email">
+                        <label for="dni" class="form-label">DNI <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" formControlName="dni" 
+                               [class.is-invalid]="newUserForm.get('dni')?.invalid && newUserForm.get('dni')?.touched"
+                               placeholder="Ingrese el DNI (7-8 dígitos)">
+                        <div class="invalid-feedback" *ngIf="newUserForm.get('dni')?.invalid && newUserForm.get('dni')?.touched">
+                            <div *ngIf="newUserForm.get('dni')?.errors?.['required']">El DNI es requerido</div>
+                            <div *ngIf="newUserForm.get('dni')?.errors?.['pattern']">El DNI debe contener solo números</div>
+                            <div *ngIf="newUserForm.get('dni')?.errors?.['minlength'] || newUserForm.get('dni')?.errors?.['maxlength']">El DNI debe tener entre 7 y 8 dígitos</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" formControlName="password">
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" formControlName="email" 
+                               [class.is-invalid]="newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched"
+                               placeholder="Ingrese el correo electrónico">
+                        <div class="invalid-feedback" *ngIf="newUserForm.get('email')?.invalid && newUserForm.get('email')?.touched">
+                            <div *ngIf="newUserForm.get('email')?.errors?.['required']">El email es requerido</div>
+                            <div *ngIf="newUserForm.get('email')?.errors?.['email']">Ingrese un email válido</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control" formControlName="telefono">
+                        <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" formControlName="password" 
+                               [class.is-invalid]="newUserForm.get('password')?.invalid && newUserForm.get('password')?.touched"
+                               placeholder="Ingrese la contraseña (min. 6 caracteres)">
+                        <div class="invalid-feedback" *ngIf="newUserForm.get('password')?.invalid && newUserForm.get('password')?.touched">
+                            <div *ngIf="newUserForm.get('password')?.errors?.['required']">La contraseña es requerida</div>
+                            <div *ngIf="newUserForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</div>
+                            <div *ngIf="newUserForm.get('password')?.errors?.['maxlength']">La contraseña no puede exceder 20 caracteres</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" formControlName="telefono" 
+                               [class.is-invalid]="newUserForm.get('telefono')?.invalid && newUserForm.get('telefono')?.touched"
+                               placeholder="Ingrese el número de teléfono">
+                        <div class="invalid-feedback" *ngIf="newUserForm.get('telefono')?.invalid && newUserForm.get('telefono')?.touched">
+                            <div *ngIf="newUserForm.get('telefono')?.errors?.['required']">El teléfono es requerido</div>
+                            <div *ngIf="newUserForm.get('telefono')?.errors?.['pattern']">El teléfono debe tener entre 8 y 15 dígitos</div>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-success" (click)="crearUsuario()" data-bs-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="crearUsuario()" 
+                        [disabled]="newUserForm.invalid" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
@@ -120,30 +166,66 @@
                 <!-- Formulario para editar un usuario -->
                 <form [formGroup]="editUserForm">
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" formControlName="nombre">
+                        <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="nombre" 
+                               [class.is-invalid]="editUserForm.get('nombre')?.invalid && editUserForm.get('nombre')?.touched"
+                               placeholder="Ingrese el nombre">
+                        <div class="invalid-feedback" *ngIf="editUserForm.get('nombre')?.invalid && editUserForm.get('nombre')?.touched">
+                            <div *ngIf="editUserForm.get('nombre')?.errors?.['required']">El nombre es requerido</div>
+                            <div *ngIf="editUserForm.get('nombre')?.errors?.['minlength']">El nombre debe tener al menos 2 caracteres</div>
+                            <div *ngIf="editUserForm.get('nombre')?.errors?.['maxlength']">El nombre no puede exceder 50 caracteres</div>
+                            <div *ngIf="editUserForm.get('nombre')?.errors?.['pattern']">Solo se permiten letras y espacios</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" formControlName="apellido">
+                        <label for="apellido" class="form-label">Apellido <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="apellido" 
+                               [class.is-invalid]="editUserForm.get('apellido')?.invalid && editUserForm.get('apellido')?.touched"
+                               placeholder="Ingrese el apellido">
+                        <div class="invalid-feedback" *ngIf="editUserForm.get('apellido')?.invalid && editUserForm.get('apellido')?.touched">
+                            <div *ngIf="editUserForm.get('apellido')?.errors?.['required']">El apellido es requerido</div>
+                            <div *ngIf="editUserForm.get('apellido')?.errors?.['minlength']">El apellido debe tener al menos 2 caracteres</div>
+                            <div *ngIf="editUserForm.get('apellido')?.errors?.['maxlength']">El apellido no puede exceder 50 caracteres</div>
+                            <div *ngIf="editUserForm.get('apellido')?.errors?.['pattern']">Solo se permiten letras y espacios</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" formControlName="email">
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" formControlName="email" 
+                               [class.is-invalid]="editUserForm.get('email')?.invalid && editUserForm.get('email')?.touched"
+                               placeholder="Ingrese el correo electrónico">
+                        <div class="invalid-feedback" *ngIf="editUserForm.get('email')?.invalid && editUserForm.get('email')?.touched">
+                            <div *ngIf="editUserForm.get('email')?.errors?.['required']">El email es requerido</div>
+                            <div *ngIf="editUserForm.get('email')?.errors?.['email']">Ingrese un email válido</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" formControlName="password">
+                        <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" formControlName="password" 
+                               [class.is-invalid]="editUserForm.get('password')?.invalid && editUserForm.get('password')?.touched"
+                               placeholder="Ingrese la nueva contraseña">
+                        <div class="invalid-feedback" *ngIf="editUserForm.get('password')?.invalid && editUserForm.get('password')?.touched">
+                            <div *ngIf="editUserForm.get('password')?.errors?.['required']">La contraseña es requerida</div>
+                            <div *ngIf="editUserForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</div>
+                            <div *ngIf="editUserForm.get('password')?.errors?.['maxlength']">La contraseña no puede exceder 20 caracteres</div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control" formControlName="telefono">
+                        <label for="telefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" formControlName="telefono" 
+                               [class.is-invalid]="editUserForm.get('telefono')?.invalid && editUserForm.get('telefono')?.touched"
+                               placeholder="Ingrese el número de teléfono">
+                        <div class="invalid-feedback" *ngIf="editUserForm.get('telefono')?.invalid && editUserForm.get('telefono')?.touched">
+                            <div *ngIf="editUserForm.get('telefono')?.errors?.['required']">El teléfono es requerido</div>
+                            <div *ngIf="editUserForm.get('telefono')?.errors?.['pattern']">El teléfono debe tener entre 8 y 15 dígitos</div>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary btn-success" (click)="editarUsuario()" data-bs-dismiss="modal">Guardar</button>
+                <button type="button" class="btn btn-primary btn-success" (click)="editarUsuario()" 
+                        [disabled]="editUserForm.invalid" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>

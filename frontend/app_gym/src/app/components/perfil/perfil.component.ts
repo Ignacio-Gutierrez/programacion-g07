@@ -57,12 +57,12 @@ export class PerfilComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) {
     this.profileForm = this.formBuilder.group({
-      dni: [''],
-      edad: [''],
-      peso: [''],
-      altura: [''],
-      sexo: [''],
-      especialidad: ['']
+      dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.minLength(7), Validators.maxLength(8)]],
+      edad: ['', [Validators.required, Validators.min(13), Validators.max(100), Validators.pattern(/^[0-9]+$/)]],
+      peso: ['', [Validators.required, Validators.min(40), Validators.max(200), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      altura: ['', [Validators.required, Validators.min(1.40), Validators.max(2.20), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino|masculino|femenino|M|F|m|f)$/)]],
+      especialidad: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]]
     });
   }
 

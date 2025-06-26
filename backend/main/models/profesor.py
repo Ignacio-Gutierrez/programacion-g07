@@ -1,5 +1,7 @@
 from .. import db
 from . import UsuarioModel
+import re
+from sqlalchemy.orm import validates
 
 procla = db.Table("procla",
     db.Column("clase_id",db.Integer,db.ForeignKey("clase.id"),primary_key=True),
@@ -16,6 +18,18 @@ class Profesor(db.Model):
     usuario = db.relationship("Usuario", uselist=False, back_populates="profesor",cascade="all, delete-orphan",single_parent=True)
     
     planificaciones = db.relationship("Planificacion", back_populates="profesor",cascade="all, delete-orphan")
+
+    @validates('especialidad')
+    def validate_especialidad(self, key, especialidad):
+        if not especialidad or not especialidad.strip():
+            raise ValueError("Especialidad es requerida")
+        if len(especialidad.strip()) < 3:
+            raise ValueError("Especialidad debe tener al menos 3 caracteres")
+        if len(especialidad.strip()) > 50:
+            raise ValueError("Especialidad no puede exceder 50 caracteres")
+        if not re.match(r'^[a-zA-ZÀ-ÿ\s]+$', especialidad.strip()):
+            raise ValueError("Especialidad solo puede contener letras y espacios")
+        return especialidad.strip().title()
 
     def __repr__(self):
         return '<Profesor: %r >'% (self.especialidad)

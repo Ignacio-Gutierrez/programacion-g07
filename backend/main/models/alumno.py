@@ -1,5 +1,7 @@
 from .. import db
 from . import UsuarioModel
+import re
+from sqlalchemy.orm import validates
 
 class Alumno(db.Model):
     dni = db.Column(db.Integer, db.ForeignKey(UsuarioModel.dni), primary_key=True)
@@ -11,6 +13,46 @@ class Alumno(db.Model):
     usuario = db.relationship("Usuario", uselist=False, back_populates="alumno",cascade="all, delete-orphan", single_parent=True)
 
     planificaciones = db.relationship("Planificacion", back_populates="alumno",cascade="all, delete-orphan")
+
+    @validates('edad')
+    def validate_edad(self, key, edad):
+        if edad is None:
+            raise ValueError("Edad es requerida")
+        if not isinstance(edad, int) or edad <= 0:
+            raise ValueError("Edad debe ser un número entero positivo")
+        if not (13 <= edad <= 100):
+            raise ValueError("Edad debe estar entre 16 y 80 años")
+        return edad
+    
+    @validates('peso')
+    def validate_peso(self, key, peso):
+        if peso is None:
+            raise ValueError("Peso es requerido")
+        if not (40 <= peso <= 200):
+            raise ValueError("Peso debe estar entre 40 y 200 kg")
+        return peso
+    
+    @validates('altura')
+    def validate_altura(self, key, altura):
+        if altura is None:
+            raise ValueError("Altura es requerida")
+        if not (1.40 <= altura <= 2.20):
+            raise ValueError("Altura debe estar entre 1.40 y 2.20 metros")
+        return round(float(altura), 2)
+    
+    @validates('sexo')
+    def validate_sexo(self, key, sexo):
+        if not sexo or not sexo.strip():
+            raise ValueError("Sexo es requerido")
+        valid_sexos = ['masculino', 'femenino', 'm', 'f']
+        sexo_lower = sexo.strip().lower()
+        if sexo_lower not in valid_sexos:
+            raise ValueError("Sexo debe ser Masculino o Femenino")
+        # Normalizar a formato estándar
+        if sexo_lower in ['masculino', 'm']:
+            return 'Masculino'
+        else:
+            return 'Femenino'
 
 
     def __repr__(self):
