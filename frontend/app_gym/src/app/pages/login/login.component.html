@@ -7,16 +7,30 @@
             <div class="d-flex flex-column align-items-center">
                 <h1 class="title-main">Iniciar sesión</h1>
                 <form [formGroup]='loginForm'>
-                    <div>
-                        <label for="email" class="form-label" style="font-weight: bold">Correo electrónico</label>
-                        <input type="email" class="form-control" formControlName="email" placeholder="Tu correo electrónico">
+                    <div class="mb-3">
+                        <label for="email" class="form-label" style="font-weight: bold">Correo electrónico <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" formControlName="email" 
+                               [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+                               placeholder="Tu correo electrónico">
+                        <div class="invalid-feedback" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                            <div *ngIf="loginForm.get('email')?.errors?.['required']">El correo electrónico es requerido</div>
+                            <div *ngIf="loginForm.get('email')?.errors?.['email']">Ingrese un correo electrónico válido</div>
+                        </div>
                     </div>
-                    <div>
-                        <label for="password" class="form-label" style="font-weight: bold">Contraseña</label>
-                        <input type="password" class="form-control" formControlName="password" placeholder="Tu contraseña">
+                    <div class="mb-3">
+                        <label for="password" class="form-label" style="font-weight: bold">Contraseña <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" formControlName="password" 
+                               [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                               placeholder="Tu contraseña">
+                        <div class="invalid-feedback" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                            <div *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es requerida</div>
+                            <div *ngIf="loginForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</div>
+                            <div *ngIf="loginForm.get('password')?.errors?.['maxlength']">La contraseña no puede exceder los 20 caracteres</div>
+                        </div>
                     </div>
                     <div class="text-center">
-                        <a type="button" (click)="submit()" class="btn btn-dark col-10">Ingresar</a>
+                        <button type="button" (click)="submit()" class="btn btn-dark col-10" 
+                                [disabled]="loginForm.invalid">Ingresar</button>
                     </div>
                 </form>
             </div>
