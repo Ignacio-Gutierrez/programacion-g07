@@ -55,7 +55,7 @@ export class PlanificacionComponent implements OnInit {
       viernes: ['', [Validators.maxLength(100)]],
       sabado: ['', [Validators.maxLength(100)]],
       alumno_dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
-      profesor_dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      profesor_dni: ['', [Validators.required]],
     });
   }
 
@@ -65,6 +65,8 @@ export class PlanificacionComponent implements OnInit {
 
     this.route.params.subscribe((params: Params) => {
       this.perfilDni = this.parametrosOcultos.dni;
+      // Establecer alumno_dni automáticamente una vez que tenemos perfilDni
+      this.planifForm.patchValue({ alumno_dni: Number(this.perfilDni) });
     });
     
     this.usuariosService.getAllProf().subscribe(
@@ -84,18 +86,18 @@ export class PlanificacionComponent implements OnInit {
 
         if (Array.isArray(userPlanif) && userPlanif.length > 0) {
           const planif = userPlanif[0];
-          this.planifForm = this.formBuilder.group({
-            descripcion: [planif.descripcion, Validators.required],
-            fecha: [planif.fecha, Validators.required],
-            lunes: planif.lunes,
-            martes: planif.martes,
-            miercoles: planif.miercoles,
-            jueves: planif.jueves,
-            viernes: planif.viernes,
-            sabado: planif.sabado,
-            alumno_dni: [planif.alumno.dni, Validators.required],
-            profesor_dni: [planif.profesor.dni, Validators.required]
-          })
+          this.planifForm.patchValue({
+            descripcion: planif.descripcion,
+            fecha: planif.fecha,
+            lunes: planif.lunes || '',
+            martes: planif.martes || '',
+            miercoles: planif.miercoles || '',
+            jueves: planif.jueves || '',
+            viernes: planif.viernes || '',
+            sabado: planif.sabado || '',
+            alumno_dni: planif.alumno.dni,
+            profesor_dni: planif.profesor.dni
+          });
 
           this.PlanifID = planif.id
           this.DataPlanif = {
@@ -107,10 +109,40 @@ export class PlanificacionComponent implements OnInit {
             "jueves": planif.jueves,
             "viernes": planif.viernes,
             "sabado": planif.sabado,
-            "alumno_dni": planif.profesor_dni,
-            "profesor_dni": planif.profesor_dni
+            "alumno_dni": planif.alumno.dni,
+            "profesor_dni": planif.profesor.dni
+          };
+        } else {
+          // No hay planificación existente, inicializar DataPlanif como objeto vacío
+          this.DataPlanif = {
+            "descripcion": null,
+            "fecha": null,
+            "lunes": null,
+            "martes": null,
+            "miercoles": null,
+            "jueves": null,
+            "viernes": null,
+            "sabado": null,
+            "alumno_dni": null,
+            "profesor_dni": null
           };
         }
+      },
+      (error) => {
+        console.error('Error al obtener planificación:', error);
+        // En caso de error, también inicializar DataPlanif
+        this.DataPlanif = {
+          "descripcion": null,
+          "fecha": null,
+          "lunes": null,
+          "martes": null,
+          "miercoles": null,
+          "jueves": null,
+          "viernes": null,
+          "sabado": null,
+          "alumno_dni": null,
+          "profesor_dni": null
+        };
       }
     );
   }
@@ -119,13 +151,27 @@ export class PlanificacionComponent implements OnInit {
     this.planificacionService.createPlanif(dataPLanif).subscribe(
       (response) => {
         console.log('Planificación creada con éxito', response);
+        // Recargar solo cuando sea exitoso
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       },
+      (error) => {
+        console.error('Error al crear planificación:', error);
+      }
     );
   }
   editarPlanificacion(dataPlanif: any = {}) {
     this.planificacionService.updatePlanif(this.PlanifID, dataPlanif).subscribe(
       (response) => {
         console.log('Planificación actualizada con éxito', response);
+        // Recargar solo cuando sea exitoso
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      },
+      (error) => {
+        console.error('Error al actualizar planificación:', error);
       }
     );
   }
@@ -138,45 +184,52 @@ export class PlanificacionComponent implements OnInit {
     );
   }
   submit() {
-    const fechaParts = this.planifForm.value.fecha.split('-');
-    const fechaFormatted = `${fechaParts[0]}-${fechaParts[1]}-${fechaParts[2]}`;
-    this.planifForm.value.fecha = fechaFormatted;
-  
+    // Llamar debug para ver el estado del formulario
+    this.debugFormulario();
+    
+    // Asegurar que alumno_dni esté establecido
+    if (!this.planifForm.value.alumno_dni) {
+      this.planifForm.patchValue({ alumno_dni: Number(this.perfilDni) });
+    }
+
+    // Validar el formato de fecha
     const formatoFecha = /^\d{4}-\d{2}-\d{2}$/;
+
+    console.log("Estado del formulario:", {
+      valid: this.planifForm.valid,
+      errors: this.planifForm.errors,
+      value: this.planifForm.value,
+      fechaValida: formatoFecha.test(this.planifForm.value.fecha)
+    });
 
     if (this.planifForm.valid && formatoFecha.test(this.planifForm.value.fecha)) {
       console.log("Datos planificación:", this.planifForm.value);
   
       const profesorDni = this.planifForm.value.profesor_dni;
-      if (profesorDni !== null && profesorDni !== "") {
-        this.planificacionService.getPlanif(this.perfilDni).subscribe(
-          (planifData) => {
-            if (Array.isArray(planifData) && planifData.length > 0) {
-              this.editarPlanificacion(this.planifForm.value);
-            } else {
-              this.planifForm.value.alumno_dni = Number(this.perfilDni);
-              this.crearPlanificacion(this.planifForm.value);
-            }
-          },
-          (error) => {
-            console.error('Error para obtener datos de planificación:', error);
-          },
-          () => {
-            window.location.reload();
-          }
-        );
-      } else {
-        alert('El campo Profesor es requerido. Por favor, seleccione un profesor.');
+      if (profesorDni && profesorDni !== null && profesorDni !== "" && profesorDni !== 0) {
+        // Verificar si estamos editando una planificación existente o creando una nueva
+        if (this.shouldEditPlanif()) {
+          this.editarPlanificacion(this.planifForm.value);
+        } else {
+          this.crearPlanificacion(this.planifForm.value);
+        }
       }
     } else {
       console.log("Formulario inválido", this.planifForm);
-      alert('Formulario inválido');
+      console.log("Errores del formulario:", this.planifForm.errors);
+      console.log("Estado de los campos:");
+      Object.keys(this.planifForm.controls).forEach(key => {
+        const control = this.planifForm.get(key);
+        if (control && control.invalid) {
+          console.log(`${key}:`, control.errors);
+        }
+      });
     }
   }
   
   
   shouldEditPlanif(): boolean {
-    return this.DataPlanif !== null && Object.values(this.DataPlanif).some((value) => value !== null && value !== '');
+    return this.UserPlanif && Array.isArray(this.UserPlanif) && this.UserPlanif.length > 0;
   }
 
   borrarPlanifiacacion(){
@@ -189,5 +242,24 @@ export class PlanificacionComponent implements OnInit {
       dni: dni
     };
     this.router.navigate(['/vPerfil'], { state: parametrosOcultos });
+  }
+
+  debugFormulario() {
+    console.log('=== DEBUG FORMULARIO ===');
+    console.log('Formulario válido:', this.planifForm.valid);
+    console.log('Valores del formulario:', this.planifForm.value);
+    console.log('perfilDni:', this.perfilDni);
+    
+    Object.keys(this.planifForm.controls).forEach(key => {
+      const control = this.planifForm.get(key);
+      console.log(`${key}:`, {
+        value: control?.value,
+        valid: control?.valid,
+        errors: control?.errors,
+        dirty: control?.dirty,
+        touched: control?.touched
+      });
+    });
+    console.log('=== FIN DEBUG ===');
   }
 }
