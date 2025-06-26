@@ -82,11 +82,21 @@ class Usuario(db.Model):
     def validate_telefono(self, key, telefono):
         if telefono is None:
             raise ValueError("Teléfono es requerido")
+        
+        # Manejar string o int
+        if isinstance(telefono, str):
+            if not telefono.strip().isdigit():
+                raise ValueError("Teléfono debe contener solo números")
+            telefono = int(telefono.strip())
+        
         if not isinstance(telefono, int) or telefono <= 0:
             raise ValueError("Teléfono debe ser un número entero positivo")
+        
         telefono_str = str(telefono)
-        if not (8 <= len(telefono_str) <= 15):
-            raise ValueError("Teléfono debe tener entre 8 y 15 dígitos")
+        # CAMBIO: Permitir 7-15 dígitos (antes era 8-15)
+        if not (7 <= len(telefono_str) <= 15):
+            raise ValueError("Teléfono debe tener entre 7 y 15 dígitos")
+        
         return telefono
     
     @validates('rol')
