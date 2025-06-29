@@ -206,7 +206,7 @@ class UsuariosAlumnos(Resource):
             
         #Ordeno por id de Planificacion
         if request.args.get('sortby_nrPlanificaciones'):
-            usuarios_a=usuarios_a.outerjoin(AlumnoModel.Planificaciones).group_by(AlumnoModel.id).order_by(func.count(PlanificacionModel.id).desc())
+            usuarios_a=usuarios_a.outerjoin(AlumnoModel.planificaciones).group_by(AlumnoModel.id).order_by(func.count(PlanificacionModel.id).desc())
         
         ### FIN FILTROS ####
         
