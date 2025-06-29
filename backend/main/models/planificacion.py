@@ -58,7 +58,7 @@ class Planificacion(db.Model):
         return profesor_dni
     
     def __repr__(self):
-        return '<Planificacion: %r %r %r %r %r %r %r %r %r %r>'% (self.descripcion, self.fecha, self.lunes, self.martes, self.miercoles, self.jueves, self.viernes, self.sabado, self.alumno_dni, self.alumno_dni)
+        return '<Planificacion: %r %r %r %r %r %r %r %r %r %r>'% (self.descripcion, self.fecha, self.lunes, self.martes, self.miercoles, self.jueves, self.viernes, self.sabado, self.alumno_dni, self.profesor_dni)
     
     def to_json(self):
         self.alumno = db.session.query(AlumnoModel).get_or_404(self.alumno_dni)

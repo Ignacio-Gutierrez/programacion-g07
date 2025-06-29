@@ -147,6 +147,6 @@ class PlanificacionesProfesores(Resource):
         dni_profesor = request.args.get("dni_profesor")
         planificaciones = db.session.query(PlanificacionModel)
         if dni_profesor:
-            planificaciones = planificaciones.filter(PlanificacionModel.dni_profesor == dni_profesor)
+            planificaciones = planificaciones.filter(PlanificacionModel.profesor_dni == dni_profesor)
         planificaciones = planificaciones.all()
         return jsonify({"planificaciones": [planificacion.to_json() for planificacion in planificaciones]})
