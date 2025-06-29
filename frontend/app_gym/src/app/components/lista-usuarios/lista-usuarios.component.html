@@ -73,6 +73,14 @@
                         <label class="btn btn-outline-primary" for="btnradio3">Alumno</label>
                         
                     </div>
+                    
+                    <!-- MENSAJE QUE APARECE CUANDO SE SELECCIONA PROFESOR -->
+                    <div class="alert alert-info d-flex align-items-center mb-3" role="alert" 
+                         *ngIf="newUserForm.get('rol')?.value === 'profesor'">
+                        <i class="fa-solid fa-info-circle me-2"></i>
+                        <span><strong>Recordatorio:</strong> Recuerda que después de crear este usuario, deberás asignarle una especialidad en su perfil.</span>
+                    </div>
+                    
                     <div class="invalid-feedback d-block" *ngIf="newUserForm.get('rol')?.invalid && newUserForm.get('rol')?.touched">
                         <div *ngIf="newUserForm.get('rol')?.errors?.['required']">Debe seleccionar un rol</div>
                     </div>
