@@ -62,7 +62,7 @@ export class PerfilComponent implements OnInit {
       peso: ['', [Validators.required, Validators.min(40), Validators.max(200), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
       altura: ['', [Validators.required, Validators.min(1.40), Validators.max(2.20), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
       sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino|masculino|femenino|M|F|m|f)$/)]],
-      especialidad: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]]
+      especialidad: ['', [Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]]
     });
   }
 
@@ -203,7 +203,15 @@ export class PerfilComponent implements OnInit {
   }
 
   submit() {
-    if (this.profileForm.valid) {
+    let isFormValid = false;
+    
+    if (this.UserData.rol === 'user') {
+      isFormValid = this.profileForm.valid;
+    } else if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
+      isFormValid = this.canSubmitForm();
+    }
+
+    if (isFormValid) {
       if (this.UserData.rol === 'user') {
         console.log("Datos alumno:", this.profileForm.value);
 
@@ -229,19 +237,41 @@ export class PerfilComponent implements OnInit {
             window.location.reload();
           },
           (profError) => {
-            if (this.profileForm !== null && Object.values(this.profileForm).some((value) => value !== null && value !== '')) {
-              this.profileForm.value.dni = this.perfilDni;
-              this.crearProfesor(this.profileForm.value);
-              window.location.reload();
-            } else {
-              alert("Complete el formulario del profesor");
-            }
+            this.profileForm.value.dni = this.perfilDni;
+            this.crearProfesor(this.profileForm.value);
+            window.location.reload();
           }
         );
       }
     } else {
-      alert('Formulario inválido');
+      if (this.UserData.rol === 'user') {
+        alert('Complete todos los campos requeridos del alumno');
+      } else if (this.UserData.rol === 'profesor') {
+        alert('Debe completar una especialidad válida (mínimo 3 caracteres)');
+      }
     }
+  }
+
+  canSubmitForm(): boolean {
+    if (this.UserData.rol === 'user') {
+      // Para alumnos, validar todo el formulario
+      return this.profileForm.valid;
+    } else if (this.UserData.rol === 'profesor') {
+      // Para profesores, solo validar que la especialidad sea válida si no está vacía
+      const especialidad = this.profileForm.get('especialidad')?.value;
+      
+      if (!especialidad || especialidad.trim() === '') {
+        return false; // No permitir enviar si está vacía
+      }
+      
+      // Si tiene contenido, validar que no tenga errores
+      const especialidadControl = this.profileForm.get('especialidad');
+      return !especialidadControl?.hasError('minlength') && 
+             !especialidadControl?.hasError('maxlength') && 
+             !especialidadControl?.hasError('pattern');
+    }
+    
+    return false;
   }
 
   shouldEditUser(): boolean {

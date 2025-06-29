@@ -122,18 +122,18 @@
                                [class.is-invalid]="profileForm.get('especialidad')?.invalid && profileForm.get('especialidad')?.touched"
                                placeholder="Ingrese su especialidad (ej: Entrenamiento Personal)">
                         <div class="invalid-feedback" *ngIf="profileForm.get('especialidad')?.invalid && profileForm.get('especialidad')?.touched">
-                            <div *ngIf="profileForm.get('especialidad')?.errors?.['required']">La especialidad es requerida</div>
                             <div *ngIf="profileForm.get('especialidad')?.errors?.['minlength']">La especialidad debe tener al menos 3 caracteres</div>
                             <div *ngIf="profileForm.get('especialidad')?.errors?.['maxlength']">La especialidad no puede exceder 50 caracteres</div>
                             <div *ngIf="profileForm.get('especialidad')?.errors?.['pattern']">Solo se permiten letras y espacios</div>
                         </div>
+                        <small class="form-text text-muted">Debe completar este campo para guardar los cambios</small>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary btn-success" (click)="submit()"
-                    [disabled]="profileForm.invalid" data-bs-dismiss="modal">Guardar</button>
+                    [disabled]="!canSubmitForm()" data-bs-dismiss="modal">Guardar</button>
             </div>
         </div>
     </div>
