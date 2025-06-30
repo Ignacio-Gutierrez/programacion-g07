@@ -36,8 +36,8 @@ class Planificacion(db.Model):
     @validates('lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado')
     def validate_day_activity(self, key, activity):
         if activity is not None and activity.strip():
-            if len(activity.strip()) > 100:
-                raise ValueError(f"Actividad de {key} no puede exceder 100 caracteres")
+            if len(activity.strip()) > 1000:
+                raise ValueError(f"Actividad de {key} no puede exceder 1000 caracteres")
             return activity.strip()
         return activity
     
