@@ -59,15 +59,14 @@ export class PerfilComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.minLength(7), Validators.maxLength(8)]],
       edad: ['', [Validators.required, Validators.min(13), Validators.max(100), Validators.pattern(/^[0-9]+$/)]],
-      peso: ['', [Validators.required, Validators.min(40), Validators.max(200), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
-      altura: ['', [Validators.required, Validators.min(1.40), Validators.max(2.20), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      peso: ['', [Validators.required, Validators.min(40), Validators.max(200), Validators.pattern(/^[0-9]+([,.][0-9]{1,2})?$/)]],
+      altura: ['', [Validators.required, Validators.min(1.40), Validators.max(2.20), Validators.pattern(/^[0-9]+([,.][0-9]{1,2})?$/)]],
       sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino|masculino|femenino|M|F|m|f)$/)]],
       especialidad: ['', [Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]]
     });
   }
 
   ngOnInit(): void {
-
     const userDNI = this.usuariosService.getUserDNIFromToken();
     this.parametrosOcultos = history.state;
 
@@ -75,57 +74,67 @@ export class PerfilComponent implements OnInit {
       this.perfilDni = this.parametrosOcultos.dni;
     });
 
+    // SIEMPRE inicializa el formulario con TODAS las validaciones
+    this.profileForm = this.formBuilder.group({
+      dni: [this.perfilDni, [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.minLength(7), Validators.maxLength(8)]],
+      edad: ['', [Validators.required, Validators.min(13), Validators.max(100), Validators.pattern(/^[0-9]+$/)]],
+      peso: ['', [Validators.required, Validators.min(40), Validators.max(200), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      altura: ['', [Validators.required, Validators.min(1.40), Validators.max(2.20), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino)$/)]],
+      especialidad: ['', [Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]]
+    });
+
     if (userDNI && this.selectedRole === 'user') {
       this.usuariosService.getUser(userDNI).subscribe(
         (userData) => {
           this.UserData = userData;
-          console.log('UserData: ', this.UserData);
-
           if (this.UserData.rol === 'user') {
             this.usuariosService.getUserAlum(userDNI).subscribe(
               (alumData) => {
                 this.AlumData = alumData;
-                console.log('AlumData: ', this.AlumData);
+                // Si hay datos, actualiza los valores del formulario
+                if (this.AlumData) {
+                  this.profileForm.patchValue({
+                    dni: this.perfilDni,
+                    edad: this.AlumData.edad,
+                    peso: this.AlumData.peso,
+                    altura: this.AlumData.altura,
+                    sexo: this.AlumData.sexo,
+                  });
+                }
               },
               (alumError) => {
-                console.error('Error fetching AlumData: ', alumError);
+                // Si es nuevo, solo setea el dni
+                this.profileForm.patchValue({ dni: this.perfilDni });
               }
             );
           }
         },
         (userError) => {
-          console.error('Error fetching UserData: ', userError);
+          // Si es nuevo, solo setea el dni
+          this.profileForm.patchValue({ dni: this.perfilDni });
         }
       );
     } else if (this.perfilDni && (this.selectedRole === 'admin' || this.selectedRole === 'profesor')) {
       this.usuariosService.getUser(this.perfilDni).subscribe(
         (userData) => {
           this.UserData = userData;
-          console.log('UserData: ', this.UserData);
-
           if (this.UserData.rol === 'user') {
             this.usuariosService.getUserAlum(this.perfilDni).subscribe(
               (alumData) => {
                 this.AlumData = alumData;
-                console.log('AlumData: ', this.AlumData);
-                this.newAlumData = {
-                  "dni": this.AlumData.dni,
-                  "edad": this.AlumData.edad,
-                  "peso": this.AlumData.peso,
-                  "altura": this.AlumData.altura,
-                  "sexo": this.AlumData.sexo,
-                };
-
-                this.profileForm = this.formBuilder.group({
-                  dni: [this.perfilDni, Validators.required],
-                  edad: [this.AlumData.edad, Validators.required],
-                  peso: [this.AlumData.peso, Validators.required],
-                  altura: [this.AlumData.altura, Validators.required],
-                  sexo: [this.AlumData.sexo, Validators.required],
-                })
+                if (this.AlumData) {
+                  this.profileForm.patchValue({
+                    dni: this.perfilDni,
+                    edad: this.AlumData.edad,
+                    peso: this.AlumData.peso,
+                    altura: this.AlumData.altura,
+                    sexo: this.AlumData.sexo,
+                  });
+                }
               },
               (alumError) => {
-                console.error('Error fetching AlumData: ', alumError);
+                this.profileForm.patchValue({ dni: this.perfilDni });
               }
             );
           } else if (this.UserData.rol === 'profesor') {
@@ -151,11 +160,11 @@ export class PerfilComponent implements OnInit {
           }
         },
         (userError) => {
-          console.error('Error fetching UserData: ', userError);
+          this.profileForm.patchValue({ dni: this.perfilDni });
         }
       );
     } else {
-      console.error('No se pudo obtener el DNI del token.');
+      this.profileForm.patchValue({ dni: this.perfilDni });
     }
   }
 
@@ -217,15 +226,18 @@ export class PerfilComponent implements OnInit {
 
         this.usuariosService.getUserAlum(this.perfilDni).subscribe(
           (alumData) => {
+            console.log("El alumno ya existe. Actualizando...");
             this.editarAlumno(this.profileForm.value);
             window.location.reload();
           },
           (alumError) => {
-            if (this.AlumData !== null && Object.values(this.AlumData).some((value) => value !== null && value !== '')) {
+            if (alumError.status === 404) {
+              console.log("El alumno no existe. Creando nuevo registro...");
               this.profileForm.value.dni = this.perfilDni
               this.crearAlumno(this.profileForm.value);
               window.location.reload();
             } else {
+              console.error('Error al verificar alumno:', alumError);
               alert("Complete el formulario del alumno");
             }
           }
