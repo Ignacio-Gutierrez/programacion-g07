@@ -1,0 +1,15 @@
+¡Hola {{alumno.nombre}} {{alumno.apellido}}!
+
+Te informamos que tienes una nueva planificación disponible en el gimnasio "El Chicho".
+
+Detalles de tu planificación:
+- Descripción: {{planificacion.descripcion}}
+- Fecha: {{planificacion.fecha}}
+- Profesor asignado: {{profesor.nombre}}
+
+Para ver tu planificación completa, ingresa a tu cuenta en nuestra plataforma.
+
+¡Te esperamos en el gimnasio!
+
+Saludos,
+Gimnasio El Chicho

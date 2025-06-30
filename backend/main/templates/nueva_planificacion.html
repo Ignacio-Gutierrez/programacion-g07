@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nueva Planificación - Gym El Chicho</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #fbdc74; color: #063940; padding: 20px; text-align: center; }
+        .content { padding: 20px; background-color: #f8f9fa; }
+        .planificacion-info { background-color: white; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .footer { text-align: center; padding: 15px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏋️ Nueva Planificación Disponible</h1>
+        </div>
+        
+        <div class="content">
+            <h2>¡Hola {{alumno.nombre}} {{alumno.apellido}}!</h2>
+            
+            <p>Te informamos que tienes una <strong>nueva planificación</strong> disponible en el gimnasio "El Chicho".</p>
+            
+            <div class="planificacion-info">
+                <h3>📋 Detalles de tu planificación:</h3>
+                <ul>
+                    <li><strong>Descripción:</strong> {{planificacion.descripcion}}</li>
+                    <li><strong>Fecha:</strong> {{planificacion.fecha}}</li>
+                    <li><strong>Profesor asignado:</strong> {{profesor.nombre}}</li>
+                </ul>
+            </div>
+            
+            <p>Para ver tu planificación completa con todos los ejercicios detallados, <strong>ingresa a tu cuenta</strong> en nuestra plataforma.</p>
+            
+            <p>¡Te esperamos en el gimnasio! 💪</p>
+        </div>
+        
+        <div class="footer">
+            <p>Saludos,<br><strong>Gimnasio El Chicho</strong></p>
+        </div>
+    </div>
+</body>
+</html>

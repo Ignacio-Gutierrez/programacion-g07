@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planificación Actualizada - Gym El Chicho</title>
+    <!-- Same styles as nueva_planificacion.html -->
+</head>
+<body>
+    <div class="container">
+        <div class="header" style="background-color: #28a745;">
+            <h1>📝 Planificación Actualizada</h1>
+        </div>
+        
+        <div class="content">
+            <h2>¡Hola {{alumno.nombre}} {{alumno.apellido}}!</h2>
+            
+            <p>Te informamos que tu planificación ha sido <strong>actualizada</strong> por tu profesor {{profesor.nombre}}.</p>
+            
+            <div class="planificacion-info">
+                <h3>📋 Detalles actualizados:</h3>
+                <ul>
+                    <li><strong>Descripción:</strong> {{planificacion.descripcion}}</li>
+                    <li><strong>Fecha:</strong> {{planificacion.fecha}}</li>
+                    <li><strong>Profesor:</strong> {{profesor.nombre}}</li>
+                </ul>
+            </div>
+            
+            <p>Ingresa a tu cuenta para ver todos los cambios realizados.</p>
+        </div>
+        
+        <div class="footer">
+            <p>Saludos,<br><strong>Gimnasio El Chicho</strong></p>
+        </div>
+    </div>
+</body>
+</html>

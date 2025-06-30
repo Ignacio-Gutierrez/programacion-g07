@@ -1,0 +1,13 @@
+¡Hola {{alumno.nombre}} {{alumno.apellido}}!
+
+Te informamos que tu planificación ha sido actualizada por tu profesor {{profesor.nombre}}.
+
+Detalles actualizados:
+- Descripción: {{planificacion.descripcion}}
+- Fecha: {{planificacion.fecha}}
+- Profesor: {{profesor.nombre}}
+
+Ingresa a tu cuenta para ver todos los cambios realizados.
+
+Saludos,
+Gimnasio El Chicho
