@@ -162,6 +162,8 @@ export class PlanificacionComponent implements OnInit {
     );
   }
   editarPlanificacion(dataPlanif: any = {}) {
+    // Ya no es necesario limpiar los datos aquí si se hace en submit()
+    console.log("Enviando para editar:", dataPlanif);
     this.planificacionService.updatePlanif(this.PlanifID, dataPlanif).subscribe(
       (response) => {
         console.log('Planificación actualizada con éxito', response);
@@ -184,46 +186,26 @@ export class PlanificacionComponent implements OnInit {
     );
   }
   submit() {
-    // Llamar debug para ver el estado del formulario
     this.debugFormulario();
-    
-    // Asegurar que alumno_dni esté establecido
-    if (!this.planifForm.value.alumno_dni) {
-      this.planifForm.patchValue({ alumno_dni: Number(this.perfilDni) });
-    }
 
-    // Validar el formato de fecha
-    const formatoFecha = /^\d{4}-\d{2}-\d{2}$/;
+    if (this.planifForm.valid) {
+      // ✅ Objeto con los datos limpios y con tipos correctos
+      const datosParaEnviar = {
+        ...this.planifForm.value,
+        alumno_dni: Number(this.planifForm.value.alumno_dni),    // <-- Convertir a número
+        profesor_dni: Number(this.planifForm.value.profesor_dni) // <-- Convertir a número (por seguridad)
+      };
 
-    console.log("Estado del formulario:", {
-      valid: this.planifForm.valid,
-      errors: this.planifForm.errors,
-      value: this.planifForm.value,
-      fechaValida: formatoFecha.test(this.planifForm.value.fecha)
-    });
+      console.log("✅ Datos limpios a enviar:", datosParaEnviar);
 
-    if (this.planifForm.valid && formatoFecha.test(this.planifForm.value.fecha)) {
-      console.log("Datos planificación:", this.planifForm.value);
-  
-      const profesorDni = this.planifForm.value.profesor_dni;
-      if (profesorDni && profesorDni !== null && profesorDni !== "" && profesorDni !== 0) {
-        // Verificar si estamos editando una planificación existente o creando una nueva
-        if (this.shouldEditPlanif()) {
-          this.editarPlanificacion(this.planifForm.value);
-        } else {
-          this.crearPlanificacion(this.planifForm.value);
-        }
+      if (this.shouldEditPlanif()) {
+        this.editarPlanificacion(datosParaEnviar);
+      } else {
+        this.crearPlanificacion(datosParaEnviar);
       }
     } else {
-      console.log("Formulario inválido", this.planifForm);
-      console.log("Errores del formulario:", this.planifForm.errors);
-      console.log("Estado de los campos:");
-      Object.keys(this.planifForm.controls).forEach(key => {
-        const control = this.planifForm.get(key);
-        if (control && control.invalid) {
-          console.log(`${key}:`, control.errors);
-        }
-      });
+      console.log("Formulario inválido");
+      alert('Formulario inválido. Revisa los campos marcados en rojo.');
     }
   }
   
