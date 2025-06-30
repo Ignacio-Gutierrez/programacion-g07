@@ -142,19 +142,19 @@ export class PerfilComponent implements OnInit {
               (profData) => {
                 this.ProfData = profData;
                 console.log('ProfData: ', this.ProfData);
-                this.newProfData = {
-                  "dni": this.ProfData.dni,
-                  "especialidad": this.ProfData.especialidad,
-                };
-
-                this.profileForm = this.formBuilder.group({
-                  dni: [this.perfilDni, Validators.required],
-                  especialidad: [this.ProfData.especialidad, Validators.required],
-
-                })
+                
+                // ✅ NO RECREAR EL FORMULARIO. SOLO ACTUALIZAR VALORES.
+                if (this.ProfData) {
+                  this.profileForm.patchValue({
+                    dni: this.perfilDni,
+                    especialidad: this.ProfData.especialidad
+                  });
+                }
               },
               (profError) => {
                 console.error('Error fetching ProfData: ', profError);
+                // Si es un profesor nuevo, solo setear el DNI
+                this.profileForm.patchValue({ dni: this.perfilDni });
               }
             );
           }
