@@ -116,36 +116,39 @@ export class ClaseComponent implements OnInit {
 
 
 
-submitClase() {
-  try {
-    this.usuariosService.getUserProf(this.perfilDni);
-  } catch (error) {
-    if (error === 404) {
-      this.ProfData = true;
+  submitClase() {
+    if (this.newclaseForm.valid) {
+      if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
+        this.usuariosService.getUserProf(this.perfilDni).subscribe(
+          (profData) => {
+            console.log("Profesor verificado. Creando clase...");
+            this.crearClase(this.newclaseForm.value);
+          },
+          (error) => {
+            console.error("El usuario no es un profesor registrado y no puede crear clases.", error);
+            alert("Error: Debes tener un perfil de profesor completo para poder crear una clase.");
+          }
+        );
+      } else {
+        alert("Solo los profesores o administradores pueden crear clases.");
+      }
     } else {
-      this.ProfData = false;
+      let errorMessage = 'Formulario inválido. Por favor, revisa los siguientes campos:\n';
+      if (this.newclaseForm.get('nombre')?.invalid) errorMessage += '- Nombre (debe tener entre 3 y 50 caracteres).\n';
+      if (this.newclaseForm.get('dia')?.invalid) errorMessage += '- Día (debe ser un día de la semana válido, ej: Lunes).\n';
+      if (this.newclaseForm.get('horario')?.invalid) errorMessage += '- Horario (debe tener formato HH:MM o HH:MM-HH:MM).\n';
+      alert(errorMessage);
     }
   }
-  
-  if (this.newclaseForm.valid && this.ProfData === true) {
-    if (this.UserData.rol === 'profesor') {
-      this.newclaseForm.value.profesores = this.perfilDni
-      this.crearClase(this.newclaseForm.value);
-      window.location.reload();
-    }
-  } else {
-    alert('Formulario inválido');
-  }
-}
 
-editClase() {
-  if (this.claseForm.valid) {
-    if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
-      this.editarClase(this.claseForm.value.id, this.claseForm.value);
-      window.location.reload();
+  editClase() {
+    if (this.claseForm.valid) {
+      if (this.UserData.rol === 'profesor' || this.UserData.rol === 'admin') {
+        this.editarClase(this.claseForm.value.id, this.claseForm.value);
+        window.location.reload();
+      }
+    } else {
+      alert('Formulario inválido');
     }
-  } else {
-    alert('Formulario inválido');
   }
-}
 }
