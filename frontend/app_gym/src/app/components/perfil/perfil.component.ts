@@ -4,6 +4,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-perfil',
@@ -59,8 +60,8 @@ export class PerfilComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.minLength(7), Validators.maxLength(8)]],
       edad: ['', [Validators.required, Validators.min(13), Validators.max(100), Validators.pattern(/^[0-9]+$/)]],
-      peso: ['', [Validators.required, Validators.pattern(/^\d{2,3}(,\d{1,2})?$/)]],
-      altura: ['', [Validators.required, Validators.pattern(/^[1-2],[0-9]{1,2}$/)]],
+      peso: ['', [Validators.required, Validators.pattern(/^[0-9]{2,3}(,[0-9]{1,2})?$/), pesoRangoValidator]],
+      altura: ['', [Validators.required, Validators.pattern(/^[1-2],[0-9]{1,2}$/), alturaRangoValidator]],
       sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino|masculino|femenino|M|F|m|f)$/)]],
       especialidad: ['', [Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]]
     });
@@ -78,8 +79,8 @@ export class PerfilComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       dni: [this.perfilDni, [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.minLength(7), Validators.maxLength(8)]],
       edad: ['', [Validators.required, Validators.min(13), Validators.max(100), Validators.pattern(/^[0-9]+$/)]],
-      peso: ['', [Validators.required, Validators.pattern(/^\d{2,3}(,\d{1,2})?$/)]],
-      altura: ['', [Validators.required, Validators.pattern(/^[1-2],[0-9]{1,2}$/)]],
+      peso: ['', [Validators.required, Validators.pattern(/^[0-9]{2,3}(,[0-9]{1,2})?$/), pesoRangoValidator]],
+      altura: ['', [Validators.required, Validators.pattern(/^[1-2],[0-9]{1,2}$/), alturaRangoValidator]],
       sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino)$/)]],
       especialidad: ['', [Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]]
     });
@@ -348,4 +349,22 @@ export class PerfilComponent implements OnInit {
 
     }
   }
+}
+
+function pesoRangoValidator(control: AbstractControl) {
+  if (!control.value) return null;
+  const valor = parseFloat(control.value.replace(',', '.'));
+  if (isNaN(valor)) return null;
+  if (valor < 40) return { minPeso: true };
+  if (valor > 200) return { maxPeso: true };
+  return null;
+}
+
+function alturaRangoValidator(control: AbstractControl) {
+  if (!control.value) return null;
+  const valor = parseFloat(control.value.replace(',', '.'));
+  if (isNaN(valor)) return null;
+  if (valor < 1.40) return { minAltura: true };
+  if (valor > 2.20) return { maxAltura: true };
+  return null;
 }

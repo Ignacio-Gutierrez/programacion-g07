@@ -86,6 +86,8 @@
                         <div class="invalid-feedback" *ngIf="profileForm.get('peso')?.invalid && profileForm.get('peso')?.touched">
                             <div *ngIf="profileForm.get('peso')?.errors?.['required']">El peso es requerido</div>
                             <div *ngIf="profileForm.get('peso')?.errors?.['pattern']">Formato inválido, solo se permiten números con coma (ej: 70,5)</div>
+                            <div *ngIf="profileForm.get('peso')?.errors?.['minPeso']">El peso mínimo es 40 kg</div>
+                            <div *ngIf="profileForm.get('peso')?.errors?.['maxPeso']">El peso máximo es 200 kg</div>
                         </div>
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
@@ -96,6 +98,8 @@
                         <div class="invalid-feedback" *ngIf="profileForm.get('altura')?.invalid && profileForm.get('altura')?.touched">
                             <div *ngIf="profileForm.get('altura')?.errors?.['required']">La altura es requerida</div>
                             <div *ngIf="profileForm.get('altura')?.errors?.['pattern']">Formato inválido, solo se permiten números con coma (ej: 1,75)</div>
+                            <div *ngIf="profileForm.get('altura')?.errors?.['minAltura']">La altura mínima es 1,40 m</div>
+                            <div *ngIf="profileForm.get('altura')?.errors?.['maxAltura']">La altura máxima es 2,20 m</div>
                         </div>
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
