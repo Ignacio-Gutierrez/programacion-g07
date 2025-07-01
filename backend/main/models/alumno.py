@@ -34,7 +34,8 @@ class Alumno(db.Model):
     def validate_peso(self, key, peso):
         if peso is None:
             raise ValueError("Peso es requerido")
-        
+        if isinstance(peso, str):
+            peso = peso.replace(',', '.')
         try:
             peso = float(peso)
         except (ValueError, TypeError):
@@ -42,15 +43,16 @@ class Alumno(db.Model):
         
         if peso <= 0:
             raise ValueError("Peso debe ser un número positivo")
-        if not (20 <= peso <= 300):
-            raise ValueError("Peso debe estar entre 20 y 300 kg")
+        if not (40 <= peso <= 200):
+            raise ValueError("Peso debe estar entre 40 y 200 kg")
         return round(peso, 2)
     
     @validates('altura')
     def validate_altura(self, key, altura):
         if altura is None:
             raise ValueError("Altura es requerida")
-        
+        if isinstance(altura, str):
+            altura = altura.replace(',', '.')
         try:
             altura = float(altura)
         except (ValueError, TypeError):
@@ -58,8 +60,8 @@ class Alumno(db.Model):
         
         if altura <= 0:
             raise ValueError("Altura debe ser un número positivo")
-        if not (0.50 <= altura <= 2.50):
-            raise ValueError("Altura debe estar entre 0.50 y 2.50 metros")
+        if not (1.40 <= altura <= 2.20):
+            raise ValueError("Altura debe estar entre 1.40 y 2.20 metros")
         return round(float(altura), 2)
     
     @validates('sexo')

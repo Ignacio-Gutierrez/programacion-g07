@@ -59,8 +59,8 @@ export class PerfilComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.minLength(7), Validators.maxLength(8)]],
       edad: ['', [Validators.required, Validators.min(13), Validators.max(100), Validators.pattern(/^[0-9]+$/)]],
-      peso: ['', [Validators.required, Validators.min(40), Validators.max(200), Validators.pattern(/^[0-9]+([,.][0-9]{1,2})?$/)]],
-      altura: ['', [Validators.required, Validators.min(1.40), Validators.max(2.20), Validators.pattern(/^[0-9]+([,.][0-9]{1,2})?$/)]],
+      peso: ['', [Validators.required, Validators.pattern(/^\d{2,3}(,\d{1,2})?$/)]],
+      altura: ['', [Validators.required, Validators.pattern(/^[1-2],[0-9]{1,2}$/)]],
       sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino|masculino|femenino|M|F|m|f)$/)]],
       especialidad: ['', [Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]]
     });
@@ -78,8 +78,8 @@ export class PerfilComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       dni: [this.perfilDni, [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.minLength(7), Validators.maxLength(8)]],
       edad: ['', [Validators.required, Validators.min(13), Validators.max(100), Validators.pattern(/^[0-9]+$/)]],
-      peso: ['', [Validators.required, Validators.min(40), Validators.max(200), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
-      altura: ['', [Validators.required, Validators.min(1.40), Validators.max(2.20), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      peso: ['', [Validators.required, Validators.pattern(/^\d{2,3}(,\d{1,2})?$/)]],
+      altura: ['', [Validators.required, Validators.pattern(/^[1-2],[0-9]{1,2}$/)]],
       sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino)$/)]],
       especialidad: ['', [Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]]
     });
@@ -94,13 +94,25 @@ export class PerfilComponent implements OnInit {
                 this.AlumData = alumData;
                 // Si hay datos, actualiza los valores del formulario
                 if (this.AlumData) {
+                  // Convertir punto a coma para edición y visualización
+                  let peso = this.AlumData.peso;
+                  let altura = this.AlumData.altura;
+                  if (peso !== null && peso !== undefined) {
+                    peso = peso.toString().replace('.', ',');
+                  }
+                  if (altura !== null && altura !== undefined) {
+                    altura = altura.toString().replace('.', ',');
+                  }
                   this.profileForm.patchValue({
                     dni: this.perfilDni,
                     edad: this.AlumData.edad,
-                    peso: this.AlumData.peso,
-                    altura: this.AlumData.altura,
+                    peso: peso,
+                    altura: altura,
                     sexo: this.AlumData.sexo,
                   });
+                  // También actualizar los datos para la vista
+                  this.AlumData.peso = peso;
+                  this.AlumData.altura = altura;
                 }
               },
               (alumError) => {
@@ -124,13 +136,25 @@ export class PerfilComponent implements OnInit {
               (alumData) => {
                 this.AlumData = alumData;
                 if (this.AlumData) {
+                  // Convertir punto a coma para edición y visualización
+                  let peso = this.AlumData.peso;
+                  let altura = this.AlumData.altura;
+                  if (peso !== null && peso !== undefined) {
+                    peso = peso.toString().replace('.', ',');
+                  }
+                  if (altura !== null && altura !== undefined) {
+                    altura = altura.toString().replace('.', ',');
+                  }
                   this.profileForm.patchValue({
                     dni: this.perfilDni,
                     edad: this.AlumData.edad,
-                    peso: this.AlumData.peso,
-                    altura: this.AlumData.altura,
+                    peso: peso,
+                    altura: altura,
                     sexo: this.AlumData.sexo,
                   });
+                  // También actualizar los datos para la vista
+                  this.AlumData.peso = peso;
+                  this.AlumData.altura = altura;
                 }
               },
               (alumError) => {
