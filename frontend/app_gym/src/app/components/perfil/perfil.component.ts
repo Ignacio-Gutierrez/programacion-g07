@@ -59,7 +59,7 @@ export class PerfilComponent implements OnInit {
   ) {
     this.profileForm = this.formBuilder.group({
       dni: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.minLength(7), Validators.maxLength(8)]],
-      edad: ['', [Validators.required, Validators.min(13), Validators.max(100), Validators.pattern(/^[0-9]+$/)]],
+      edad: ['', [Validators.required, Validators.min(13), Validators.max(100), edadEnteraPositivaValidator]],
       peso: ['', [Validators.required, Validators.pattern(/^[0-9]{2,3}(,[0-9]{1,2})?$/), pesoRangoValidator]],
       altura: ['', [Validators.required, Validators.pattern(/^[1-2],[0-9]{1,2}$/), alturaRangoValidator]],
       sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino|masculino|femenino|M|F|m|f)$/)]],
@@ -78,7 +78,7 @@ export class PerfilComponent implements OnInit {
     // SIEMPRE inicializa el formulario con TODAS las validaciones
     this.profileForm = this.formBuilder.group({
       dni: [this.perfilDni, [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.minLength(7), Validators.maxLength(8)]],
-      edad: ['', [Validators.required, Validators.min(13), Validators.max(100), Validators.pattern(/^[0-9]+$/)]],
+      edad: ['', [Validators.required, Validators.min(13), Validators.max(100), edadEnteraPositivaValidator]],
       peso: ['', [Validators.required, Validators.pattern(/^[0-9]{2,3}(,[0-9]{1,2})?$/), pesoRangoValidator]],
       altura: ['', [Validators.required, Validators.pattern(/^[1-2],[0-9]{1,2}$/), alturaRangoValidator]],
       sexo: ['', [Validators.required, Validators.pattern(/^(Masculino|Femenino)$/)]],
@@ -366,5 +366,14 @@ function alturaRangoValidator(control: AbstractControl) {
   if (isNaN(valor)) return null;
   if (valor < 1.40) return { minAltura: true };
   if (valor > 2.20) return { maxAltura: true };
+  return null;
+}
+
+function edadEnteraPositivaValidator(control: AbstractControl) {
+  if (!control.value) return null;
+  // Solo acepta números enteros positivos
+  if (!/^[0-9]+$/.test(control.value)) {
+    return { enteroPositivo: true };
+  }
   return null;
 }

@@ -68,14 +68,14 @@
                 <form [formGroup]='profileForm'>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
                         <label for="edad" class="form-label">Edad <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" formControlName="edad" 
+                        <input type="text" class="form-control" formControlName="edad" 
                                [class.is-invalid]="profileForm.get('edad')?.invalid && profileForm.get('edad')?.touched"
-                               placeholder="Ingrese su edad (13-100 años)" min="13" max="100">
+                               placeholder="Ingrese su edad (13-100 años)">
                         <div class="invalid-feedback" *ngIf="profileForm.get('edad')?.invalid && profileForm.get('edad')?.touched">
                             <div *ngIf="profileForm.get('edad')?.errors?.['required']">La edad es requerida</div>
                             <div *ngIf="profileForm.get('edad')?.errors?.['min']">La edad mínima es 13 años</div>
                             <div *ngIf="profileForm.get('edad')?.errors?.['max']">La edad máxima es 100 años</div>
-                            <div *ngIf="profileForm.get('edad')?.errors?.['pattern']">Solo se permiten números enteros positivos</div>
+                            <div *ngIf="profileForm.get('edad')?.errors?.['enteroPositivo']">Solo se permiten números enteros positivos</div>
                         </div>
                     </div>
                     <div class="mb-3" *ngIf="UserData.rol === 'user'">
