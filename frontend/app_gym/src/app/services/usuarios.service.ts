@@ -156,4 +156,13 @@ export class UsuariosService {
     });
       return this.httpClient.get<any>(this.url + '/usuarios_p', {headers: headers});
   }
+
+  deleteUserAlum(dni: number) {
+    const auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.httpClient.delete(this.url + '/usuario_a/' + dni, { headers: headers });
+  }
 }

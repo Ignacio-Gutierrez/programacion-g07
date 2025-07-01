@@ -41,12 +41,10 @@
                 </div>
                 <div style="display: flex; justify-content: space-between;">
                     <div>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-lm" data-bs-toggle="modal"
-                            data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
+                        <button *ngIf="(selectedRole === 'admin' && UserData.rol !== 'admin') || (selectedRole === 'profesor' && UserData.rol === 'user')" class="btn btn-danger btn-lm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
                     </div>
                     <div>
-                        <a *ngIf="selectedRole === 'admin' || selectedRole === 'profesor'" routerLink="/vInicio"><button
-                                class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
+                        <a *ngIf="selectedRole === 'admin' || selectedRole === 'profesor'" routerLink="/vInicio"><button class="btn btn-primary btn-lm"><i class="fa-solid fa-left-long fa-lg"></i></button></a>
                     </div>
                 </div>
             </div>

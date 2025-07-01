@@ -23,8 +23,7 @@
                 </div>
                 <div style="display: flex; justify-content: space-between;">
                     <div>
-                        <button *ngIf="selectedRole === 'admin'" class="btn btn-danger btn-lm" data-bs-toggle="modal"
-                            data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
+                        <button *ngIf="selectedRole === 'admin' || selectedRole === 'profesor'" class="btn btn-danger btn-lm" data-bs-toggle="modal" data-bs-target="#eliminarModal"><i class="fa-solid fa-trash fa-lg"></i></button>
                     </div>
                     <div>
                         <button class="btn btn-primary btn-lm" (click)="verPerfil(perfilDni)">

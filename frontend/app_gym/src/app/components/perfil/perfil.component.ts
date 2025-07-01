@@ -170,15 +170,29 @@ export class PerfilComponent implements OnInit {
 
   borrarUsuario() {
     if (this.perfilDni) {
-      this.usuariosService.deleteUser(this.perfilDni).subscribe(
-        () => {
-          console.log(`Usuario Eliminado`);
-          this.router.navigate(['/vInicio']);
-        },
-        (error) => {
-          console.error(`Error al eliminar user: ${error}`);
-        }
-      );
+      // Si el usuario autenticado es profesor y el usuario a eliminar es alumno, usar el endpoint específico
+      if (this.selectedRole === 'profesor' && this.UserData.rol === 'user') {
+        this.usuariosService.deleteUserAlum(this.perfilDni).subscribe(
+          () => {
+            console.log(`Alumno eliminado correctamente`);
+            this.router.navigate(['/vInicio']);
+          },
+          (error) => {
+            console.error(`Error al eliminar alumno: ${error}`);
+          }
+        );
+      } else {
+        // Admin o cualquier otro caso permitido
+        this.usuariosService.deleteUser(this.perfilDni).subscribe(
+          () => {
+            console.log(`Usuario Eliminado`);
+            this.router.navigate(['/vInicio']);
+          },
+          (error) => {
+            console.error(`Error al eliminar user: ${error}`);
+          }
+        );
+      }
     }
   }
 

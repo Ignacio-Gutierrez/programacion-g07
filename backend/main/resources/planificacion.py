@@ -13,7 +13,7 @@ class Planificacion(Resource):
         planificacion=db.session.query(PlanificacionModel).get_or_404(id)
         return planificacion.to_json()
     
-    @role_required(roles=["admin"])
+    @role_required(roles=["admin", "profesor"])
     def delete(self,id):
         planificacion=db.session.query(PlanificacionModel).get_or_404(id)
         db.session.delete(planificacion)

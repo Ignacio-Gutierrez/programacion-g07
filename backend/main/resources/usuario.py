@@ -34,9 +34,16 @@ class Usuario(Resource):
         else:
             return usuario.to_json()
 
-    @role_required(roles=["admin"])
+    @role_required(roles=["admin", "profesor"])
     def delete(self,dni):
         usuario=db.session.query(UsuarioModel).get_or_404(dni)
+        current_identity = get_jwt_identity()
+        # Obtener el usuario autenticado
+        usuario_actual = db.session.query(UsuarioModel).get(current_identity)
+        # Si es profesor, solo puede borrar alumnos
+        if usuario_actual and usuario_actual.rol == "profesor":
+            if usuario.rol != "user":
+                return {"error": "Solo puedes eliminar usuarios con rol alumno."}, 403
         db.session.delete(usuario)
         db.session.commit()
         return "", 204
@@ -166,7 +173,7 @@ class UsuarioAlumno(Resource):
             db.session.rollback()
             return {'error': 'Error interno del servidor'}, 500
     
-    @role_required(roles=["admin"])
+    @role_required(roles=["admin", "profesor"])
     def delete(self,dni):
         usuario_a=db.session.query(AlumnoModel).get_or_404(dni)
         db.session.delete(usuario_a)
